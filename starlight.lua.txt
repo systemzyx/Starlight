@@ -154,10 +154,10 @@ Converted["_Starlight"].DisplayOrder = 999
 Converted["_Starlight"].IgnoreGuiInset = true
 Converted["_Starlight"].ScreenInsets = Enum.ScreenInsets.DeviceSafeInsets
 Converted["_Starlight"].ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-Converted["_Starlight"].Name = "Starlight"
+Converted["_Starlight"].Name = "Starlight ServerSide"
 Converted["_Starlight"].Parent = game:GetService("CoreGui")
 
-Converted["_Frame"].BackgroundColor3 = Color3.fromRGB(204,204,0)
+Converted["_Frame"].BackgroundColor3 = Color3.fromRGB(179,179,0)
 Converted["_Frame"].BorderColor3 = Color3.fromRGB(0, 0, 0)
 Converted["_Frame"].BorderSizePixel = 0
 Converted["_Frame"].Position = UDim2.new(0.0619825348, 0, 0.0790882483, 0)
@@ -353,7 +353,7 @@ Converted["_Log"].Name = "Log"
 Converted["_Log"].Parent = Converted["_Framee"]
 
 Converted["_Check"].Font = Enum.Font.Ubuntu
-Converted["_Check"].Text = "Scanning..."
+Converted["_Check"].Text = "Injecting..."
 Converted["_Check"].TextColor3 = Color3.fromRGB(255, 255, 255)
 Converted["_Check"].TextScaled = true
 Converted["_Check"].TextSize = 50
@@ -671,7 +671,7 @@ Converted["_UIStroke13"].Thickness = 1.5
 Converted["_UIStroke13"].Parent = Converted["_CFour"]
 
 Converted["_Hub"].Font = Enum.Font.SourceSans
-Converted["_Hub"].Text = "DELETED"
+Converted["_Hub"].Text = "Voodo Doll"
 Converted["_Hub"].TextColor3 = Color3.fromRGB(255, 255, 255)
 Converted["_Hub"].TextScaled = true
 Converted["_Hub"].TextSize = 14
@@ -817,7 +817,7 @@ Converted["_Log3"].Name = "Log"
 Converted["_Log3"].Parent = Converted["_Logs"]
 
 Converted["_ToggleMode"].Font = Enum.Font.Ubuntu
-Converted["_ToggleMode"].Text = "Scan: All"
+Converted["_ToggleMode"].Text = "ScanMode: All"
 Converted["_ToggleMode"].TextColor3 = Color3.fromRGB(255, 255, 255)
 Converted["_ToggleMode"].TextScaled = true
 Converted["_ToggleMode"].TextSize = 14
@@ -840,7 +840,7 @@ Converted["_UIStroke18"].Thickness = 1.5
 Converted["_UIStroke18"].Parent = Converted["_ToggleMode"]
 
 Converted["_Version"].Font = Enum.Font.SourceSans
-Converted["_Version"].Text = "Version: Modded"
+Converted["_Version"].Text = "Version : Rig6"
 Converted["_Version"].TextColor3 = Color3.fromRGB(255, 255, 255)
 Converted["_Version"].TextScaled = true
 Converted["_Version"].TextSize = 14
@@ -1397,11 +1397,10 @@ local function BEEKENZ_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	end)
 	script.Parent.MouseButton1Click:Connect(function()
 		game.StarterGui:SetCore("SendNotification",{
-			Title = "💫 starlight",
-			Text = "discord server link copied",
+			Title = "💫 Starlight",
+			Text = "Modded Version",
 			Duration = 12
 		})
-		setclipboard("https://discord.gg/sCwubxMJ9z")
 	
 	end)
 end
@@ -2446,12 +2445,12 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		if remoteEvent or remoteFunction then
 			script.Parent.Framee.Check.Visible = false
 			script.Parent.Framee.Log.Visible = true
-			script.Parent.Framee.Log.Text = "backdoor: " .. (remoteEvent and remoteEvent.Name or remoteFunction and remoteFunction.Name or "unknown")
+			script.Parent.Framee.Log.Text = "Injected!"
 	
 			script.Parent.stat.ImageColor3 = Color3.fromRGB(159, 226, 191)
 			game.StarterGui:SetCore("SendNotification",{
-				Title = "💫 starlight",
-				Text = "backdoor found in " .. scanTime .."s! backdoor: " .. (remoteEvent and remoteEvent.Name or remoteFunction and remoteFunction.Name or "unknown"),
+				Title = "💫 Starlight",
+				Text = "Backdoor Found in " .. scanTime .."s! backdoor: " .. (remoteEvent and remoteEvent.Name or remoteFunction and remoteFunction.Name or "unknown"),
 				Duration = 5
 			})
 		else
@@ -2460,7 +2459,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 			wait(3)
 			script.Parent.Framee.scan.Visible = true
 			script.Parent.Framee.Check.Visible = false
-			script.Parent.Framee.Check.Text = "scanning for backdoor..."
+			script.Parent.Framee.Check.Text = "Injecting..."
 		end
 	
 		scanning = false
