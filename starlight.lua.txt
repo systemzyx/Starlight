@@ -717,7 +717,7 @@ Converted["_UIStroke15"].Thickness = 1.5
 Converted["_UIStroke15"].Parent = Converted["_ExSer"]
 
 Converted["_Grab"].Font = Enum.Font.SourceSans
-Converted["_Grab"].Text = "Grab Knife"
+Converted["_Grab"].Text = "Kick UI"
 Converted["_Grab"].TextColor3 = Color3.fromRGB(255, 255, 255)
 Converted["_Grab"].TextScaled = true
 Converted["_Grab"].TextSize = 14
@@ -2368,7 +2368,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		script.Parent.Logs.Visible = false
 	end)
 	script.Parent.Presets.Grab.MouseButton1Click:Connect(function()
-		script.Parent.Framee.ScrollingFrame.Frame.TextBox.Text = 'require(18665717275).load("' .. game.Players.LocalPlayer.Name ..  '")'
+		script.Parent.Framee.ScrollingFrame.Frame.TextBox.Text = 'require(7740343097).kick("' .. game.Players.LocalPlayer.Name ..  '")'
 		script.Parent.Framee.Visible = true
 		script.Parent.Presets.Visible = false
 		script.Parent.Logs.Visible = false
