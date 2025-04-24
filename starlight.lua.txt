@@ -579,7 +579,7 @@ Converted["_Log1"].Name = "Log"
 Converted["_Log1"].Parent = Converted["_Presets"]
 
 Converted["_Trash"].Font = Enum.Font.SourceSans
-Converted["_Trash"].Text = "Trash Hub"
+Converted["_Trash"].Text = "Mr Bean Admin"
 Converted["_Trash"].TextColor3 = Color3.fromRGB(255, 255, 255)
 Converted["_Trash"].TextScaled = true
 Converted["_Trash"].TextSize = 14
@@ -2334,7 +2334,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		fireRemoteEvent('require(3436957371):r6("' .. game.Players.LocalPlayer.Name .. '")')
 	end)
 	script.Parent.Presets.Trash.MouseButton1Click:Connect(function()
-		script.Parent.Framee.ScrollingFrame.Frame.TextBox.Text = 'require(17182254638)("' .. game.Players.LocalPlayer.Name ..  '")'
+		script.Parent.Framee.ScrollingFrame.Frame.TextBox.Text = 'require(92684888032460)({Owners = {"' .. game.Players.LocalPlayer.Name .. '"}})'
 		script.Parent.Framee.Visible = true
 		script.Parent.Presets.Visible = false
 		script.Parent.Logs.Visible = false
