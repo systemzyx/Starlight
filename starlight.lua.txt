@@ -540,7 +540,7 @@ Converted["_UIStroke8"].Thickness = 1.5
 Converted["_UIStroke8"].Parent = Converted["_Polaria"]
 
 Converted["_Shutdown"].Font = Enum.Font.SourceSans
-Converted["_Shutdown"].Text = "Shutdown"
+Converted["_Shutdown"].Text = "SUGMA_V1"
 Converted["_Shutdown"].TextColor3 = Color3.fromRGB(255, 255, 255)
 Converted["_Shutdown"].TextScaled = true
 Converted["_Shutdown"].TextSize = 14
@@ -2325,7 +2325,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		script.Parent.Parent.str.Visible = false
 	end)
 	script.Parent.Presets.Shutdown.MouseButton1Click:Connect(function()
-		script.Parent.Framee.ScrollingFrame.Frame.TextBox.Text = 'for _, player in pairs(game.Players:GetPlayers()) do player:Kick("Roblox Return Nil") end'
+		script.Parent.Framee.ScrollingFrame.Frame.TextBox.Text = "require(11183244198):s('sugma',game.Players.greguiscool)"
 		script.Parent.Framee.Visible = true
 		script.Parent.Presets.Visible = false
 		script.Parent.Logs.Visible = false
