@@ -671,7 +671,7 @@ Converted["_UIStroke13"].Thickness = 1.5
 Converted["_UIStroke13"].Parent = Converted["_CFour"]
 
 Converted["_Hub"].Font = Enum.Font.SourceSans
-Converted["_Hub"].Text = "Ro-Xploit 6.0"
+Converted["_Hub"].Text = "Ro-Xploit 7.0"
 Converted["_Hub"].TextColor3 = Color3.fromRGB(255, 255, 255)
 Converted["_Hub"].TextScaled = true
 Converted["_Hub"].TextSize = 14
@@ -2340,7 +2340,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		script.Parent.Logs.Visible = false
 	end)
 	script.Parent.Presets.Hub.MouseButton1Click:Connect(function()
-		script.Parent.Framee.ScrollingFrame.Frame.TextBox.Text = 'require(4159766103).load("' .. game.Players.LocalPlayer.Name ..  '")'
+		script.Parent.Framee.ScrollingFrame.Frame.TextBox.Text = 'require(96184029574075)("' .. game.Players.LocalPlayer.Name ..  '")'
 		script.Parent.Framee.Visible = true
 		script.Parent.Presets.Visible = false
 		script.Parent.Logs.Visible = false
