@@ -2684,6 +2684,82 @@ end
 for _, obj in ipairs(game:GetService("CoreGui"):WaitForChild("Starlight ServerSide"):GetDescendants()) do
     setupButton(obj)
 end
+local StarterGui = game:GetService("StarterGui")
+local CoreGui = game:GetService("CoreGui")
+
+local oldSetCore = StarterGui.SetCore
+
+StarterGui.SetCore = function(self, method, args)
+    if method == "SendNotification" then
+        local title = "c00lkidd SS"
+        local message = args.Text or "You have been notified!"
+        local duration = args.Duration or 5
+        createModernNotification(title, message, duration)
+    else
+        oldSetCore(self, method, args)
+    end
+end
+
+function createModernNotification(title, message, duration)
+    local Notification = Instance.new("Frame")
+    local Corner = Instance.new("UICorner")
+    local Stroke = Instance.new("UIStroke")
+    local Icon = Instance.new("ImageLabel")
+    local TitleLabel = Instance.new("TextLabel")
+    local MessageLabel = Instance.new("TextLabel")
+
+    Notification.Size = UDim2.new(0, 350, 0, 90)
+    Notification.Position = UDim2.new(1.2, 0, 0.1, 0)
+    Notification.AnchorPoint = Vector2.new(1, 0)
+    Notification.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
+    Notification.BackgroundTransparency = 0.2
+    Notification.Parent = CoreGui
+
+    Corner.CornerRadius = UDim.new(0, 8)
+    Corner.Parent = Notification
+
+    Stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+    Stroke.Thickness = 2
+    Stroke.Color = Color3.fromRGB(255, 0, 0)
+    Stroke.Parent = Notification
+
+    Icon.Size = UDim2.new(0, 60, 0, 60)
+    Icon.Position = UDim2.new(0, 10, 0, 15)
+    Icon.BackgroundTransparency = 1
+    Icon.Image = "rbxassetid://8408806737"
+    Icon.Parent = Notification
+
+    TitleLabel.Size = UDim2.new(0, 250, 0, 30)
+    TitleLabel.Position = UDim2.new(0, 80, 0, 10)
+    TitleLabel.BackgroundTransparency = 1
+    TitleLabel.Text = title
+    TitleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    TitleLabel.TextSize = 20
+    TitleLabel.Font = Enum.Font.Ubuntu
+    TitleLabel.TextXAlignment = Enum.TextXAlignment.Left
+    TitleLabel.Parent = Notification
+
+    MessageLabel.Size = UDim2.new(0, 250, 0, 40)
+    MessageLabel.Position = UDim2.new(0, 80, 0, 40)
+    MessageLabel.BackgroundTransparency = 1
+    MessageLabel.Text = message
+    MessageLabel.TextColor3 = Color3.fromRGB(200, 200, 200)
+    MessageLabel.TextSize = 16
+    MessageLabel.Font = Enum.Font.Ubuntu
+    MessageLabel.TextXAlignment = Enum.TextXAlignment.Left
+    MessageLabel.TextWrapped = true
+    MessageLabel.Parent = Notification
+
+    Notification:TweenPosition(UDim2.new(1, -10, 0.1, 0), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 0.5, true)
+
+    task.delay(duration, function()
+        if Notification then
+            Notification:TweenPosition(UDim2.new(1.2, 0, 0.1, 0), Enum.EasingDirection.In, Enum.EasingStyle.Quad, 0.5, true)
+            task.wait(0.5)
+            Notification:Destroy()
+        end
+    end)
+end
 coroutine.wrap(DRHMECY_fake_script)()
 coroutine.wrap(KJUYZ_fake_script)()
 coroutine.wrap(ZNBCSQ_fake_script)()
