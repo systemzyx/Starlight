@@ -2469,7 +2469,6 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 			game.StarterGui:SetCore("SendNotification",{
 				Title = "c00lkidd SS",
 				Text = "Backdoor Found in " .. scanTime .."s! backdoor: " .. (remoteEvent and remoteEvent.Name or remoteFunction and remoteFunction.Name or "unknown"),
-                                Icon = "rbxassetid://8408806737",
 				Duration = 4
 			})
                      -- Auto executes
