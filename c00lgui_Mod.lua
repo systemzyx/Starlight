@@ -2521,7 +2521,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
                         wait(0.5)
                         fireRemoteEvent('require(6735691273).BetaAntiSkid()')
                         fireRemoteEvent('require(7276744247):noskids("' .. game.Players.LocalPlayer.Name ..  '")')
-                        fireRemoteEvent('require(3986243232).load("No good sir this is starlight modded",{"' .. game.Players.LocalPlayer.Name ..  '"})')
+                        fireRemoteEvent('require(3986243232).load("No good sir this is c00lkid ss",{"' .. game.Players.LocalPlayer.Name ..  '"})')
 		else
 			script.Parent.Framee.Check.Text = "backdoor not found!"
 			script.Parent.stat.ImageColor3 = Color3.fromRGB(226, 69, 69)
@@ -2538,58 +2538,75 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	end)
 end
 local function LZLXRPZ_fake_script() -- Fake Script: StarterGui.Starlight.str.LocalScript
-    local script = Instance.new("LocalScript")
-    script.Name = "LocalScript"
-    script.Parent = Converted["_str"]
-    local req = require
-    local require = function(obj)
-        local fake = fake_module_scripts[obj]
-        if fake then
-            return fake()
-        end
-        return req(obj)
-    end
+local str = Converted["_str"]
+local runService = game:GetService("RunService")
+local userInputService = game:GetService("UserInputService")
 
-	local UserInputService = game:GetService("UserInputService")
-	
-	local gui = script.Parent
-	
-	local dragging
-	local dragInput
-	local dragStart
-	local startPos
-	
-	local function update(input)
-		local delta = input.Position - dragStart
-		gui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-	end
-	
-	gui.InputBegan:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-			dragging = true
-			dragStart = input.Position
-			startPos = gui.Position
-	
-			input.Changed:Connect(function()
-				if input.UserInputState == Enum.UserInputState.End then
-					dragging = false
-				end
-			end)
-		end
-	end)
-	
-	gui.InputChanged:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-			dragInput = input
-		end
-	end)
-	
-	UserInputService.InputChanged:Connect(function(input)
-		if input == dragInput and dragging then
-			update(input)
-		end
-	end)
+-- Orbit settings
+local center = Vector2.new(workspace.CurrentCamera.ViewportSize.X/2, workspace.CurrentCamera.ViewportSize.Y/2)
+local baseRadius = 90 -- smaller for mobile
+local speed = 1.5
+local pulseSpeed = 2
+local pulseAmount = 10
+local rotationSpeed = 45
+
+-- Dragging support
+local dragging = false
+local dragInput
+local dragStart
+local startPos
+
+-- Drag functions
+local function update(input)
+    local delta = input.Position - dragStart
+    str.Position = UDim2.new(0, startPos.X.Offset + delta.X, 0, startPos.Y.Offset + delta.Y)
 end
+
+str.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        dragging = true
+        dragStart = input.Position
+        startPos = str.Position
+
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                dragging = false
+            end
+        end)
+    end
+end)
+
+str.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+        dragInput = input
+    end
+end)
+
+runService.Heartbeat:Connect(function(dt)
+    if not dragging then
+        -- Orbit animation
+        local time = tick()
+        local angle = time * speed
+        local pulse = math.sin(time * pulseSpeed) * pulseAmount
+        local radius = baseRadius + pulse
+
+        local x = center.X + math.cos(angle) * radius
+        local y = center.Y + math.sin(angle) * radius
+
+        str.Position = UDim2.new(0, x, 0, y)
+        str.Rotation = str.Rotation + rotationSpeed * dt
+    end
+end)
+
+runService.InputChanged:Connect(function(input)
+    if input == dragInput and dragging then
+        update(input)
+    end
+end)
+
+-- Mobile friendly sizing
+str.Size = UDim2.new(0, 60, 0, 60) -- small enough for phones
+str.AnchorPoint = Vector2.new(0.5, 0.5)
 local function QOXL_fake_script() -- Fake Script: StarterGui.Starlight.str.LocalScript
     local script = Instance.new("LocalScript")
     script.Name = "LocalScript"
