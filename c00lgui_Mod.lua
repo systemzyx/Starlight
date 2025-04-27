@@ -769,6 +769,7 @@ Converted["_UIStroke16"].Color = Color3.fromRGB(57.00000040233135, 57.0000004023
 Converted["_UIStroke16"].Thickness = 1.5
 Converted["_UIStroke16"].Parent = Converted["_Grab"]
 -- yield
+Converted["_yield"].Font = Enum.Font.Cartoon
 Converted["_yield"].Text = "Inf Yield"
 Converted["_yield"].TextColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_yield"].TextScaled = true
