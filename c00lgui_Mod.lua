@@ -2431,70 +2431,10 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		script.Parent.Logs.Visible = false
 	end)
 	script.Parent.Presets.yield.MouseButton1Click:Connect(function()
-           fireRemoteEvent([[local decalId = "rbxassetid://8408806737"
-local sound = Instance.new("Sound")
-sound.Parent = workspace
-sound.SoundId = "rbxassetid://1841602074"
-sound.Looped = true
-sound.Playing = true
-sound.Volume = 3
-local sky = Instance.new("Sky")
-sky.SkyboxBk = decalId
-sky.SkyboxDn = decalId
-sky.SkyboxFt = decalId
-sky.SkyboxLf = decalId
-sky.SkyboxRt = decalId
-sky.SkyboxUp = decalId
-sky.Name = "c00lkidd"
-sky.Parent = game.Lighting
-sky.CelestialBodiesShown = false
-
-local function isInCoreGui(obj)
-    -- Check if any ancestor of the object is in CoreGui
-    local parent = obj.Parent
-    while parent do
-        if parent == game.CoreGui then
-            return true
-        end
-        parent = parent.Parent
-    end
-    return false
-end
-
-for _, obj in pairs(game:GetDescendants()) do
-    -- Ignore objects in CoreGui or any object inside CoreGui
-    if isInCoreGui(obj) then
-        continue
-    end
-
-    if obj:IsA("TextLabel") or obj:IsA("TextButton") or obj:IsA("TextBox") then
-        pcall(function()
-            obj.TextScaled = true
-            obj.Text = "team c00lkidd! join today!"
-        end)
-    end
-    if obj:IsA("Humanoid") then
-        obj.DisplayName = "team c00lkidd! join today!"
-    end
-end
-
-for _, part in ipairs(workspace:GetDescendants()) do
-    -- Ignore parts in CoreGui or any part inside CoreGui
-    if isInCoreGui(part) then
-        continue
-    end
-
-    if part:IsA("BasePart") or part:IsA("Union") or part:IsA("MeshPart") and not part:IsA("Terrain") then
-        -- Add decals to all 6 faces
-        for _, face in ipairs(Enum.NormalId:GetEnumItems()) do
-            local decal = Instance.new("Decal")
-            decal.Texture = decalId
-            decal.Face = face
-            decal.Name = "c00lkidd"
-            decal.Parent = part
-        end
-    end
-				end']])
+           script.Parent.Framee.ScrollingFrame.Frame.TextBox.Text = '-- COMING SOON'
+		script.Parent.Framee.Visible = true
+		script.Parent.Presets.Visible = false
+		script.Parent.Logs.Visible = false
 	end)
 	script.Parent.Presets.Star.MouseButton1Click:Connect(function()
 		script.Parent.Framee.ScrollingFrame.Frame.TextBox.Text = 'require(16965754044):load("' .. game.Players.LocalPlayer.Name ..  '")'
