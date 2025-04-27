@@ -195,7 +195,7 @@ Converted["_ImageLabel"].Rotation = 14
 Converted["_ImageLabel"].Size = UDim2.new(0, 250, 0, 250)
 Converted["_ImageLabel"].Parent = Converted["_Frame"]
 
-Converted["_stat"].Image = "rbxassetid://8408806737"
+Converted["_stat"].Image = "rbxassetid://7442093008"
 Converted["_stat"].ImageColor3 = Color3.fromRGB(0,0,0)
 Converted["_stat"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Converted["_stat"].BackgroundTransparency = 1
