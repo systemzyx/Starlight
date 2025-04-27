@@ -169,7 +169,7 @@ Converted["_UICorner"].Parent = Converted["_Frame"]
 
 Converted["_UIStroke"].ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 Converted["_UIStroke"].Color = Color3.fromRGB(255, 0, 0)
-Converted["_UIStroke"].Thickness = 0.699999988079071
+Converted["_UIStroke"].Thickness = 2
 Converted["_UIStroke"].Parent = Converted["_Frame"]
 
 Converted["_Title"] = Instance.new("TextLabel")
@@ -1150,7 +1150,11 @@ Converted["_UIStroke26"].Parent = Converted["_str"]
 
 Converted["_UICorner25"].CornerRadius = UDim.new(0, 6)
 Converted["_UICorner25"].Parent = Converted["_str"]
-
+for _,v in pairs(Converted) do
+    if v:IsA("UIStroke") then
+        v.Color = Color3.fromRGB(255, 0, 0)
+    end
+end
 -- Fake Module Scripts:
 
 local fake_module_scripts = {}
