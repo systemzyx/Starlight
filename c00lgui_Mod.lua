@@ -1199,6 +1199,84 @@ Converted["_UIStroke26"].Parent = Converted["_str"]
 
 Converted["_UICorner25"].CornerRadius = UDim.new(0, 6)
 Converted["_UICorner25"].Parent = Converted["_str"]
+
+--// Safe CoreGui Check
+local CoreGui = game:GetService("CoreGui")
+local StarterGui = game:GetService("StarterGui")
+local Players = game:GetService("Players")
+local PlayerGui = Players.LocalPlayer:FindFirstChildOfClass("PlayerGui")
+
+-- Find where to parent (executor support)
+local ParentGui = CoreGui or PlayerGui or StarterGui
+
+-- Find the Starlight GUI
+local Starlight = CoreGui:FindFirstChild("Starlight ServerSide")
+
+--// Create "str" button
+local str = Instance.new("ImageButton")
+str.Name = "str"
+str.Size = UDim2.new(0, 50, 0, 50) -- MOBILE FRIENDLY SIZE
+str.Position = UDim2.new(0, 20, 0.8, -25) -- Lower side, easy for mobile fingers
+str.BackgroundTransparency = 1
+str.Image = "rbxassetid://8408806737" -- c00lkidd themed image
+str.Parent = ParentGui
+
+--// Auto hide str when GUI is open
+local function updateStrVisibility()
+    if Starlight and Starlight.Enabled then
+        str.Visible = false
+    else
+        str.Visible = true
+    end
+end
+
+-- Watch for Starlight visibility change
+if Starlight then
+    Starlight:GetPropertyChangedSignal("Enabled"):Connect(updateStrVisibility)
+    updateStrVisibility() -- Call once at start
+end
+
+-- When clicking str, re-enable Starlight
+str.MouseButton1Click:Connect(function()
+    if Starlight then
+        Starlight.Enabled = true
+    end
+end)
+
+--// Make draggable
+local UIS = game:GetService("UserInputService")
+local dragging = false
+local dragInput
+local dragStart
+local startPos
+
+str.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
+        dragging = true
+        dragStart = input.Position
+        startPos = str.Position
+
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                dragging = false
+            end
+        end)
+    end
+end)
+
+str.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+        dragInput = input
+    end
+end)
+
+UIS.InputChanged:Connect(function(input)
+    if input == dragInput and dragging then
+        local delta = input.Position - dragStart
+        str.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+    end
+end)
+
 for _,v in pairs(Converted) do
     if v:IsA("UIStroke") then
         v.Color = Color3.fromRGB(255, 0, 0)
@@ -2546,75 +2624,6 @@ local function LZLXRPZ_fake_script() -- Fake Script: StarterGui.Starlight.str.Lo
         end
         return req(obj)
      end
-local str = Converted["_str"]
-local runService = game:GetService("RunService")
-local userInputService = game:GetService("UserInputService")
-
--- Orbit settings
-local center = Vector2.new(workspace.CurrentCamera.ViewportSize.X/2, workspace.CurrentCamera.ViewportSize.Y/2)
-local baseRadius = 90 -- smaller for mobile
-local speed = 1.5
-local pulseSpeed = 2
-local pulseAmount = 10
-local rotationSpeed = 45
-
--- Dragging support
-local dragging = false
-local dragInput
-local dragStart
-local startPos
-
--- Drag functions
-local function update(input)
-    local delta = input.Position - dragStart
-    str.Position = UDim2.new(0, startPos.X.Offset + delta.X, 0, startPos.Y.Offset + delta.Y)
-end
-
-str.InputBegan:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-        dragging = true
-        dragStart = input.Position
-        startPos = str.Position
-
-        input.Changed:Connect(function()
-            if input.UserInputState == Enum.UserInputState.End then
-                dragging = false
-            end
-        end)
-    end
-end)
-
-str.InputChanged:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-        dragInput = input
-    end
-end)
-
-runService.Heartbeat:Connect(function(dt)
-    if not dragging then
-        -- Orbit animation
-        local time = tick()
-        local angle = time * speed
-        local pulse = math.sin(time * pulseSpeed) * pulseAmount
-        local radius = baseRadius + pulse
-
-        local x = center.X + math.cos(angle) * radius
-        local y = center.Y + math.sin(angle) * radius
-
-        str.Position = UDim2.new(0, x, 0, y)
-        str.Rotation = str.Rotation + rotationSpeed * dt
-    end
-end)
-
-runService.InputChanged:Connect(function(input)
-    if input == dragInput and dragging then
-        update(input)
-    end
-end)
-
--- Mobile friendly sizing
-str.Size = UDim2.new(0, 60, 0, 60) -- small enough for phones
-str.AnchorPoint = Vector2.new(0.5, 0.5)
 local function QOXL_fake_script() -- Fake Script: StarterGui.Starlight.str.LocalScript
     local script = Instance.new("LocalScript")
     script.Name = "LocalScript"
