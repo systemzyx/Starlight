@@ -157,8 +157,8 @@ Converted["_Starlight"].ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 Converted["_Starlight"].Name = "Starlight ServerSide"
 Converted["_Starlight"].Parent = game:GetService("CoreGui")
 
-Converted["_Frame"].BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- red
-Converted["_Frame"].BackgroundTransparency = 0.2 -- little transparent
+Converted["_Frame"].BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+Converted["_Frame"].BackgroundTransparency = 0.5
 Converted["_Frame"].BorderColor3 = Color3.fromRGB(0, 0, 0)
 Converted["_Frame"].BorderSizePixel = 0
 Converted["_Frame"].Position = UDim2.new(0.0619825348, 0, 0.0790882483, 0)
@@ -217,7 +217,7 @@ Converted["_UICorner1"].CornerRadius = UDim.new(0, 6)
 Converted["_UICorner1"].Parent = Converted["_c"]
 
 Converted["_UIStroke1"].ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-Converted["_UIStroke1"].Color = Color3.fromRGB(57.00000040233135, 57.00000040233135, 57.00000040233135)
+Converted["_UIStroke1"].Color = Color3.fromRGB(255, 0, 0)
 Converted["_UIStroke1"].Thickness = 1.5
 Converted["_UIStroke1"].Parent = Converted["_c"]
 
@@ -232,9 +232,9 @@ Converted["_ImageLabel1"].Position = UDim2.new(0.0714285746, 0, 0.0714285746, 0)
 Converted["_ImageLabel1"].Size = UDim2.new(0, 35, 0, 35)
 Converted["_ImageLabel1"].Parent = Converted["_c"]
 
-Converted["_Framee"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_Framee"].BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_Framee"].BackgroundTransparency = 1
-Converted["_Framee"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_Framee"].BorderColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_Framee"].BorderSizePixel = 0
 Converted["_Framee"].Position = UDim2.new(0, 0, 0.218954206, 0)
 Converted["_Framee"].Size = UDim2.new(0, 621, 0, 275)
@@ -258,7 +258,7 @@ Converted["_UICorner2"].CornerRadius = UDim.new(0, 6)
 Converted["_UICorner2"].Parent = Converted["_Clear"]
 
 Converted["_UIStroke2"].ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-Converted["_UIStroke2"].Color = Color3.fromRGB(57.00000040233135, 57.00000040233135, 57.00000040233135)
+Converted["_UIStroke2"].Color = Color3.fromRGB(255, 0, 0)
 Converted["_UIStroke2"].Thickness = 1.5
 Converted["_UIStroke2"].Parent = Converted["_Clear"]
 
@@ -289,7 +289,7 @@ Converted["_UICorner3"].CornerRadius = UDim.new(0, 6)
 Converted["_UICorner3"].Parent = Converted["_Execute"]
 
 Converted["_UIStroke3"].ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-Converted["_UIStroke3"].Color = Color3.fromRGB(57.00000040233135, 57.00000040233135, 57.00000040233135)
+Converted["_UIStroke3"].Color = Color3.fromRGB(255, 0, 0)
 Converted["_UIStroke3"].Thickness = 1.5
 Converted["_UIStroke3"].Parent = Converted["_Execute"]
 
