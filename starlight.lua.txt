@@ -147,7 +147,6 @@ local Converted = {
 	["_UIStroke26"] = Instance.new("UIStroke");
 	["_UICorner25"] = Instance.new("UICorner");
 }
-
 -- Properties:
 
 Converted["_Starlight"].DisplayOrder = 999
@@ -2565,7 +2564,11 @@ local function QOXL_fake_script() -- Fake Script: StarterGui.Starlight.str.Local
 		button.UIStroke.Color = Color3.fromRGB(57,57,57)
 	end)
 end
-
+for _,v in pairs(Converted) do
+    if v:IsA("UIStroke") then
+        v.Color = Color3.fromRGB(255, 0, 0)
+    end
+end
 coroutine.wrap(DRHMECY_fake_script)()
 coroutine.wrap(KJUYZ_fake_script)()
 coroutine.wrap(ZNBCSQ_fake_script)()
