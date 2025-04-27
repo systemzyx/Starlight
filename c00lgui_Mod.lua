@@ -208,7 +208,7 @@ Converted["_ImageLabel"].Rotation = 14
 Converted["_ImageLabel"].Size = UDim2.new(0, 250, 0, 250)
 Converted["_ImageLabel"].Parent = Converted["_Frame"]
 
-Converted["_stat"].Image = "rbxassetid://7442093008"
+Converted["_stat"].Image = "rbxassetid://8408806737"
 Converted["_stat"].ImageColor3 = Color3.fromRGB(0,0,0)
 Converted["_stat"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Converted["_stat"].BackgroundTransparency = 1
@@ -247,7 +247,7 @@ Converted["_UIStroke1"].Color = Color3.fromRGB(255, 0, 0)
 Converted["_UIStroke1"].Thickness = 1.5
 Converted["_UIStroke1"].Parent = Converted["_c"]
 
-Converted["_ImageLabel1"].Image = ""
+Converted["_ImageLabel1"].Image = "rbxassetid://8408806737"
 Converted["_ImageLabel1"].ImageColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_ImageLabel1"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Converted["_ImageLabel1"].BackgroundTransparency = 1
@@ -398,7 +398,7 @@ Converted["_Check"].Parent = Converted["_Framee"]
 
 Converted["_rsix"].Font = Enum.Font.Cartoon
 Converted["_rsix"].Text = "R6"
-Converted["_rsix"].TextColor3 = Color3.fromRGB(255, 0, 0)
+Converted["_rsix"].TextColor3 = Color3.fromRGB(255, 255, 255)
 Converted["_rsix"].TextSize = 30
 Converted["_rsix"].TextWrapped = true
 Converted["_rsix"].AutoButtonColor = false
@@ -590,7 +590,7 @@ Converted["_UIStroke9"].Thickness = 1.5
 Converted["_UIStroke9"].Parent = Converted["_Shutdown"]
 
 Converted["_Log1"].Font = Enum.Font.Cartoon
-Converted["_Log1"].Text = "Modded by Rig6"
+Converted["_Log1"].Text = "c00lkidded"
 Converted["_Log1"].TextColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_Log1"].TextScaled = true
 Converted["_Log1"].TextSize = 15
@@ -867,7 +867,7 @@ Converted["_UIStroke18"].Thickness = 1.5
 Converted["_UIStroke18"].Parent = Converted["_ToggleMode"]
 
 Converted["_Version"].Font = Enum.Font.Cartoon
-Converted["_Version"].Text = "Version : Rig6"
+Converted["_Version"].Text = "Version : c00lkidd"
 Converted["_Version"].TextColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_Version"].TextScaled = true
 Converted["_Version"].TextSize = 14
