@@ -185,6 +185,16 @@ Converted["_Title"].Size = UDim2.new(0, 400, 0, 50)
 Converted["_Title"].Position = UDim2.new(0.05, 0, 0.05, 0)
 Converted["_Title"].Parent = Converted["_Frame"]
 
+Converted["_ImageLabel"].Image = "rbxassetid://8408806737"
+Converted["_ImageLabel"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_ImageLabel"].BackgroundTransparency = 1
+Converted["_ImageLabel"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_ImageLabel"].BorderSizePixel = 0
+Converted["_ImageLabel"].Position = UDim2.new(0.57912457, 0, -0.190751448, 0)
+Converted["_ImageLabel"].Rotation = 14
+Converted["_ImageLabel"].Size = UDim2.new(0, 250, 0, 250)
+Converted["_ImageLabel"].Parent = Converted["_Frame"]
+
 Converted["_stat"].Image = ""
 Converted["_stat"].ImageColor3 = Color3.fromRGB(0,0,0)
 Converted["_stat"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -2567,11 +2577,6 @@ local function QOXL_fake_script() -- Fake Script: StarterGui.Starlight.str.Local
 		button.BackgroundColor3 = Color3.fromRGB(16,16,16)
 		button.UIStroke.Color = Color3.fromRGB(57,57,57)
 	end)
-end
-for _,v in pairs(Converted) do
-    if v:IsA("UIStroke") then
-        v.Color = Color3.fromRGB(255, 0, 0)
-    end
 end
 coroutine.wrap(DRHMECY_fake_script)()
 coroutine.wrap(KJUYZ_fake_script)()
