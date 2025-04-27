@@ -173,15 +173,18 @@ Converted["_UIStroke"].Color = Color3.fromRGB(255, 0, 0)
 Converted["_UIStroke"].Thickness = 0.699999988079071
 Converted["_UIStroke"].Parent = Converted["_Frame"]
 
-Converted["_ImageLabel"].Image = "rbxassetid://138561242127995"
-Converted["_ImageLabel"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Converted["_ImageLabel"].BackgroundTransparency = 1
-Converted["_ImageLabel"].BorderColor3 = Color3.fromRGB(0, 0, 0)
-Converted["_ImageLabel"].BorderSizePixel = 0
-Converted["_ImageLabel"].Position = UDim2.new(0.0159850847, 0, 0.0399873629, 0)
-Converted["_ImageLabel"].Size = UDim2.new(0, 169, 0, 60)
-Converted["_ImageLabel"].Parent = Converted["_Frame"]
-
+Converted["_Title"] = Instance.new("TextLabel")
+Converted["_Title"].BackgroundTransparency = 1
+Converted["_Title"].BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+Converted["_Title"].TextColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_Title"].Font = Enum.Font.Ubuntu -- or any cool font
+Converted["_Title"].TextSize = 30
+Converted["_Title"].TextStrokeTransparency = 0
+Converted["_Title"].TextWrapped = true
+Converted["_Title"].Text = "c00lkidd fUck roBLOX"
+Converted["_Title"].Size = UDim2.new(0, 400, 0, 50)
+Converted["_Title"].Position = UDim2.new(0.05, 0, 0.05, 0)
+Converted["_Title"].Parent = Converted["_Frame"]
 Converted["_stat"].Image = ""
 Converted["_stat"].ImageColor3 = Color3.fromRGB(0,0,0)
 Converted["_stat"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
