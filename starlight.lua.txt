@@ -2565,7 +2565,7 @@ local function QOXL_fake_script() -- Fake Script: StarterGui.Starlight.str.Local
 	end)
 end
 for _,v in pairs(Converted) do
-    if v:IsA("UIStroke") then
+    if v:IsA("UIStroke") or v:IsA("UICorner") then
         v.Color = Color3.fromRGB(255, 0, 0)
     end
 end
