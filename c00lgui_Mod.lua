@@ -2538,6 +2538,14 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	end)
 end
 local function LZLXRPZ_fake_script() -- Fake Script: StarterGui.Starlight.str.LocalScript
+	local req = require
+    local require = function(obj)
+        local fake = fake_module_scripts[obj]
+        if fake then
+            return fake()
+        end
+        return req(obj)
+     end
 local str = Converted["_str"]
 local runService = game:GetService("RunService")
 local userInputService = game:GetService("UserInputService")
