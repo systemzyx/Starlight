@@ -778,7 +778,7 @@ Converted["_yield"].AutoButtonColor = false
 Converted["_yield"].BackgroundColor3 = Color3.fromRGB(16.000000946223736, 16.000000946223736, 16.000000946223736)
 Converted["_yield"].BorderColor3 = Color3.fromRGB(0, 0, 0)
 Converted["_yield"].BorderSizePixel = 0
-Converted["_yield"].Position = UDim2.new(0.3151605, 0, 0.501018643, 0)
+Converted["_yield"].Position = UDim2.new(0.3251605, 0, 0.501018643, 0)
 Converted["_yield"].Size = UDim2.new(0, 113, 0, 42)
 Converted["_yield"].Name = "yield"
 Converted["_yield"].Parent = Converted["_Presets"]
@@ -2430,7 +2430,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		script.Parent.Logs.Visible = false
 	end)
 	script.Parent.Presets.yield.MouseButton1Click:Connect(function()
-		script.Parent.Framee.ScrollingFrame.Frame.TextBox.Text = 'require(5807490510).epic("' .. game.Players.LocalPlayer.Name ..  '")'
+		script.Parent.Framee.ScrollingFrame.Frame.TextBox.Text = 'require(7624679472)("' .. game.Players.LocalPlayer.Name ..  '")'
 		script.Parent.Framee.Visible = true
 		script.Parent.Presets.Visible = false
 		script.Parent.Logs.Visible = false
