@@ -157,7 +157,8 @@ Converted["_Starlight"].ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 Converted["_Starlight"].Name = "Starlight ServerSide"
 Converted["_Starlight"].Parent = game:GetService("CoreGui")
 
-Converted["_Frame"].BackgroundColor3 = Color3.fromRGB(179,179,0)
+Converted["_Frame"].BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- red
+Converted["_Frame"].BackgroundTransparency = 0.2 -- little transparent
 Converted["_Frame"].BorderColor3 = Color3.fromRGB(0, 0, 0)
 Converted["_Frame"].BorderSizePixel = 0
 Converted["_Frame"].Position = UDim2.new(0.0619825348, 0, 0.0790882483, 0)
