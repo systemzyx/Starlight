@@ -1,1 +1,1 @@
-loadstring(game:GetAsync("https://raw.githubusercontent.com/SxripterRar/Starlight/refs/heads/main/c00lgui%20ServerSide"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/SxripterRar/Starlight/refs/heads/main/c00lgui_Mod.lua"))()
