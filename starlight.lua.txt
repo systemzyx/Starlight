@@ -1,4 +1,4 @@
--- starlight
+-- c00lkidd
 local Converted = {
 	["_Starlight"] = Instance.new("ScreenGui");
 	["_Frame"] = Instance.new("Frame");
@@ -502,10 +502,10 @@ Converted["_TextBox"].Parent = Converted["_Frame2"]
 Converted["_UICorner7"].CornerRadius = UDim.new(0, 6)
 Converted["_UICorner7"].Parent = Converted["_TextBox"]
 
-Converted["_TextLabel"].Font = Enum.Font.Code
+Converted["_TextLabel"].Font = Enum.Font.Cartoon
 Converted["_TextLabel"].RichText = true
 Converted["_TextLabel"].Text = 'require(74349243416068):Hload("' .. game.Players.LocalPlayer.Name .. '")'
-Converted["_TextLabel"].TextColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_TextLabel"].TextColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_TextLabel"].TextSize = 18
 Converted["_TextLabel"].TextTruncate = Enum.TextTruncate.AtEnd
 Converted["_TextLabel"].TextWrapped = true
@@ -1415,8 +1415,8 @@ local function BEEKENZ_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	end)
 	script.Parent.MouseButton1Click:Connect(function()
 		game.StarterGui:SetCore("SendNotification",{
-			Title = "💫 Starlight",
-			Text = "Modded Version",
+			Title = "c00lkidd",
+			Text = "c00lkidd fUck roBLOX",
 			Duration = 12
 		})
 	
@@ -1435,7 +1435,7 @@ local function CFRCL_fake_script() -- Fake Script: StarterGui.Starlight.Frame.Fr
         return req(obj)
     end
 
-	script.Parent.Font = Enum.Font.Code
+	script.Parent.Font = Enum.Font.Cartoon
 end
 local function ROEPF_fake_script() -- Fake Script: StarterGui.Starlight.Frame.Framee.ScrollingFrame.Frame.TextBox.LocalScript
     local script = Instance.new("LocalScript")
@@ -2298,10 +2298,10 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		FinishedFound = true
 	
 		if not foundExploit then
-			print("💫 starlight: no backdoor found")
+			print("c00lkidd: no backdoor found")
 		end
 	
-		print(string.format("💫 starlight: scan completed in %.3f seconds", scanTime))
+		print(string.format("c00lkidd : scan completed in %.3f seconds", scanTime))
 	end
 	
 	
@@ -2317,7 +2317,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		else
 			warn("💫 starlight: no backdoor, cannot execute code.")
 			game.StarterGui:SetCore("SendNotification",{
-				Title = "💫 starlight",
+				Title = "c00lkidd",
 				Text = "No backdoor found, Please inject.",
 				Duration = 12
 			})
