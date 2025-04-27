@@ -195,7 +195,7 @@ Converted["_ImageLabel"].Rotation = 14
 Converted["_ImageLabel"].Size = UDim2.new(0, 250, 0, 250)
 Converted["_ImageLabel"].Parent = Converted["_Frame"]
 
-Converted["_stat"].Image = ""
+Converted["_stat"].Image = "rbxassetid://8408806737"
 Converted["_stat"].ImageColor3 = Color3.fromRGB(0,0,0)
 Converted["_stat"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Converted["_stat"].BackgroundTransparency = 1
@@ -2577,6 +2577,36 @@ local function QOXL_fake_script() -- Fake Script: StarterGui.Starlight.str.Local
 		button.BackgroundColor3 = Color3.fromRGB(16,16,16)
 		button.UIStroke.Color = Color3.fromRGB(57,57,57)
 	end)
+end
+local function setupButton(button)
+    if button:IsA("TextButton") then
+        local stroke = button:FindFirstChildWhichIsA("UIStroke")
+        if stroke then
+            button.MouseEnter:Connect(function()
+                button.BackgroundColor3 = Color3.fromRGB(22, 22, 22)
+                stroke.Color = Color3.fromRGB(255, 0, 0)
+            end)
+
+            button.MouseLeave:Connect(function()
+                button.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
+                stroke.Color = Color3.fromRGB(255, 0, 0)
+            end)
+
+            button.MouseButton1Down:Connect(function()
+                button.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
+                stroke.Color = Color3.fromRGB(255, 0, 0)
+            end)
+
+            button.MouseButton1Up:Connect(function()
+                button.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
+                stroke.Color = Color3.fromRGB(255, 0, 0)
+            end)
+        end
+    end
+end
+
+for _, obj in ipairs(game:GetService("CoreGui"):WaitForChild("Starlight ServerSide"):GetDescendants()) do
+    setupButton(obj)
 end
 coroutine.wrap(DRHMECY_fake_script)()
 coroutine.wrap(KJUYZ_fake_script)()
