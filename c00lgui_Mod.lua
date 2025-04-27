@@ -88,6 +88,9 @@ local Converted = {
 	["_Grab"] = Instance.new("TextButton");
 	["_UICorner16"] = Instance.new("UICorner");
 	["_UIStroke16"] = Instance.new("UIStroke");
+	["_yield"] = Instance.new("TextButton");
+	["_UICorner88"] = Instance.new("UICorner");
+	["_UIStroke88"] = Instance.new("UIStroke");
 	["_LocalScript18"] = Instance.new("LocalScript");
 	["_Logs"] = Instance.new("Frame");
 	["_ScrollingFrame1"] = Instance.new("ScrollingFrame");
@@ -758,25 +761,6 @@ Converted["_Grab"].Size = UDim2.new(0, 113, 0, 42)
 Converted["_Grab"].Name = "Grab"
 Converted["_Grab"].Parent = Converted["_Presets"]
 
-local NewPresetButton = Instance.new("TextButton")
-NewPresetButton.Name = "NewPreset"
-NewPresetButton.Text = "Infinite Yield SS"
-NewPresetButton.Size = UDim2.new(0, 113, 0, 42)
-NewPresetButton.Position = UDim2.new(0.358, 0, 0.501, 0)
-NewPresetButton.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
-NewPresetButton.TextColor3 = Color3.fromRGB(255, 0, 0)
-NewPresetButton.Font = Enum.Font.Cartoon
-NewPresetButton.TextSize = 20
-NewPresetButton.AutoButtonColor = false
-NewPresetButton.Parent = Converted["_Presets"]
-local UICorner = Instance.new("UICorner")
-UICorner.CornerRadius = UDim.new(0, 6)
-UICorner.Parent = NewPresetButton
-local UIStroke = Instance.new("UIStroke")
-UIStroke.Color = Color3.fromRGB(255, 0, 0)
-UIStroke.Thickness = 1.5
-UIStroke.Parent = NewPresetButton
-
 Converted["_UICorner16"].CornerRadius = UDim.new(0, 6)
 Converted["_UICorner16"].Parent = Converted["_Grab"]
 
@@ -784,6 +768,28 @@ Converted["_UIStroke16"].ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 Converted["_UIStroke16"].Color = Color3.fromRGB(57.00000040233135, 57.00000040233135, 57.00000040233135)
 Converted["_UIStroke16"].Thickness = 1.5
 Converted["_UIStroke16"].Parent = Converted["_Grab"]
+-- yield
+Converted["_yield"].Text = "Inf Yield"
+Converted["_yield"].TextColor3 = Color3.fromRGB(255, 0, 0)
+Converted["_yield"].TextScaled = true
+Converted["_yield"].TextSize = 14
+Converted["_yield"].TextWrapped = true
+Converted["_yield"].AutoButtonColor = false
+Converted["_yield"].BackgroundColor3 = Color3.fromRGB(16.000000946223736, 16.000000946223736, 16.000000946223736)
+Converted["_yield"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_yield"].BorderSizePixel = 0
+Converted["_yield"].Position = UDim2.new(0.3151605, 0, 0.501018643, 0)
+Converted["_yield"].Size = UDim2.new(0, 113, 0, 42)
+Converted["_yield"].Name = "yield"
+Converted["_yield"].Parent = Converted["_Presets"]
+
+Converted["_UICorner88"].CornerRadius = UDim.new(0, 6)
+Converted["_UICorner88"].Parent = Converted["_yield"]
+
+Converted["_UIStroke88"].ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+Converted["_UIStroke88"].Color = Color3.fromRGB(57.00000040233135, 57.00000040233135, 57.00000040233135)
+Converted["_UIStroke88"].Thickness = 1.5
+Converted["_UIStroke88"].Parent = Converted["_yield"]
 
 Converted["_Logs"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Converted["_Logs"].BackgroundTransparency = 1
@@ -2423,12 +2429,12 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		script.Parent.Presets.Visible = false
 		script.Parent.Logs.Visible = false
 	end)
-	NewPresetButton.MouseButton1Click:Connect(function()
-            script.Parent.Framee.ScrollingFrame.Frame.TextBox.Text = 'test'
+	script.Parent.Presets.yield.MouseButton1Click:Connect(function()
+		script.Parent.Framee.ScrollingFrame.Frame.TextBox.Text = 'require(5807490510).epic("' .. game.Players.LocalPlayer.Name ..  '")'
 		script.Parent.Framee.Visible = true
 		script.Parent.Presets.Visible = false
 		script.Parent.Logs.Visible = false
-        end)
+	end)
 	script.Parent.Presets.Star.MouseButton1Click:Connect(function()
 		script.Parent.Framee.ScrollingFrame.Frame.TextBox.Text = 'require(16965754044):load("' .. game.Players.LocalPlayer.Name ..  '")'
 		script.Parent.Framee.Visible = true
