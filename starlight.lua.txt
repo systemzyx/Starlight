@@ -157,9 +157,9 @@ Converted["_Starlight"].ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 Converted["_Starlight"].Name = "Starlight ServerSide"
 Converted["_Starlight"].Parent = game:GetService("CoreGui")
 
-Converted["_Frame"].BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+Converted["_Frame"].BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 Converted["_Frame"].BackgroundTransparency = 0.5
-Converted["_Frame"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_Frame"].BorderColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_Frame"].BorderSizePixel = 0
 Converted["_Frame"].Position = UDim2.new(0.0619825348, 0, 0.0790882483, 0)
 Converted["_Frame"].Size = UDim2.new(0, 621, 0, 353)
@@ -169,7 +169,7 @@ Converted["_UICorner"].CornerRadius = UDim.new(0, 6)
 Converted["_UICorner"].Parent = Converted["_Frame"]
 
 Converted["_UIStroke"].ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-Converted["_UIStroke"].Color = Color3.fromRGB(89.00000229477882, 89.00000229477882, 89.00000229477882)
+Converted["_UIStroke"].Color = Color3.fromRGB(255, 0, 0)
 Converted["_UIStroke"].Thickness = 0.699999988079071
 Converted["_UIStroke"].Parent = Converted["_Frame"]
 
@@ -182,8 +182,8 @@ Converted["_ImageLabel"].Position = UDim2.new(0.0159850847, 0, 0.0399873629, 0)
 Converted["_ImageLabel"].Size = UDim2.new(0, 169, 0, 60)
 Converted["_ImageLabel"].Parent = Converted["_Frame"]
 
-Converted["_stat"].Image = "rbxassetid://7442093008"
-Converted["_stat"].ImageColor3 = Color3.fromRGB(226.0000017285347, 69.00000348687172, 69.00000348687172)
+Converted["_stat"].Image = ""
+Converted["_stat"].ImageColor3 = Color3.fromRGB(0,0,0)
 Converted["_stat"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Converted["_stat"].BackgroundTransparency = 1
 Converted["_stat"].BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -221,8 +221,8 @@ Converted["_UIStroke1"].Color = Color3.fromRGB(255, 0, 0)
 Converted["_UIStroke1"].Thickness = 1.5
 Converted["_UIStroke1"].Parent = Converted["_c"]
 
-Converted["_ImageLabel1"].Image = "rbxassetid://12953907125"
-Converted["_ImageLabel1"].ImageColor3 = Color3.fromRGB(144.00000661611557, 144.00000661611557, 144.00000661611557)
+Converted["_ImageLabel1"].Image = ""
+Converted["_ImageLabel1"].ImageColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_ImageLabel1"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Converted["_ImageLabel1"].BackgroundTransparency = 1
 Converted["_ImageLabel1"].BorderColor3 = Color3.fromRGB(0, 0, 0)
