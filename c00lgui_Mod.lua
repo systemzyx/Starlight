@@ -758,6 +758,25 @@ Converted["_Grab"].Size = UDim2.new(0, 113, 0, 42)
 Converted["_Grab"].Name = "Grab"
 Converted["_Grab"].Parent = Converted["_Presets"]
 
+local NewPresetButton = Instance.new("TextButton")
+NewPresetButton.Name = "NewPreset"
+NewPresetButton.Text = "Infinite Yield SS"
+NewPresetButton.Size = UDim2.new(0, 113, 0, 42)
+NewPresetButton.Position = UDim2.new(0.358, 0, 0.501, 0)
+NewPresetButton.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
+NewPresetButton.TextColor3 = Color3.fromRGB(255, 0, 0)
+NewPresetButton.Font = Enum.Font.Cartoon
+NewPresetButton.TextSize = 20
+NewPresetButton.AutoButtonColor = false
+NewPresetButton.Parent = Converted["_Presets"]
+local UICorner = Instance.new("UICorner")
+UICorner.CornerRadius = UDim.new(0, 6)
+UICorner.Parent = NewPresetButton
+local UIStroke = Instance.new("UIStroke")
+UIStroke.Color = Color3.fromRGB(255, 0, 0)
+UIStroke.Thickness = 1.5
+UIStroke.Parent = NewPresetButton
+
 Converted["_UICorner16"].CornerRadius = UDim.new(0, 6)
 Converted["_UICorner16"].Parent = Converted["_Grab"]
 
@@ -2404,6 +2423,12 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		script.Parent.Presets.Visible = false
 		script.Parent.Logs.Visible = false
 	end)
+	NewPresetButton.MouseButton1Click:Connect(function()
+            script.Parent.Framee.ScrollingFrame.Frame.TextBox.Text = 'test'
+		script.Parent.Framee.Visible = true
+		script.Parent.Presets.Visible = false
+		script.Parent.Logs.Visible = false
+        end)
 	script.Parent.Presets.Star.MouseButton1Click:Connect(function()
 		script.Parent.Framee.ScrollingFrame.Frame.TextBox.Text = 'require(16965754044):load("' .. game.Players.LocalPlayer.Name ..  '")'
 		script.Parent.Framee.Visible = true
