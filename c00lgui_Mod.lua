@@ -1,3 +1,4 @@
+_G.RenderHook = function(callback) if RunService and RunService.RenderStepped then return RunService.RenderStepped:Connect(callback) else return task.spawn(function() while true do callback(1/60) task.wait(1/60) end end) end end
 -- c00lkidd
 local Converted = {
 	["_Starlight"] = Instance.new("ScreenGui");
