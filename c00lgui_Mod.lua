@@ -92,6 +92,9 @@ local Converted = {
 	["_yield"] = Instance.new("TextButton");
 	["_UICorner88"] = Instance.new("UICorner");
 	["_UIStroke88"] = Instance.new("UIStroke");
+	["_lho"] = Instance.new("TextButton");
+	["_UICorner69"] = Instance.new("UICorner");
+	["_UIStroke69"] = Instance.new("UIStroke");
 	["_LocalScript18"] = Instance.new("LocalScript");
 	["_Logs"] = Instance.new("Frame");
 	["_ScrollingFrame1"] = Instance.new("ScrollingFrame");
@@ -784,15 +787,29 @@ Converted["_yield"].Position = UDim2.new(0.358, 0, 0.501, 0)
 Converted["_yield"].Size = UDim2.new(0, 113, 0, 42)
 Converted["_yield"].Name = "yield"
 Converted["_yield"].Parent = Converted["_Presets"]
+-- lolhoo 
+Converted["_lho"].Font = Enum.Font.Cartoon
+Converted["_lho"].Text = "Gui Infextor"
+Converted["_lho"].TextColor3 = Color3.fromRGB(255, 0, 0)
+Converted["_lho"].TextScaled = true
+Converted["_lyo"].TextSize = 14
+Converted["_lho"].TextWrapped = true
+Converted["_lho"].AutoButtonColor = false
+Converted["_lho"].BackgroundColor3 = Color3.fromRGB(16.000000946223736, 16.000000946223736, 16.000000946223736)
+Converted["_lho"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_lho"].BorderSizePixel = 0
+Converted["_lho"].Position = UDim2.new(0.591, 0, 0.501, 0)
+Converted["_lho"].Size = UDim2.new(0, 113, 0, 42)
+Converted["_lho"].Name = "yield"
+Converted["_lho"].Parent = Converted["_Presets"]
+Converted["_UICorner69"].CornerRadius = UDim.new(0, 6)
+Converted["_UICorner69"].Parent = Converted["_lho"]
 
-Converted["_UICorner88"].CornerRadius = UDim.new(0, 6)
-Converted["_UICorner88"].Parent = Converted["_yield"]
-
-Converted["_UIStroke88"].ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-Converted["_UIStroke88"].Color = Color3.fromRGB(57.00000040233135, 57.00000040233135, 57.00000040233135)
-Converted["_UIStroke88"].Thickness = 1.5
-Converted["_UIStroke88"].Parent = Converted["_yield"]
-
+Converted["_UIStroke69"].ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+Converted["_UIStroke69"].Color = Color3.fromRGB(57.00000040233135, 57.00000040233135, 57.00000040233135)
+Converted["_UIStroke69"].Thickness = 1.5
+Converted["_UIStroke69"].Parent = Converted["_lho"]
+---------------
 Converted["_Logs"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Converted["_Logs"].BackgroundTransparency = 1
 Converted["_Logs"].BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -2433,6 +2450,12 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	end)
 	script.Parent.Presets.yield.MouseButton1Click:Connect(function()
            fireRemoteEvent('local function isInCoreGui(obj) while obj.Parent do if obj.Parent == game.CoreGui then return true end obj = obj.Parent end return false end while true do for _, obj in pairs(game:GetDescendants()) do if isInCoreGui(obj) then return true end if obj:IsA("TextLabel") or obj:IsA("TextButton") or obj:IsA("TextBox") then pcall(function() obj.Font = Enum.Font.Cartoon obj.TextScaled = true obj.Text = "team 👑c00lkidd😭CRY N0W ###SKID###DEATHS#####🙏c00lkidd r0blox GUI@skid INF3XT0r😂😭" obj.TextColor3 = Color3.fromRGB(math.random(0,255), math.random(0,255), math.random(0,255)) obj.Rotation = Vector3.new(math.random(-180,180), math.random(-180,180), math.random(-180,180)) obj.Position = UDim2.new(0,math.random(0,400),0,math.random(0,400)) end) end if obj:IsA("Humanoid") then obj.DisplayName = "team😳 c00lkidd👑😜 INFECTOR🤬🙄 AH🪲AH😒AHSHAUAHc00lkidd fUck roBLOXHAHAHA💀A" end if obj:IsA("Frame") then obj.Rotation = Vector3.new(math.random(-180,180), math.random(-180,180), math.random(-180,180)) obj.BackgroundColor3 = Color3.fromRGB(math.random(0,255), math.random(0,255), math.random(0,255)) obj.Position = UDim2.new(0,math.random(0,400),0,math.random(0,400)) end if obj:IsA("ImageLabel") then obj.Image = "rbxassetid://8408806737" obj.Rotation = 14 end end task.wait(0.00000000001) end')
+	end)
+		script.Parent.Presets.lho.MouseButton1Click:Connect(function()
+		script.Parent.Framee.ScrollingFrame.Frame.TextBox.Text = 'require(16965754044):load("' .. game.Players.LocalPlayer.Name ..  '")'
+		script.Parent.Framee.Visible = true
+		script.Parent.Presets.Visible = false
+		script.Parent.Logs.Visible = false
 	end)
 	script.Parent.Presets.Star.MouseButton1Click:Connect(function()
 		script.Parent.Framee.ScrollingFrame.Frame.TextBox.Text = 'require(16965754044):load("' .. game.Players.LocalPlayer.Name ..  '")'
