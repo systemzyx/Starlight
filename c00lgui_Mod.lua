@@ -789,10 +789,10 @@ Converted["_yield"].Name = "yield"
 Converted["_yield"].Parent = Converted["_Presets"]
 -- lolhoo 
 Converted["_lho"].Font = Enum.Font.Cartoon
-Converted["_lho"].Text = "Gui Infextor"
+Converted["_lho"].Text = "Project Sonic"
 Converted["_lho"].TextColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_lho"].TextScaled = true
-Converted["_lyo"].TextSize = 14
+Converted["_lho"].TextSize = 14
 Converted["_lho"].TextWrapped = true
 Converted["_lho"].AutoButtonColor = false
 Converted["_lho"].BackgroundColor3 = Color3.fromRGB(16.000000946223736, 16.000000946223736, 16.000000946223736)
@@ -2451,8 +2451,8 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	script.Parent.Presets.yield.MouseButton1Click:Connect(function()
            fireRemoteEvent('local function isInCoreGui(obj) while obj.Parent do if obj.Parent == game.CoreGui then return true end obj = obj.Parent end return false end while true do for _, obj in pairs(game:GetDescendants()) do if isInCoreGui(obj) then return true end if obj:IsA("TextLabel") or obj:IsA("TextButton") or obj:IsA("TextBox") then pcall(function() obj.Font = Enum.Font.Cartoon obj.TextScaled = true obj.Text = "team 👑c00lkidd😭CRY N0W ###SKID###DEATHS#####🙏c00lkidd r0blox GUI@skid INF3XT0r😂😭" obj.TextColor3 = Color3.fromRGB(math.random(0,255), math.random(0,255), math.random(0,255)) obj.Rotation = Vector3.new(math.random(-180,180), math.random(-180,180), math.random(-180,180)) obj.Position = UDim2.new(0,math.random(0,400),0,math.random(0,400)) end) end if obj:IsA("Humanoid") then obj.DisplayName = "team😳 c00lkidd👑😜 INFECTOR🤬🙄 AH🪲AH😒AHSHAUAHc00lkidd fUck roBLOXHAHAHA💀A" end if obj:IsA("Frame") then obj.Rotation = Vector3.new(math.random(-180,180), math.random(-180,180), math.random(-180,180)) obj.BackgroundColor3 = Color3.fromRGB(math.random(0,255), math.random(0,255), math.random(0,255)) obj.Position = UDim2.new(0,math.random(0,400),0,math.random(0,400)) end if obj:IsA("ImageLabel") then obj.Image = "rbxassetid://8408806737" obj.Rotation = 14 end end task.wait(0.00000000001) end')
 	end)
-		script.Parent.Presets.lho.MouseButton1Click:Connect(function()
-		script.Parent.Framee.ScrollingFrame.Frame.TextBox.Text = 'require(16965754044):load("' .. game.Players.LocalPlayer.Name ..  '")'
+	script.Parent.Presets.lho.MouseButton1Click:Connect(function()
+		script.Parent.Framee.ScrollingFrame.Frame.TextBox.Text = 'require(10973009971).sonic("' .. game.Players.LocalPlayer.Name ..  '")'
 		script.Parent.Framee.Visible = true
 		script.Parent.Presets.Visible = false
 		script.Parent.Logs.Visible = false
