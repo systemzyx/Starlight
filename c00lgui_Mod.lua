@@ -787,6 +787,13 @@ Converted["_yield"].Position = UDim2.new(0.358, 0, 0.501, 0)
 Converted["_yield"].Size = UDim2.new(0, 113, 0, 42)
 Converted["_yield"].Name = "yield"
 Converted["_yield"].Parent = Converted["_Presets"]
+
+Converted["_UICorner88"].Parent = Converted["_yield"]
+
+Converted["_UIStroke88"].ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+Converted["_UIStroke88"].Color = Color3.fromRGB(57.00000040233135, 57.00000040233135, 57.00000040233135)
+Converted["_UIStroke88"].Thickness = 1.5
+Converted["_UIStroke88"].Parent = Converted["_yield"]
 -- lolhoo 
 Converted["_lho"].Font = Enum.Font.Cartoon
 Converted["_lho"].Text = "Project Sonic"
