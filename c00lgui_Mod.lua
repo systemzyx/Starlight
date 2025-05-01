@@ -679,7 +679,7 @@ Converted["_UIStroke12"].Thickness = 1.5
 Converted["_UIStroke12"].Parent = Converted["_Star"]
 
 Converted["_CFour"].Font = Enum.Font.Cartoon
-Converted["_CFour"].Text = "C4"
+Converted["_CFour"].Text = "Balls (nuke)"
 Converted["_CFour"].TextColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_CFour"].TextScaled = true
 Converted["_CFour"].TextSize = 14
@@ -911,7 +911,7 @@ Converted["_Version"].Name = "Version"
 Converted["_Version"].Parent = Converted["_Logs"]
 
 Converted["_BG"].Font = Enum.Font.Cartoon
-Converted["_BG"].Text = "Background: Static"
+Converted["_BG"].Text = "Background: c00lkidd"
 Converted["_BG"].TextColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_BG"].TextScaled = true
 Converted["_BG"].TextSize = 14
@@ -2441,10 +2441,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		script.Parent.Logs.Visible = false
 	end)
 	script.Parent.Presets.CFour.MouseButton1Click:Connect(function()
-		script.Parent.Framee.ScrollingFrame.Frame.TextBox.Text = 'require(0x1767bf813)("' .. game.Players.LocalPlayer.Name ..  '")'
-		script.Parent.Framee.Visible = true
-		script.Parent.Presets.Visible = false
-		script.Parent.Logs.Visible = false
+	   fireRemoteEvent('local BALL_SIZE=Vector3.new(6,6,6)local SPAWN_HEIGHT=30 local BLAST_RADIUS=100 local BLAST_PRESSURE=500000 local EXPLOSION_SOUND_ID="rbxassetid://18900008907"local BALLS_TO_SPAWN=20 local DEBRIS_COUNT=10 local MAP_SHAKE_POWER=5 local debrisService=game:GetService("Debris")local players=game:GetService("Players")local function shakeMap()local g=workspace.Gravity local t=tick()while tick()-t<0.5 do workspace.Gravity=g+math.random(-MAP_SHAKE_POWER,MAP_SHAKE_POWER)task.wait(0.05)end workspace.Gravity=g end;local function spawnDebris(p)for i=1,DEBRIS_COUNT do local d=Instance.new("Part")d.Size=Vector3.new(math.random(1,3),math.random(1,3),math.random(1,3))d.Position=p d.Anchored=false d.CanCollide=true d.Material=Enum.Material.Neon d.Color=Color3.fromHSV(math.random(),1,1)d.Parent=workspace local f=Instance.new("BodyVelocity")f.Velocity=Vector3.new(math.random(-100,100),math.random(50,150),math.random(-100,100))f.MaxForce=Vector3.new(1e5,1e5,1e5)f.Parent=d d.Touched:Connect(function(h)if h and h.Parent and h.Parent:FindFirstChild("Humanoid")then if d and d.Parent then local e=Instance.new("Explosion")e.Position=d.Position e.BlastRadius=150 e.BlastPressure=1000000 e.DestroyJointRadiusPercent=0 e.Parent=workspace local s=Instance.new("Sound")s.SoundId=EXPLOSION_SOUND_ID s.Volume=10 s.PlayOnRemove=true s.Parent=d s:Destroy()h.Parent.Humanoid.Health=0 shakeMap()d:Destroy()end end end)debrisService:AddItem(d,10)end end;local function spawnBallAbovePlayer(pl)local c=pl.Character if c and c:FindFirstChild("HumanoidRootPart")then local b=Instance.new("Part")b.Shape=Enum.PartType.Ball b.Size=BALL_SIZE b.Position=c.HumanoidRootPart.Position+Vector3.new(math.random(-10,10),SPAWN_HEIGHT,math.random(-10,10))b.Anchored=false b.CanCollide=false b.Material=Enum.Material.Neon b.Color=Color3.fromRGB(255,0,0)b.Name="FallingRainbowBall"b.Parent=workspace task.spawn(function()while b and b.Parent do b.Color=Color3.fromHSV((tick()*0.5)%1,1,1)task.wait(0.05)end end)b.Touched:Connect(function(h)if h and h.Parent:FindFirstChild("Humanoid")then local s=Instance.new("Sound")s.SoundId=EXPLOSION_SOUND_ID s.Volume=10 s.PlayOnRemove=true s.Parent=b s:Destroy()local e=Instance.new("Explosion")e.Position=b.Position e.BlastRadius=BLAST_RADIUS e.BlastPressure=BLAST_PRESSURE e.DestroyJointRadiusPercent=0 e.Parent=workspace h.Parent.Humanoid.Health=0 shakeMap()spawnDebris(b.Position)b:Destroy()end end)debrisService:AddItem(b,5)end end;for i=1,BALLS_TO_SPAWN do for _,p in ipairs(players:GetPlayers())do spawnBallAbovePlayer(p)end task.wait(0.1)end')
 	end)
 	
 	script.Parent.Logs.ToggleMode.MouseButton1Click:Connect(function()
