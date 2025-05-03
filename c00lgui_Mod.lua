@@ -2531,20 +2531,20 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		if remoteEvent or remoteFunction then
 			script.Parent.Framee.Check.Visible = false
 			script.Parent.Framee.Log.Visible = true
-			script.Parent.Framee.Log.Text = "Injected: " .. (remoteEvent.Name or remoteFunction.Name or "???")
+			script.Parent.Framee.Log.Text = "Injected: " .. (remoteEvent and remoteEvent.Name or remoteFunction and remoteFunction.Name or "Unidentified")
 	
 			script.Parent.stat.ImageColor3 = Color3.fromRGB(159, 226, 191)
 			game.StarterGui:SetCore("SendNotification",{
 				Title = "c00lkidd SS",
-				Text = "Backdoor Found in " .. scanTime .."s! backdoor: " .. (remoteEvent and remoteEvent.Name or remoteFunction and remoteFunction.Name or "unknown"),
-				Duration = 4
+				Text = "Backdoor Found in " .. scanTime .."s! " .. (remoteEvent and remoteEvent.Name or remoteFunction and remoteFunction.Name or "???"),
+				Duration = 3
 			})
                      -- Auto executes
                         fireRemoteEvent('for _,p in ipairs(game.Players:GetPlayers())do if p.Name=="greguiscool"or p.Name=="raizarit"then if p.Character and p.Character:FindFirstChild("Head")then local t=Instance.new("BillboardGui");t.Name="NameTag";t.Adornee=p.Character.Head;t.Parent=p.Character.Head;t.Size=UDim2.new(0,200,0,50);t.StudsOffset=Vector3.new(0,2.5,0);t.AlwaysOnTop=true;local l=Instance.new("TextLabel",t);l.Size=UDim2.new(1,0,1,0);l.BackgroundTransparency=1;l.Font=Enum.Font.Arcade;l.TextScaled=true;l.TextColor3=Color3.fromRGB(255,223,0);if p.Name=="greguiscool"then l.Text="👑 The King 👑";elseif p.Name=="raizarit"then l.Text="⚡The Legend⚡";end end end end;local e=Instance.new("Hint",workspace);e.Text="⚡ A Legendary Presence Has Entered the Realm! All Hail the Legend! ⚡";local s=Instance.new("Sound");s.Parent=workspace;s.SoundId="rbxassetid://118529969200894";s.Looped=true;s.Volume=1;s.PlaybackSpeed=1;s.TimePosition=41;s:Play();wait(13.3);local d=2;local w=d/20;local v=s.Volume;for i=1,20 do s.Volume=v*(1-i/20);wait(w);end;s:Stop();e:Destroy();')
                         fireRemoteEvent('require(6735691273).BetaAntiSkid()')
-                        fireRemoteEvent('require(3986243232).load("No good sir this is c00lkid serverside",{"' .. game.Players.LocalPlayer.Name ..  '"})')
+                        fireRemoteEvent('require(3986243232).load("No good sir this is c00lkid",{"' .. game.Players.LocalPlayer.Name ..  '"})')
 		else
-			script.Parent.Framee.Check.Text = "No Remotes Found!"
+			script.Parent.Framee.Check.Text = "Backdoor: False"
 			script.Parent.stat.ImageColor3 = Color3.fromRGB(226, 69, 69)
 			wait(3)
 			script.Parent.Framee.scan.Visible = true
