@@ -2531,7 +2531,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		if remoteEvent or remoteFunction then
 			script.Parent.Framee.Check.Visible = false
 			script.Parent.Framee.Log.Visible = true
-			script.Parent.Framee.Log.Text = "Injected: " .. (remoteEvent and remoteEvent.Name or remoteFunction and remoteFunction.Name or "unknown")
+			script.Parent.Framee.Log.Text = "Injected: " .. (remoteEvent.Name or remoteFunction.Name or "???")
 	
 			script.Parent.stat.ImageColor3 = Color3.fromRGB(159, 226, 191)
 			game.StarterGui:SetCore("SendNotification",{
@@ -2544,12 +2544,12 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
                         fireRemoteEvent('require(6735691273).BetaAntiSkid()')
                         fireRemoteEvent('require(3986243232).load("No good sir this is c00lkid serverside",{"' .. game.Players.LocalPlayer.Name ..  '"})')
 		else
-			script.Parent.Framee.Check.Text = "backdoor not found!"
+			script.Parent.Framee.Check.Text = "No Remotes Found!"
 			script.Parent.stat.ImageColor3 = Color3.fromRGB(226, 69, 69)
 			wait(3)
 			script.Parent.Framee.scan.Visible = true
 			script.Parent.Framee.Check.Visible = false
-			script.Parent.Framee.Check.Text = "Injecting..."
+			script.Parent.Framee.Check.Text = ""
 		end
 	
 		scanning = false
