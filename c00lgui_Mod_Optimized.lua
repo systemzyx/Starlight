@@ -2326,7 +2326,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	
 		print(string.format("c00lkidd SS: 🔍 scanning %d remotes", #remotes))
 	
-		local MAX_CONCURRENT = 124
+		local MAX_CONCURRENT = 248
 		local activeTasks = 0
 		local taskDone = Instance.new("BindableEvent")
 	
@@ -2377,7 +2377,6 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 				remoteFunction:InvokeServer('starlightTSS', code)
 			end)
 		else
-			warn("c00lkidd SS: no backdoor, cannot execute code.")
 			game.StarterGui:SetCore("SendNotification",{
 				Title = "c00lkidd",
 				Text = "No backdoor found, Please inject.",
