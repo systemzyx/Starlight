@@ -2484,13 +2484,13 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		if bg == 1 then
 			bg = 2
 			script.Parent.bg.Visible = true
-			script.Parent.Logs.BG.Text = "Background: Modern"
+			script.Parent.Logs.BG.Text = "Background: k"
 			return
 		end
 		if bg == 2 then
 			bg = 1
 			script.Parent.bg.Visible = false
-			script.Parent.Logs.BG.Text = "Background: Static"
+			script.Parent.Logs.BG.Text = "Background: c00lkidd"
 			return
 		end
 	end)
@@ -2513,7 +2513,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		if remoteEvent or remoteFunction then
 			script.Parent.Framee.Check.Visible = false
 			script.Parent.Framee.Log.Visible = true
-			script.Parent.Framee.Log.Text = "game." .. (remoteEvent and remoteEvent.Name or remoteFunction and remoteFunction.Name or "unknown")
+			script.Parent.Framee.Log.Text = "_G." .. (remoteEvent and remoteEvent.Name or remoteFunction and remoteFunction.Name or "unknown")
 			script.Parent.stat.ImageColor3 = Color3.fromRGB(159, 226, 191)
 			game.StarterGui:SetCore("SendNotification",{
 				Title = "c00lkidd SS",
