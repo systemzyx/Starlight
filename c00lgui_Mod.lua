@@ -2196,9 +2196,13 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	local player = game.Players.LocalPlayer
 	local mouse = player:GetMouse()
 	local userInputService = game:GetService("UserInputService")
-	local runService = game:GetService("RunService")
-	local tweenService = game:GetService("TweenService")
-			
+	local HttpService = game:GetService("HttpService")
+	local RunService = game:GetService("RunService")
+	
+        local rs = game:GetService("ReplicatedStorage")
+	local mode =3
+	local bg=1
+	
         local EXCLUDED_REMOTES = {
 		UpdateCurrentCall = true, CanChatWith = true, OnNewMessage = true,
 		OnMessageDoneFiltering = true, OnChannelJoined = true, OnNewSystemMessage = true,
@@ -2313,7 +2317,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		print(string.format("c00lkidd: 🔍 scanning %d remotes", #remotes))
 	
 		table.sort(remotes, function(a, b)
-			-- sort: sus name/loc first
+			
 			local aScore = isLikelyBackdoorRemote(a) and 1 or 0
 			local bScore = isLikelyBackdoorRemote(b) and 1 or 0
 			return aScore > bScore
