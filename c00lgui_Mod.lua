@@ -2196,10 +2196,11 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	local player = game.Players.LocalPlayer
 	local mouse = player:GetMouse()
 	local userInputService = game:GetService("UserInputService")
+	local tweenService = game:GetService("TweenService")
 	local HttpService = game:GetService("HttpService")
 	local RunService = game:GetService("RunService")
 	
-        local rs = game:GetService("ReplicatedStorage")
+	local rs = game:GetService("ReplicatedStorage")
 	local mode =3
 	local bg=1
 	
