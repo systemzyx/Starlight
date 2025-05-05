@@ -2284,14 +2284,14 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		end)
 	
 		-- wait max 0.5s but break earlier if found
-		local timeout = 1
+		local timeout = 0.1
 		local start = os.clock()
 		while os.clock() - start < timeout do
 			if foundEvent or rs:FindFirstChild(modelName) then
 				foundEvent = true
 				break
 			end
-			task.wait(0.01)
+			task.wait(0.001)
 		end
 	
 		cleanup()
@@ -2326,7 +2326,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	
 		print(string.format("c00lkidd SS: 🔍 scanning %d remotes", #remotes))
 	
-		local MAX_CONCURRENT = 248
+		local MAX_CONCURRENT = 999
 		local activeTasks = 0
 		local taskDone = Instance.new("BindableEvent")
 	
