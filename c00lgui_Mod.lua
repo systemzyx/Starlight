@@ -2232,7 +2232,7 @@ local scanTime = 0
 
 local function isLikelyBackdoorRemote(remote)
 	if not remote.Parent or SAFE_LOCATIONS[remote.Parent.Name] then return false end
-	if remote:GetFullName():find("^RobloxReplicatedStorage") then return false end
+	if remote:GetFullName():find("RobloxReplicatedStorage") then return false end
 	if EXCLUDED_REMOTES[remote.Name] then return false end
 	return true
 end
