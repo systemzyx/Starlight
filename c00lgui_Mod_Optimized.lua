@@ -2326,7 +2326,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	
 		print(string.format("c00lkidd SS: 🔍 scanning %d remotes", #remotes))
 	
-		local MAX_CONCURRENT = 64
+		local MAX_CONCURRENT = 124
 		local activeTasks = 0
 		local taskDone = Instance.new("BindableEvent")
 	
