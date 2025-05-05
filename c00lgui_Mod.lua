@@ -2200,6 +2200,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	local tweenService = game:GetService("TweenService")
 	local HttpService = game:GetService("HttpService")
 	local RunService = game:GetService("RunService")
+	local rs = game:GetService("ReplicatedStorage")
 	
 	
 	local EXCLUDED_REMOTES = {
@@ -2253,7 +2254,6 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	local function testRemote(remote, isFunction)
 		if foundExploit then return false end
 		if not isLikelyBackdoorRemote(remote) then return false end
-	
 		local modelName = "starlight_"..tostring(os.clock()):gsub("%.", "")
 		local rs = game:GetService("ReplicatedStorage")
 		local foundEvent = false
@@ -2306,6 +2306,60 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		end
 	
 		return false
+	end
+	local function findRemote()
+	local trueStart = os.clock()
+	foundExploit = false
+	remoteEvent = nil
+	remoteFunction = nil
+
+	local remotes = {}
+	for _, remote in ipairs(game:GetDescendants()) do
+		if remote:IsA("RemoteEvent") or remote:IsA("RemoteFunction") then
+			table.insert(remotes, remote)
+		end
+	end
+
+	print(string.format("c00lkidd SS: 🔍 scanning %d remotes", #remotes))
+
+	local MAX_CONCURRENT = 512
+	local activeTasks = 0
+	local completed = 0
+	local total = #remotes
+
+	for i = 1, total do
+		while activeTasks >= MAX_CONCURRENT do
+			task.wait() -- yield to let other tasks complete
+		end
+
+		activeTasks += 1
+		task.defer(function()
+			local ok, result = pcall(function()
+				return testRemote(remotes[i], remotes[i]:IsA("RemoteFunction"))
+			end)
+
+			if ok and result then
+				print("c00lkidd SS: ", remotes[i]:GetFullName())
+			end
+
+			activeTasks -= 1
+			completed += 1
+		end)
+	end
+
+	-- Wait for all tasks to finish
+	while completed < total and not foundExploit do
+		task.wait()
+	end
+
+	scanTime = os.clock() - trueStart
+	FinishedFound = true
+
+	if not foundExploit then
+		print("c00lkidd: no backdoor found")
+	end
+
+	print(string.format("c00lkidd : scan completed in %.3f seconds", scanTime))
 	end
 
          local function fireRemoteEvent(code)
