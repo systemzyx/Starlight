@@ -2259,7 +2259,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		end
 	
 		local payload = [[
-			local m=Instance.new("ObjectValue")
+			local m=Instance.new("Folder")
 			m.Name="]]..modelName..[["
 			m.Parent=game:GetService("ReplicatedStorage")
 		]]
