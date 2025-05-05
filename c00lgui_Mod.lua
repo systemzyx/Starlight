@@ -2313,7 +2313,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	local function findRemote()
 		local trueStart = os.clock()
 		foundExploit = false
-local EXCLUDED_REMOTES = {
+        local EXCLUDED_REMOTES = {
 		UpdateCurrentCall = true, CanChatWith = true, OnNewMessage = true,
 		OnMessageDoneFiltering = true, OnChannelJoined = true, OnNewSystemMessage = true,
 		NewPlayerGroupDetails = true, ClientLoaded = true, SetPlayerReady = true,
@@ -2424,7 +2424,7 @@ local EXCLUDED_REMOTES = {
 			end
 		end
 	
-		print(string.format("💫 starlight: 🔍 scanning %d remotes", #remotes))
+		print(string.format("c00lkid: 🔍 scanning %d remotes", #remotes))
 	
 		table.sort(remotes, function(a, b)
 			-- sort: sus name/loc first
@@ -2451,7 +2451,7 @@ local EXCLUDED_REMOTES = {
 				end)
 	
 				if ok and result then
-					print("💫 starlight: backdoor found:", remotes[i]:GetFullName())
+					print("c00lkidd:", remotes[i]:GetFullName())
 				end
 	
 				activeTasks -= 1
@@ -2464,7 +2464,7 @@ local EXCLUDED_REMOTES = {
 		end
 	
 		if not foundExploit then
-			print("💫 starlight: backdoor not found")
+			print("c00lkidd: backdoor not found")
 		end
 	
 		return foundExploit
@@ -2478,7 +2478,7 @@ local EXCLUDED_REMOTES = {
 	
 		scanTime = os.clock() - trueStart
 		FinishedFound = true
-		print(string.format("💫 starlight: scan completed in %.3f seconds", os.clock() - tStart))
+		print(string.format("c00lkidd: scan completed in %.3f seconds", os.clock() - tStart))
 		end
 	
 	local function fireRemoteEvent(code)
@@ -2489,12 +2489,6 @@ local EXCLUDED_REMOTES = {
 			print("ℹ️ Executing code through backdoor:", remoteFunction:GetFullName())
 			pcall(function()
 				remoteFunction:InvokeServer('starlightTSS', code)
-			    else
-				game.StarterGui:SetCore("SendNotification",{
-				Title = "c00lkidd",
-				Text = "Fail to execute",
-				Duration = 12
-			})
 			end)
 		else
 			game.StarterGui:SetCore("SendNotification",{
