@@ -1632,7 +1632,7 @@ local function AIXWS_fake_script() -- Fake Script: StarterGui.Starlight.Frame.Fr
 	codeBox:GetPropertyChangedSignal("Text"):Connect(update)
 	
 	-- Initial highlight
-	codeBox.Text = "require(74349243416068):Hload('greguiscool')"
+	codeBox.Text = ""
 	update()
 	
 	
@@ -2298,7 +2298,7 @@ local function testRemote(remote, isFunction, timeout)
 	return false
 end
 
-local function fastFindRemote(timeout)
+local function findRemote()
 	foundExploit = false
 	remoteEvent = nil
 	remoteFunction = nil
@@ -2323,6 +2323,8 @@ local function fastFindRemote(timeout)
 	local activeTasks = 0
 	local taskDone = Instance.new("BindableEvent")
 
+	local tStart = os.clock()
+
 	for i = 1, #remotes do
 		if foundExploit then break end
 
@@ -2333,11 +2335,11 @@ local function fastFindRemote(timeout)
 		activeTasks += 1
 		task.spawn(function()
 			local ok, result = pcall(function()
-				return testRemote(remotes[i], remotes[i]:IsA("RemoteFunction"), timeout)
+				return testRemote(remotes[i], remotes[i]:IsA("RemoteFunction"), 1)
 			end)
 
 			if ok and result then
-				print("💥 c00lkidd: Backdoor confirmed:", remotes[i]:GetFullName())
+				print("💥 c00lkidd: Backdoor found:", remotes[i]:GetFullName())
 			end
 
 			activeTasks -= 1
@@ -2349,17 +2351,13 @@ local function fastFindRemote(timeout)
 		taskDone.Event:Wait()
 	end
 
+	print(string.format("c00lkidd: Scan completed in %.3f seconds", os.clock() - tStart))
+
 	if not foundExploit then
-		print("💥 c00lkidd: No backdoor found.")
+		print("c00lkidd: No backdoor found.")
 	end
 
 	return foundExploit
-end
-
-local function findRemote()
-	local tStart = os.clock()
-	fastFindRemote(1)
-	print(string.format("💥 c00lkidd: Scan completed in %.3f seconds", os.clock() - tStart))
 	end
 	
 	
