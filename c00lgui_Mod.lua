@@ -2205,54 +2205,17 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	local mode =3
 	local bg=1
 	
-	local TweenService = game:GetService("TweenService")
-
-local gui = Instance.new("ScreenGui")
+local gui = Instance.new("ScreenGui", game:GetService("CoreGui"))
 gui.Name = "CoolkidNotificationGui"
-gui.ResetOnSpawn = false
-gui.Parent = game:GetService("CoreGui")
-
-local notif = Instance.new("Frame")
-notif.Name = "Notification"
-notif.Size = UDim2.new(0, 400, 0, 100)
-notif.Position = UDim2.new(0.5, -200, 0.1, 0)
-notif.AnchorPoint = Vector2.new(0.5, 0)
-notif.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-notif.BackgroundTransparency = 1
-notif.BorderSizePixel = 0
-notif.Parent = gui
-
-local stroke = Instance.new("UIStroke", notif)
-stroke.Color = Color3.fromRGB(255, 0, 0)
-stroke.Thickness = 2
-
-local title = Instance.new("TextLabel")
-title.Name = "Title"
-title.Size = UDim2.new(1, -20, 0.4, 0)
-title.Position = UDim2.new(0, 10, 0, 5)
-title.BackgroundTransparency = 1
-title.TextColor3 = Color3.fromRGB(255, 255, 255)
-title.Font = Enum.Font.Cartoon
-title.TextScaled = true
-title.Text = "c00lkid"
-title.Parent = notif
-
-local desc = Instance.new("TextLabel")
-desc.Name = "Desc"
-desc.Size = UDim2.new(1, -20, 0.5, 0)
-desc.Position = UDim2.new(0, 10, 0.45, 0)
-desc.BackgroundTransparency = 1
-desc.TextColor3 = Color3.fromRGB(230, 230, 230)
-desc.Font = Enum.Font.Cartoon
-desc.TextScaled = true
-desc.Text = ""
-desc.Parent = notif
-
-notif.Visible = false
+local TweenService = game:GetService("TweenService")
 
 local currentFadeOutThread
 
 local function showNotification(descriptionText, duration)
+	local notif = game:GetService("CoreGui"):WaitForChild("CoolkidNotificationGui"):WaitForChild("Notification")
+	local title = notif:FindFirstChild("Title")
+	local desc = notif:FindFirstChild("Desc")
+
 	if currentFadeOutThread then task.cancel(currentFadeOutThread) end
 
 	title.Text = "💥c00lkidd"
@@ -2275,6 +2238,10 @@ local function showNotification(descriptionText, duration)
 		notif.Visible = false
 	end)
 end
+
+task.delay(1, function()
+	showNotification("GUI loaded. Welcome, c00lkid!", 4)
+end)
 	
 	local EXCLUDED_REMOTES = {
 		UpdateCurrentCall = true, CanChatWith = true, OnNewMessage = true,
