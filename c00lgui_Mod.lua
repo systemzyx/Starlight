@@ -2243,6 +2243,15 @@ task.delay(1, function()
 	showNotification("GUI loaded. Welcome, c00lkid!", 4)
 end)
 	
+	local player = game.Players.LocalPlayer
+	local mouse = player:GetMouse()
+	local userInputService = game:GetService("UserInputService")
+	local runService = game:GetService("RunService")
+	local tweenService = game:GetService("TweenService")
+	local HttpService = game:GetService("HttpService")
+	local RunService = game:GetService("RunService")
+	
+	
 	local EXCLUDED_REMOTES = {
 		UpdateCurrentCall = true, CanChatWith = true, OnNewMessage = true,
 		OnMessageDoneFiltering = true, OnChannelJoined = true, OnNewSystemMessage = true,
@@ -2265,24 +2274,38 @@ end)
 	}
 	
 	local foundExploit = false
-	local remoteEvent, remoteFunction
 	local FinishedFound = false
-	local scannedRemotes = {}
+	local mode = 3
+	local bg = 1
+	local remoteEvent, remoteFunction
+	local scanTime = 0
 	
 	local function isLikelyBackdoorRemote(remote)
-		if SAFE_LOCATIONS[remote.Parent.ClassName] then return false end
-		if string.split(remote:GetFullName(), '.')[1] == 'RobloxReplicatedStorage' then return false end
-		if EXCLUDED_REMOTES[remote.Name] then return false end
+		local name = remote.Name
+		local parent = remote.Parent
+	
+	
+		if SAFE_LOCATIONS[parent.ClassName] then
+			return false
+		end
+		if string.split(remote:GetFullName(), '.')[1] == 'RobloxReplicatedStorage' then
+			print('cancelled remote: '..remote:GetFullName())
+			return false
+		end 
+		if EXCLUDED_REMOTES[name] then
+			return false
+		end
+	
 	
 		return true
 	end
 	
-	local function testRemote(remote, isFunction, timeout)
-		if foundExploit or scannedRemotes[remote] then return false end
-		scannedRemotes[remote] = true
+	local function testRemote(remote, isFunction)
+		if foundExploit then return false end
 		if not isLikelyBackdoorRemote(remote) then return false end
 	
-		local modelName = "starlight_"..tostring(math.random(1,999999))
+		local modelName = "starlight_"..tostring(os.clock()):gsub("%.", "")
+		local rs = game:GetService("ReplicatedStorage")
 		local foundEvent = false
 	
 		local connection = rs.DescendantAdded:Connect(function(inst)
@@ -2297,33 +2320,28 @@ end)
 			if f then f:Destroy() end
 		end
 	
-		local payload = [[
-			local m=Instance.new("ObjectValue")
-			m.Name="]]..modelName..[["
-			m.Parent=game:GetService("ReplicatedStorage")
-		]]
-	
-		local finished = false
-	
-		task.spawn(function()
-			pcall(function()
-				if isFunction then
-					remote:InvokeServer(payload .. "\nreturn true")
-				else
-					remote:FireServer(payload)
-				end
-			end)
-			finished = true
+		local success = pcall(function()
+			local payload = [[
+				local m=Instance.new("Folder")
+				m.Name="]]..modelName..[["
+				m.Parent=game:GetService("ReplicatedStorage")
+			]]
+			if isFunction then
+				remote:InvokeServer('starlightTSS', payload .. "\nreturn true")
+			else
+				remote:FireServer(payload)
+			end
 		end)
 	
+		
+		local timeout = 1
 		local start = os.clock()
 		while os.clock() - start < timeout do
 			if foundEvent or rs:FindFirstChild(modelName) then
 				foundEvent = true
 				break
 			end
-			if finished then break end
-			task.wait()
+			task.wait(0.001)
 		end
 	
 		cleanup()
@@ -2341,11 +2359,13 @@ end)
 		return false
 	end
 	
-	local function fastFindRemote(timeout)
+	
+	
+	local function findRemote()
+		local trueStart = os.clock()
 		foundExploit = false
 		remoteEvent = nil
 		remoteFunction = nil
-		scannedRemotes = {}
 	
 		local remotes = {}
 		for _, remote in ipairs(game:GetDescendants()) do
@@ -2354,14 +2374,7 @@ end)
 			end
 		end
 	
-		print(string.format("c00lkidd: 🔍 scanning %d remotes", #remotes))
-	
-		table.sort(remotes, function(a, b)
-			-- sort: sus name/loc first
-			local aScore = isLikelyBackdoorRemote(a) and 1 or 0
-			local bScore = isLikelyBackdoorRemote(b) and 1 or 0
-			return aScore > bScore
-		end)
+		print(string.format("c00lkidd SS: 🔍 scanning %d remotes", #remotes))
 	
 		local MAX_CONCURRENT = 128
 		local activeTasks = 0
@@ -2377,11 +2390,11 @@ end)
 			activeTasks += 1
 			task.spawn(function()
 				local ok, result = pcall(function()
-					return testRemote(remotes[i], remotes[i]:IsA("RemoteFunction"), timeout)
+					return testRemote(remotes[i], remotes[i]:IsA("RemoteFunction"))
 				end)
 	
 				if ok and result then
-					print("c00lkidd: backdoor found:", remotes[i]:GetFullName())
+					print("c00lkidd SS: ", remotes[i]:GetFullName())
 				end
 	
 				activeTasks -= 1
@@ -2393,23 +2406,14 @@ end)
 			taskDone.Event:Wait()
 		end
 	
-		if not foundExploit then
-			print("c00lkidd: backdoor not found")
-			showNotification("False",3)
-		end
-	
-		return foundExploit
-	end
-	
-	local function findRemote()
-		local trueStart = os.clock()
-		local tStart = os.clock()
-	
-		fastFindRemote(1)
-	
 		scanTime = os.clock() - trueStart
 		FinishedFound = true
-		print(string.format("c00lkidd: scan completed in %.3f seconds", os.clock() - tStart))
+	
+		if not foundExploit then
+			print("c00lkidd: no backdoor found")
+		end
+	
+		print(string.format("c00lkidd : scan completed in %.3f seconds", scanTime))
 	end
          local function fireRemoteEvent(code)
 		if remoteEvent then
