@@ -2523,7 +2523,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 			script.Parent.stat.ImageColor3 = Color3.fromRGB(159, 226, 191)
 				game.StarterGui:SetCore("SendNotification",{
 			Title = "c00lkidd",
-			Text = "Found in:" .. scanTime .."s " .. (remoteEvent and remoteEvent.Name or remoteFunction and remoteFunction.Name or "nil"),5),
+			Text = "Found in:" .. scanTime .."s " .. (remoteEvent and remoteEvent.Name or remoteFunction and remoteFunction.Name or "nil"),
 			Duration = 12
 		})
                      -- Auto executes-
