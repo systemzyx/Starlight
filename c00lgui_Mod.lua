@@ -2525,23 +2525,23 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		})
 	-- cool text			
 local LigmaProject = Instance.new("ScreenGui")
-local ImageLabel = Instance.new("ImageLabel")
+local ImageLabeeel = Instance.new("ImageLabel")
 local fr6 = Instance.new("TextButton")
 local TextLabel_2 = Instance.new("TextLabel")
 
 LigmaProject.Name = "LigmaProject"
 LigmaProject.Parent = game.CoreGui
 
-ImageLabel.Parent = LigmaProject
-ImageLabel.Active = true
-ImageLabel.BackgroundColor3 = Color3.fromRGB(0,0,0)
-ImageLabel.BackgroundTransparency = 0
-ImageLabel.Position = UDim2.new(-0.127000004, 0, 0.407999992, 0)
-ImageLabel.Size = UDim2.new(0, 90, 0, 90)
-ImageLabel.Image = "rbxassetid://8408806737"
+ImageLabeeel.Parent = LigmaProject
+ImageLabeeel.Active = true
+ImageLabeeel.BackgroundColor3 = Color3.fromRGB(0,0,0)
+ImageLabeeel.BackgroundTransparency = 0
+ImageLabeeel.Position = UDim2.new(-0.127000004, 0, 0.407999992, 0)
+ImageLabeeel.Size = UDim2.new(0, 90, 0, 90)
+ImageLabeeel.Image = "rbxassetid://8408806737"
 
 fr6.Name = "fr6"
-fr6.Parent = ImageLabel
+fr6.Parent = ImageLabeeel
 fr6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 fr6.BackgroundTransparency = 1.000
 fr6.Position = UDim2.new(0, 0, -0.633333325, 0)
@@ -2554,7 +2554,7 @@ fr6.TextSize = 18.000
 fr6.TextTransparency = 0
 fr6.TextWrapped = true
 
-TextLabel_2.Parent = ImageLabel
+TextLabel_2.Parent = ImageLabeeel
 TextLabel_2.Active = true
 TextLabel_2.BackgroundColor3 = Color3.fromRGB(0, 0,0)
 TextLabel_2.BackgroundTransparency = 1.000
@@ -2571,12 +2571,12 @@ TextLabel_2.TextWrapped = true
 
 local function UpdateVisibilityBasedOnRigType()
     local TweenService = game:GetService("TweenService")
-    local txt = ImageLabel.TextLabel
+    local txt = ImageLabeeel.TextLabel
     local btn = fr6
     wait(1)
-    ImageLabel:TweenPosition(UDim2.new(0.458, 0, 0.408, 0), "Out", "Linear", 0.4, false)
+    ImageLabeeel:TweenPosition(UDim2.new(0.458, 0, 0.408, 0), "Out", "Linear", 0.4, false)
     wait(3)
-    ImageLabel:TweenPosition(UDim2.new(0.01, 0, 0.813, 0), "Out", "Sine", 0.7, false)
+    ImageLabeeel:TweenPosition(UDim2.new(0.01, 0, 0.813, 0), "Out", "Sine", 0.7, false)
     wait(1)
     TweenService:Create(txt, TweenInfo.new(1, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out), {["BackgroundTransparency"] = 0}):Play()
     TweenService:Create(txt, TweenInfo.new(1, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out), {["TextTransparency"] = 0}):Play()
