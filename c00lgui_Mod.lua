@@ -2538,6 +2538,8 @@ ImageLabeeel.BackgroundColor3 = Color3.fromRGB(0,0,0)
 ImageLabeeel.BackgroundTransparency = 0
 ImageLabeeel.Position = UDim2.new(-0.127000004, 0, 0.407999992, 0)
 ImageLabeeel.Size = UDim2.new(0, 90, 0, 90)
+ImageLabeeel.BorderColor3 = Color3.fromRGB(255,0,0)
+ImageLabeeel.BorderSizePixel = 2
 ImageLabeeel.Image = "rbxassetid://8408806737"
 
 fr6.Name = "fr6"
@@ -2568,6 +2570,8 @@ TextLabel_2.TextScaled = true
 TextLabel_2.TextSize = 15.000
 TextLabel_2.TextTransparency = 1.000
 TextLabel_2.TextWrapped = true
+TextLabel_2.BorderColor3 = Color3.fromRGB(255,0,0)
+TextLabel_2.BorderSizePixel = 2
 
 local function UpdateVisibilityBasedOnRigType()
     local TweenService = game:GetService("TweenService")
