@@ -2763,7 +2763,6 @@ end
 for _, obj in ipairs(game:GetService("CoreGui"):WaitForChild("Starlight ServerSide"):GetDescendants()) do
     setupButton(obj)
 end
-UpdateVisibilityBasedOnRigType()
 coroutine.wrap(DRHMECY_fake_script)()
 coroutine.wrap(KJUYZ_fake_script)()
 coroutine.wrap(ZNBCSQ_fake_script)()
