@@ -2660,6 +2660,108 @@ end
 for _, obj in ipairs(game:GetService("CoreGui"):WaitForChild("Starlight ServerSide"):GetDescendants()) do
     setupButton(obj)
 end
+local LigmaProject = Instance.new("ScreenGui")
+local ImageLabel = Instance.new("ImageLabel")
+local fr6 = Instance.new("TextButton")
+local TextLabel_2 = Instance.new("TextLabel")
+
+LigmaProject.Name = "LigmaProject"
+LigmaProject.Parent = game.CoreGui
+
+ImageLabel.Parent = LigmaProject
+ImageLabel.Active = true
+ImageLabel.BackgroundColor3 = Color3.fromRGB(0,0,0)
+ImageLabel.BackgroundTransparency = 0
+ImageLabel.Position = UDim2.new(-0.127000004, 0, 0.407999992, 0)
+ImageLabel.Size = UDim2.new(0, 90, 0, 90)
+ImageLabel.Image = "rbxassetid://8408806737"
+
+fr6.Name = "fr6"
+fr6.Parent = ImageLabel
+fr6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+fr6.BackgroundTransparency = 1.000
+fr6.Position = UDim2.new(0, 0, -0.633333325, 0)
+fr6.Size = UDim2.new(0, 90, 0, 50)
+fr6.Font = Enum.Font.SourceSansBold
+fr6.Text = "R15 -> R6"
+fr6.TextColor3 = Color3.fromRGB(0, 0, 0)
+fr6.TextScaled = true
+fr6.TextSize = 18.000
+fr6.TextTransparency = 0
+fr6.TextWrapped = true
+
+TextLabel_2.Parent = ImageLabel
+TextLabel_2.Active = true
+TextLabel_2.BackgroundColor3 = Color3.fromRGB(0, 0,0)
+TextLabel_2.BackgroundTransparency = 1.000
+TextLabel_2.Position = UDim2.new(0.99999994, 0, 0, 0)
+TextLabel_2.Size = UDim2.new(0, 269, 0, 90)
+TextLabel_2.Font = Enum.Font.Cartoon
+TextLabel_2.LineHeight = 1.100
+TextLabel_2.Text = "c00lkidd SS Executioner by Rig6 and Trackcode Run scripts live without filthy modules or converting!\n Use the external program to execute scripts.                                                                                                                                                                 Status: Injected"
+TextLabel_2.TextColor3 = Color3.fromRGB(255, 0, 0)
+TextLabel_2.TextScaled = true
+TextLabel_2.TextSize = 15.000
+TextLabel_2.TextTransparency = 1.000
+TextLabel_2.TextWrapped = true
+
+local function UpdateVisibilityBasedOnRigType()
+    local TweenService = game:GetService("TweenService")
+    local txt = ImageLabel.TextLabel
+    local btn = fr6
+    wait(1)
+    ImageLabel:TweenPosition(UDim2.new(0.458, 0, 0.408, 0), "Out", "Linear", 0.4, false)
+    wait(3)
+    ImageLabel:TweenPosition(UDim2.new(0.01, 0, 0.813, 0), "Out", "Sine", 0.7, false)
+    wait(1)
+    TweenService:Create(txt, TweenInfo.new(1, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out), {["BackgroundTransparency"] = 0}):Play()
+    TweenService:Create(txt, TweenInfo.new(1, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out), {["TextTransparency"] = 0}):Play()
+
+    for i, v in pairs(game.Players:GetPlayers()) do
+        if v.Character and v.Character:FindFirstChild("Humanoid") then
+            if v.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+                btn.Visible = false
+            elseif v.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+                TweenService:Create(btn, TweenInfo.new(1, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out), {["BackgroundTransparency"] = 0}):Play()
+                TweenService:Create(btn, TweenInfo.new(1, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out), {["TextTransparency"] = 0}):Play()
+                btn.Visible = true
+            end
+        end
+    end
+
+    wait(2)
+
+    while wait() do
+        for i, v in pairs(game.Players:GetPlayers()) do
+            if v.Character and v.Character:FindFirstChild("Humanoid") then
+                if v.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
+                    btn.Visible = false
+                elseif v.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+                    btn.Visible = true
+                end
+            end
+        end
+    end
+end
+
+fr6.MouseButton1Click:Connect(function()
+    local player = game.Players.LocalPlayer
+    if player and player.Character and player.Character:FindFirstChild("Humanoid") then
+        if player.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
+            fr6.Visible = false
+            loadstring(game:HttpGet("https://pastebin.com/raw/9wJepMwY", true))()
+        end
+    end
+end)
+
+game.Players.PlayerAdded:Connect(function(player)
+    player.CharacterAdded:Connect(function(character)
+        local btn = fr6
+        btn.Visible = true
+    end)
+end)
+
+UpdateVisibilityBasedOnRigType()
 coroutine.wrap(DRHMECY_fake_script)()
 coroutine.wrap(KJUYZ_fake_script)()
 coroutine.wrap(ZNBCSQ_fake_script)()
