@@ -2576,8 +2576,6 @@ TextLabel_2.TextWrapped = true
 TextLabel_2.BorderColor3 = Color3.fromRGB(255,0,0)
 TextLabel_2.BorderSizePixel = 2
 
-Instance.new("UIStroke",TextLabel_2).Color3 = Color3.fromRGB(255,0,0)
-
 local function UpdateVisibilityBasedOnRigType()
     local TweenService = game:GetService("TweenService")
     local txt = ImageLabeeel.TextLabel
