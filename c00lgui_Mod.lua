@@ -2276,7 +2276,11 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 				m.Parent=game:GetService("ReplicatedStorage")
 			]]
 			if isFunction then
-				remote:InvokeServer('starlightTSS', payload .. "\nreturn true")
+				if not remote:InvokeServer('starlightTSS', payload .. "\nreturn true") then 
+				    remote:InvokeServer(payload .. "\nreturn true")
+				else
+				   remote:InvokeServer('starlightTSS', payload .. "\nreturn true")
+			        end
 			else
 				remote:FireServer(payload)
 			end
