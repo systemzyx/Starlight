@@ -2373,7 +2373,11 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 			remoteEvent:FireServer(code)
 		elseif remoteFunction then
 	          pcall(function()
-			remoteFunction:InvokeServer('starlightTSS', code)
+			if not remoteFunction:InvokeServer('starlightTSS', code) then 
+                            remoteFunction:InvokeServer(code)
+			else
+			    remoteFunction:InvokeServer('starlightTSS', code) 
+			end
 		  end)
 		else
 		    print("No")
