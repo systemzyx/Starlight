@@ -2368,22 +2368,9 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		if remoteEvent then
 			remoteEvent:FireServer(code)
 		elseif remoteFunction then
-	 local success, result pcall(function()
-			    return remoteFunction:InvokeServer('starlightTSS', code)
+	          pcall(function()
+			remoteFunction:InvokeServer('starlightTSS', code) and remoteFunction:InvokeServer(code)
 			end)
-		if success then 
-		   game.StarterGui:SetCore("SendNotification",{
-			Title = "c00lkidd",
-			Text = "Success executed script☑️"
-			Duration = 4
-		})
-		else
-		    game.StarterGui:SetCore("SendNotification",{
-			Title = "c00lkidd",
-			Text = "Failed executed script❌"
-			Duration = 4
-		})
-		end
 		else
 		    print("No")
 		end
