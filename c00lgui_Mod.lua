@@ -2325,7 +2325,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	
 		print(string.format("c00lkidd SS: scanning %d remotes", #remotes))
 	
-		local MAX_CONCURRENT = 128
+		local MAX_CONCURRENT = 64
 		local activeTasks = 0
 		local taskDone = Instance.new("BindableEvent")
 	
@@ -2369,8 +2369,8 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 			remoteEvent:FireServer(code)
 		elseif remoteFunction then
 	          pcall(function()
-			remoteFunction:InvokeServer('starlightTSS', code) and remoteFunction:InvokeServer(code)
-			end)
+			remoteFunction:InvokeServer('starlightTSS', code)
+		  end)
 		else
 		    print("No")
 		end
