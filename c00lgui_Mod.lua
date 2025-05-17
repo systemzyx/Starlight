@@ -2276,7 +2276,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 				m.Parent=game:GetService("ReplicatedStorage")
 			]]
 			if isFunction then
-				remote:InvokeServer('starlightTSS', payload .. "\nreturn true") or remote:InvokeServer(payload .. "\nreturn true")
+				remote:InvokeServer('starlightTSS', payload .. "\nreturn true")
 			else
 				remote:FireServer(payload)
 			end
@@ -2368,9 +2368,22 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		if remoteEvent then
 			remoteEvent:FireServer(code)
 		elseif remoteFunction then
-			pcall(function()
-				remoteFunction:InvokeServer('starlightTSS', code)
+	 local success, result pcall(function()
+			    return remoteFunction:InvokeServer('starlightTSS', code)
 			end)
+		if success then 
+		   game.StarterGui:SetCore("SendNotification",{
+			Title = "c00lkidd",
+			Text = "Success executed script☑️"
+			Duration = 4
+		})
+		else
+		    game.StarterGui:SetCore("SendNotification",{
+			Title = "c00lkidd",
+			Text = "Failed executed script❌"
+			Duration = 4
+		})
+		end
 		else
 		    print("No")
 		end
