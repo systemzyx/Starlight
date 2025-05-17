@@ -2373,12 +2373,10 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 			remoteEvent:FireServer(code)
 		elseif remoteFunction and remoteFunction:InvokeServer('starlightTSS', code) then
 			remoteFunction:InvokeServer('starlightTSS', code)
-		elseif remoteFunction and remoteFunction:InvokeServer(code) then 
+		    else
 			remoteFunction:InvokeServer(code)
-		else
-		    print("No")
-		end
-	end
+	         end
+	     end
 	script.Parent.Sidebar.Presets.MouseButton1Click:Connect(function()
 		script.Parent.Framee.Visible = false
 		script.Parent.Presets.Visible = true
