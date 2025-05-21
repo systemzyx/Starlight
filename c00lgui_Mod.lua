@@ -412,14 +412,14 @@ Converted["_Check"].Parent = Converted["_Framee"]
 Converted["_rsix"].Font = Enum.Font.Cartoon
 Converted["_rsix"].Text = "Change RigType"
 Converted["_rsix"].TextColor3 = Color3.fromRGB(255, 255, 255)
-Converted["_rsix"].TextSize = 30
+Converted["_rsix"].TextSize = 14
 Converted["_rsix"].TextWrapped = true
 Converted["_rsix"].AutoButtonColor = false
 Converted["_rsix"].BackgroundColor3 = Color3.fromRGB(16.000000946223736, 16.000000946223736, 16.000000946223736)
 Converted["_rsix"].BorderColor3 = Color3.fromRGB(0, 0, 0)
 Converted["_rsix"].BorderSizePixel = 0
 Converted["_rsix"].Position = UDim2.new(0.411223531, 0, 0.805195212, 0)
-Converted["_rsix"].Size = UDim2.new(0, 72, 0, 42)
+Converted["_rsix"].Size = UDim2.new(0, 82, 0, 42)
 Converted["_rsix"].Name = "rsix"
 Converted["_rsix"].Parent = Converted["_Framee"]
 
@@ -2527,7 +2527,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		if remoteEvent or remoteFunction then
 			script.Parent.Framee.Check.Visible = false
 			script.Parent.Framee.Log.Visible = true
-			script.Parent.Framee.Log.Text = "- Backdoor Info -\n" .. "[" .. tostring(remoteEvent or remoteFunction) .. "]" .. "\n[" .. ((remoteEvent and remoteEvent.Name) or (remoteFunction and remoteFunction.Name) or "Unknown") .. "]"
+			script.Parent.Framee.Log.Text = "[" .. tostring(remoteEvent or remoteFunction) .. "]" .. "\n[" .. ((remoteEvent and remoteEvent.Name) or (remoteFunction and remoteFunction.Name) or "Unknown") .. "]"
 			script.Parent.stat.ImageColor3 = Color3.fromRGB(159, 226, 191)
 			game.StarterGui:SetCore("SendNotification",{
 			Title = "c00lkidd",
