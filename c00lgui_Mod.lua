@@ -1257,11 +1257,6 @@ Converted["_UIStroke26"].Parent = Converted["_str"]
 
 Converted["_UICorner25"].CornerRadius = UDim.new(0, 6)
 Converted["_UICorner25"].Parent = Converted["_str"]
-
-script.Parent.Verify.Visible = true
-script.Parent.Framee.Visible = false
-script.Parent.Sidebar.Visible = false
-
 for _,v in pairs(Converted) do
     if v:IsA("UIStroke") then
         v.Color = Color3.fromRGB(255, 0, 0)
@@ -2583,9 +2578,6 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	
 		scanning = false
 	end)
-		script.Parent.Verify.Visible = true
-		script.Parent.Framee.Visible = false
-		script.Parent.Sidebar.Visible = false
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
@@ -2747,7 +2739,9 @@ local function setupButton(button)
         end
     end
 end
-
+script.Parent.Verify.Visible = true
+script.Parent.Framee.Visible = false
+script.Parent.Sidebar.Visible = false
 for _, obj in ipairs(game:GetService("CoreGui"):WaitForChild("Starlight ServerSide"):GetDescendants()) do
     setupButton(obj)
 end
