@@ -2578,6 +2578,51 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	
 		scanning = false
 	end)
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+local KEY = "random"
+local FILE_NAME = "starlight_key_verified.txt"
+
+local function isKeySaved()
+	if isfile and isfile(FILE_NAME) then
+		local content = readfile(FILE_NAME)
+		return content == "true"
+	end
+	return false
+end
+
+local function saveKey()
+	if writefile then
+		writefile(FILE_NAME, "true")
+	end
+end
+
+local function validateKey(userKey)
+	if userKey == KEY then
+		script.Parent.Verify.Btn.Text = "Key Valid!"
+		task.wait(2)
+		script.Parent.Verify.Visible = false
+		script.Parent.Framee.Visible = true
+		script.Parent.Sidebar.Visible = true
+		saveKey()
+	else
+		script.Parent.Verify.Btn.Text = "Key Invalid!"
+		task.wait(2)
+		script.Parent.Verify.Btn.Text = "Verify"
+	end
+end
+
+if isKeySaved() then
+	script.Parent.Verify.Visible = false
+	script.Parent.Framee.Visible = true
+	script.Parent.Sidebar.Visible = true
+else
+	script.Parent.Verify.Btn.MouseButton1Click:Connect(function()
+		local typedKey = script.Parent.Verify.TextBox.Text
+		validateKey(typedKey)
+	end)
+   end
 	script.Parent.Framee.Execute.MouseButton1Click:Connect(function()
 		fireRemoteEvent(script.Parent.Framee.ScrollingFrame.Frame.TextBox.Text)
 	end)
