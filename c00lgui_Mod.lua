@@ -2578,6 +2578,9 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	
 		scanning = false
 	end)
+		script.Parent.Verify.Visible = true
+		script.Parent.Framee.Visible = false
+		script.Parent.Sidebar.Visible = false
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
