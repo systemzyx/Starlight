@@ -1116,7 +1116,7 @@ Converted["_Verify"].Name = "Verify"
 Converted["_Verify"].Parent = Converted["_Frame"]
 
 Converted["_Verify1"].Font = Enum.Font.Cartoon
-Converted["_Verify1"].Text = "Starlight - Verification"
+Converted["_Verify1"].Text = ""
 Converted["_Verify1"].TextColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_Verify1"].TextScaled = true
 Converted["_Verify1"].TextSize = 50
@@ -1132,7 +1132,7 @@ Converted["_Verify1"].Name = "Verify"
 Converted["_Verify1"].Parent = Converted["_Verify"]
 
 Converted["_Verify2"].Font = Enum.Font.Cartoon
-Converted["_Verify2"].Text = "To verify, go to https://starlightkey.netlify.app and get the key."
+Converted["_Verify2"].Text = "To verify, fuck off."
 Converted["_Verify2"].TextColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_Verify2"].TextScaled = true
 Converted["_Verify2"].TextSize = 50
@@ -1150,7 +1150,7 @@ Converted["_Verify2"].Parent = Converted["_Verify"]
 Converted["_TextBox1"].ClearTextOnFocus = false
 Converted["_TextBox1"].Font = Enum.Font.Cartoon
 Converted["_TextBox1"].PlaceholderColor3 = Color3.fromRGB(178.00000458955765, 178.00000458955765, 178.00000458955765)
-Converted["_TextBox1"].PlaceholderText = "key here"
+Converted["_TextBox1"].PlaceholderText = "Keeeeey"
 Converted["_TextBox1"].Text = ""
 Converted["_TextBox1"].TextColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_TextBox1"].TextScaled = true
@@ -1257,6 +1257,11 @@ Converted["_UIStroke26"].Parent = Converted["_str"]
 
 Converted["_UICorner25"].CornerRadius = UDim.new(0, 6)
 Converted["_UICorner25"].Parent = Converted["_str"]
+
+script.Parent.Verify.Visible = true
+script.Parent.Framee.Visible = false
+script.Parent.Sidebar.Visible = false
+
 for _,v in pairs(Converted) do
     if v:IsA("UIStroke") then
         v.Color = Color3.fromRGB(255, 0, 0)
