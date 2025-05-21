@@ -1257,13 +1257,67 @@ Converted["_UIStroke26"].Parent = Converted["_str"]
 
 Converted["_UICorner25"].CornerRadius = UDim.new(0, 6)
 Converted["_UICorner25"].Parent = Converted["_str"]
-script.Parent.Framee.Visible = true
-script.Parent.Sidebar.Visible = true
 for _,v in pairs(Converted) do
     if v:IsA("UIStroke") then
         v.Color = Color3.fromRGB(255, 0, 0)
     end
 end
+
+-- === Starlight Key System Logic ===
+task.wait(1) -- allow GUI elements to load
+
+local CORRECT_KEY = "b"
+local FILE_NAME = "starlight_key.txt"
+
+local verifyFrame = Converted["_Verify"]
+local framee = Converted["_Framee"]
+local sidebar = Converted["_Sidebar"]
+local verifyBtn = Converted["_Btn"]
+local textBox = Converted["_TextBox1"]
+
+-- Hide GUI until key verified
+verifyFrame.Visible = true
+framee.Visible = false
+sidebar.Visible = false
+
+local function getSavedKey()
+	if isfile and isfile(FILE_NAME) then
+		return readfile(FILE_NAME)
+	end
+end
+
+local function saveKey(key)
+	if writefile then
+		writefile(FILE_NAME, key)
+	end
+end
+
+local function validateKey(key)
+	if key == CORRECT_KEY then
+		verifyBtn.Text = "Key Valid!"
+		saveKey(key)
+		task.wait(1)
+		verifyFrame.Visible = false
+		framee.Visible = true
+		sidebar.Visible = true
+	else
+		verifyBtn.Text = "Invalid!"
+		task.wait(1)
+		verifyBtn.Text = "Verify"
+	end
+end
+
+local saved = getSavedKey()
+if saved == CORRECT_KEY then
+	verifyFrame.Visible = false
+	framee.Visible = true
+	sidebar.Visible = true
+else
+	verifyBtn.MouseButton1Click:Connect(function()
+		validateKey(textBox.Text)
+	end)
+end
+
 -- Fake Module Scripts:
 
 local fake_module_scripts = {}
@@ -2580,48 +2634,6 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	
 		scanning = false
 	end)
-local KEY = "random"
-local FILE_NAME = "starlight_key_verified.txt"
-
-local function isKeySaved()
-	if isfile and isfile(FILE_NAME) then
-		local content = readfile(FILE_NAME)
-		return content == "true"
-	end
-	return false
-end
-
-local function saveKey()
-	if writefile then
-		writefile(FILE_NAME, "true")
-	end
-end
-
-local function validateKey(userKey)
-	if userKey == KEY then
-		script.Parent.Verify.Btn.Text = "Key Valid!"
-		task.wait(2)
-		script.Parent.Verify.Visible = false
-		script.Parent.Framee.Visible = true
-		script.Parent.Sidebar.Visible = true
-		saveKey()
-	else
-		script.Parent.Verify.Btn.Text = "Key Invalid!"
-		task.wait(2)
-		script.Parent.Verify.Btn.Text = "Verify"
-	end
-end
-
-if isKeySaved() then
-	script.Parent.Verify.Visible = false
-	script.Parent.Framee.Visible = true
-	script.Parent.Sidebar.Visible = true
-else
-	script.Parent.Verify.Btn.MouseButton1Click:Connect(function()
-		local typedKey = script.Parent.Verify.TextBox.Text
-		validateKey(typedKey)
-	end)
-   end
 	script.Parent.Framee.Execute.MouseButton1Click:Connect(function()
 		fireRemoteEvent(script.Parent.Framee.ScrollingFrame.Frame.TextBox.Text)
 	end)
