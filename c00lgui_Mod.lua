@@ -1264,9 +1264,9 @@ for _,v in pairs(Converted) do
 end
 
 -- === Starlight Key System Logic ===
-task.wait(1) -- allow GUI elements to load
+game:GetService("CoreGui"):WaitForChild("Starlight Serverside") -- allow GUI elements to load
 
-local CORRECT_KEY = "b"
+local CORRECT_KEY = "random"
 local FILE_NAME = "starlight_key.txt"
 
 local verifyFrame = Converted["_Verify"]
