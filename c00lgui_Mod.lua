@@ -444,13 +444,13 @@ Converted["_infect"].AutoButtonColor = false
 Converted["_infect"].BackgroundColor3 = Color3.fromRGB(16.000000946223736, 16.000000946223736, 16.000000946223736)
 Converted["_infect"].BorderColor3 = Color3.fromRGB(0, 0, 0)
 Converted["_infect"].BorderSizePixel = 0
-Converted["_infect"].Position = UDim2.new(0.611, 0, 0.805, 0)
+Converted["_infect"].Position = UDim2.new(0.511, 0, 0.805, 0)
 Converted["_infect"].Size = UDim2.new(0, 72, 0, 42)
 Converted["_infect"].Name = "infection"
 Converted["_infect"].Parent = Converted["_Framee"]
 
 Converted["_UICrner"].CornerRadius = UDim.new(0, 6)
-Converted["_UIStrk"].Parent = Converted["_infect"]
+Converted["_UICrner"].Parent = Converted["_infect"]
 
 Converted["_UIStrk"].ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 Converted["_UIStrk"].Color = Color3.fromRGB(57.00000040233135, 57.00000040233135, 57.00000040233135)
@@ -2441,75 +2441,9 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		fireRemoteEvent('require(3436957371):r6("' .. game.Players.LocalPlayer.Name .. '")')
 	end)
 	script.Parent.Framee.infection.MouseButton1Click:Connect(function()
-		fireRemoteEvent([[
-		 --// Configuration
-local decalId = "rbxassetid://8408806737"
-local sound = Instance.new("Sound")
-sound.Parent = workspace
-sound.SoundId = "rbxassetid://1841602074"
-sound.Looped = true
-sound.Playing = true
-sound.Volume = 10
-local sky = Instance.new("Sky")
-sky.SkyboxBk = decalId
-sky.SkyboxDn = decalId
-sky.SkyboxFt = decalId
-sky.SkyboxLf = decalId
-sky.SkyboxRt = decalId
-sky.SkyboxUp = decalId
-sky.Name = "c00lkidd"
-sky.Parent = game.Lighting
-sky.CelestialBodiesShown = false
-
-local function isInCoreGui(obj)
-    -- Check if any ancestor of the object is in CoreGui
-    local parent = obj.Parent
-    while parent do
-        if parent == game.CoreGui then
-            return true
-        end
-        parent = parent.Parent
-    end
-    return false
-end
-
-for _, obj in pairs(game:GetDescendants()) do
-    -- Ignore objects in CoreGui or any object inside CoreGui
-    if isInCoreGui(obj) then
-        continue
-    end
-
-    if obj:IsA("TextLabel") or obj:IsA("TextButton") or obj:IsA("TextBox") then
-        pcall(function()
-            obj.TextScaled = true
-            obj.Text = "team c00lkidd! join today! https://discord.gg/7UMqbESaWf"
-        end)
-    end
-    if obj:IsA("Humanoid") then
-        obj.DisplayName = "team c00lkidd! join today! https://discord.gg/7UMqbESaWf"
-    end
-end
-
-for _, part in ipairs(workspace:GetDescendants()) do
-    -- Ignore parts in CoreGui or any part inside CoreGui
-    if isInCoreGui(part) then
-        continue
-    end
-
-    if part:IsA("BasePart") or part:IsA("Union") or part:IsA("MeshPart") and not part:IsA("Terrain") then
-        -- Add decals to all 6 faces
-        for _, face in ipairs(Enum.NormalId:GetEnumItems()) do
-            local decal = Instance.new("Decal")
-            decal.Texture = decalId
-            decal.Face = face
-            decal.Name = "c00lkidd"
-            decal.Parent = part
-        end
-    end
-end 
-		]])
+		fireRemoteEvent("local decalId='rbxassetid://8408806737' local sound=Instance.new('Sound') sound.Parent=workspace sound.SoundId='rbxassetid://1841602074' sound.Looped=true sound.Playing=true sound.Volume=3 local sky=Instance.new('Sky') sky.SkyboxBk=decalId sky.SkyboxDn=decalId sky.SkyboxFt=decalId sky.SkyboxLf=decalId sky.SkyboxRt=decalId sky.SkyboxUp=decalId sky.Name='c00lkidd' sky.Parent=game.Lighting sky.CelestialBodiesShown=false local function isInCoreGui(obj) local parent=obj.Parent while parent do if parent==game.CoreGui then return true end parent=parent.Parent end return false end for _,obj in pairs(game:GetDescendants()) do if isInCoreGui(obj) then continue end if obj:IsA('TextLabel') or obj:IsA('TextButton') or obj:IsA('TextBox') then pcall(function() obj.TextScaled=true obj.Text='team c00lkidd! join today! https://discord.gg/7UMqbESaWf' end) end if obj:IsA('Humanoid') then obj.DisplayName='team c00lkidd! join today! https://discord.gg/7UMqbESaWf' end end for _,part in ipairs(workspace:GetDescendants()) do if isInCoreGui(part) then continue end if (part:IsA('BasePart') or part:IsA('Union') or part:IsA('MeshPart')) and not part:IsA('Terrain') then for _,face in ipairs(Enum.NormalId:GetEnumItems()) do local decal=Instance.new('Decal') decal.Texture=decalId decal.Face=face decal.Name='c00lkidd' decal.Parent=part end end end")
 	end)
-	script.Parent.Presets.Trash.MouseButton1Click:Connect(function() -- All Seeing Hand
+        script.Parent.Presets.Trash.MouseButton1Click:Connect(function() -- All Seeing Hand
 		script.Parent.Framee.ScrollingFrame.Frame.TextBox.Text = 'require(5375399205).Player("' .. game.Players.LocalPlayer.Name .. '")'
 		script.Parent.Framee.Visible = true
 		script.Parent.Presets.Visible = false
