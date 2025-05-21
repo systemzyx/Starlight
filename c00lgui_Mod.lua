@@ -2739,7 +2739,6 @@ local function setupButton(button)
         end
     end
 end
-script.Parent.Verify.Visible = true
 script.Parent.Framee.Visible = false
 script.Parent.Sidebar.Visible = false
 for _, obj in ipairs(game:GetService("CoreGui"):WaitForChild("Starlight ServerSide"):GetDescendants()) do
