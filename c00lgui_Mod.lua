@@ -1116,7 +1116,7 @@ Converted["_Verify"].Name = "Verify"
 Converted["_Verify"].Parent = Converted["_Frame"]
 
 Converted["_Verify1"].Font = Enum.Font.Cartoon
-Converted["_Verify1"].Text = "Where do you going?"
+Converted["_Verify1"].Text = ""
 Converted["_Verify1"].TextColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_Verify1"].TextScaled = true
 Converted["_Verify1"].TextSize = 50
@@ -1132,7 +1132,7 @@ Converted["_Verify1"].Name = "Verify"
 Converted["_Verify1"].Parent = Converted["_Verify"]
 
 Converted["_Verify2"].Font = Enum.Font.Cartoon
-Converted["_Verify2"].Text = "Verify first"
+Converted["_Verify2"].Text = "To verify, blablabla"
 Converted["_Verify2"].TextColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_Verify2"].TextScaled = true
 Converted["_Verify2"].TextSize = 50
@@ -1150,7 +1150,7 @@ Converted["_Verify2"].Parent = Converted["_Verify"]
 Converted["_TextBox1"].ClearTextOnFocus = false
 Converted["_TextBox1"].Font = Enum.Font.Cartoon
 Converted["_TextBox1"].PlaceholderColor3 = Color3.fromRGB(178.00000458955765, 178.00000458955765, 178.00000458955765)
-Converted["_TextBox1"].PlaceholderText = "Where do yu tink u going"
+Converted["_TextBox1"].PlaceholderText = "Put me deep"
 Converted["_TextBox1"].Text = ""
 Converted["_TextBox1"].TextColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_TextBox1"].TextScaled = true
@@ -1262,10 +1262,9 @@ for _,v in pairs(Converted) do
         v.Color = Color3.fromRGB(255, 0, 0)
     end
 end
-game:GetService("CoreGui"):WaitForChild("Starlight Serverside")
-
-local CORRECT_KEY = "random"
-local FILE_NAME = "c00lgui.txt"
+task.wait(0.5) -- we need to wait first
+local PFC = "password1.txt"
+local FTS = "password2.txt"
 
 local verifyFrame = Converted["_Verify"]
 local framee = Converted["_Framee"]
@@ -1273,26 +1272,26 @@ local sidebar = Converted["_Sidebar"]
 local verifyBtn = Converted["_Btn"]
 local textBox = Converted["_TextBox1"]
 
--- Hide GUI until key verified
+-- Hide GUI
 verifyFrame.Visible = true
 framee.Visible = false
 sidebar.Visible = false
 
 local function getSavedKey()
-	if isfile and isfile(FILE_NAME) then
-		return readfile(FILE_NAME)
+	if isfile and isfile(FTS) then
+		return readfile(FTS)
 	end
 end
 
 local function saveKey(key)
 	if writefile then
-		writefile(FILE_NAME, key)
+		writefile(FTS, key)
 	end
 end
 
 local function validateKey(key)
 	if key == CORRECT_KEY then
-		verifyBtn.Text = "Omg valid"
+		verifyBtn.Text = "Key valid"
 		saveKey(key)
 		task.wait(1)
 		verifyFrame.Visible = false
@@ -1306,7 +1305,7 @@ local function validateKey(key)
 end
 
 local saved = getSavedKey()
-if saved == CORRECT_KEY then
+if saved == PFC then
 	verifyFrame.Visible = false
 	framee.Visible = true
 	sidebar.Visible = true
