@@ -2526,7 +2526,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		if remoteEvent or remoteFunction then
 			script.Parent.Framee.Check.Visible = false
 			script.Parent.Framee.Log.Visible = true
-			script.Parent.Framee.Log.Text = "[Backdoor :" .. tostring((remoteEvent or remoteFunction)) .. "]," .. "[" .. tostring((remoteEvent.Name or remoteFunction.Name or "Unknown")) .. "]"
+			script.Parent.Framee.Log.Text = "[Backdoor :" .. tostring(remoteEvent or remoteFunction) .. "]," .. "[" .. ((remoteEvent and remoteEvent.Name) or (remoteFunction and remoteFunction.Name) or "Unknown") .. "]"
 			script.Parent.stat.ImageColor3 = Color3.fromRGB(159, 226, 191)
 			game.StarterGui:SetCore("SendNotification",{
 			Title = "c00lkidd",
