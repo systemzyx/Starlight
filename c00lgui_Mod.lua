@@ -444,7 +444,7 @@ Converted["_infect"].AutoButtonColor = false
 Converted["_infect"].BackgroundColor3 = Color3.fromRGB(16.000000946223736, 16.000000946223736, 16.000000946223736)
 Converted["_infect"].BorderColor3 = Color3.fromRGB(0, 0, 0)
 Converted["_infect"].BorderSizePixel = 0
-Converted["_infect"].Position = UDim2.new(0.511, 0, 0.805, 0)
+Converted["_infect"].Position = UDim2.new(0.611, 0, 0.805, 0)
 Converted["_infect"].Size = UDim2.new(0, 72, 0, 42)
 Converted["_infect"].Name = "infection"
 Converted["_infect"].Parent = Converted["_Framee"]
@@ -1262,7 +1262,7 @@ for _,v in pairs(Converted) do
         v.Color = Color3.fromRGB(255, 0, 0)
     end
 end
-task.wait(0.5) -- we need to wait first
+task.wait(0.2) -- we need to wait first
 local PFC = "password1.txt"
 local FTS = "password2.txt"
 
@@ -1290,7 +1290,7 @@ local function saveKey(key)
 end
 
 local function validateKey(key)
-	if key == CORRECT_KEY then
+	if key == PFC then
 		verifyBtn.Text = "Key valid"
 		saveKey(key)
 		task.wait(1)
