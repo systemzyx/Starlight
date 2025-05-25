@@ -2327,6 +2327,12 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		if EXCLUDED_REMOTES[name] then
 			return false
 		end
+		if remote.Parent.Parent.Name=='HDAdminClient' and remote.Parent.Name=='Signals' then
+			return false
+		end
+		if remote:FindFirstChild('__FUNCTION') or remote.Name=='__FUNCTION' then
+			return false
+		end
 	
 	
 		return true
@@ -2446,7 +2452,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		FinishedFound = true
 	
 		if not foundExploit then
-			notify.Error("c00lkidd","No backdoor :(")
+			notify.Warn("c00lkidd","No backdoor found!")
 		end
 	
 		print(string.format("c00lkidd : scan completed in %.3f seconds", scanTime))
@@ -2459,15 +2465,12 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 			remoteFunction:InvokeServer('starlightTSS', code)
 		    else
 			remoteFunction:InvokeServer(code)
-		  end
+		   end
 	         end)
 	      if suc then 
-			notify.Info("c00lkidd","Success to execute!")
-		else
-			notify.Error("c00lkidd","Failed to exexute")
-	       end
-	      if not foundExploit then 
-		notify.Warn("c00lkidd","Inject first! - Can't run code")
+		  notify.Info("c00lkidd","Success to execute!")
+		elseif not foundExploit then 
+		  notify.Warn("c00lkidd","Inject first!")
 	       end
 	     end
 	script.Parent.Sidebar.Presets.MouseButton1Click:Connect(function()
