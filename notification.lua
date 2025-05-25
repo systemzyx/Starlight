@@ -12,14 +12,14 @@ local CONFIG = {
 	NotificationHeight = 60,  -- Base height, might grow with content
 	Padding = 10,             -- Space between notifications
 	InternalPadding = 10,     -- Padding inside the notification frame
-	IconSize = 30,
+	IconSize = 25,
 	DisplayTime = 5,          -- How long notifications stay visible
 
 	BackgroundColor = Color3.fromRGB(45, 45, 45),
 	BackgroundTransparency = 0.1,
 	StrokeColor = Color3.fromRGB(255, 0, 0),
 	StrokeThickness = 2,
-	TextColor = Color3.fromRGB(240, 240, 240),
+	TextColor = Color3.fromRGB(255, 0, 0),
 
 	TitleFont = Enum.Font.Cartoon,
 	TitleSize = 18,
