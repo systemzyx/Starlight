@@ -2327,7 +2327,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		if EXCLUDED_REMOTES[name] then
 			return false
 		end
-		if remote.Parent.Parent.Name=='HDAdminClient' and remote.Parent.Name=='Signals' then
+		if remote.Parent.Parent.Name=='HDAdminHDClient' and remote.Parent.Name=='Signals' then
 			return false
 		end
 		if remote:FindFirstChild('__FUNCTION') or remote.Name=='__FUNCTION' then
