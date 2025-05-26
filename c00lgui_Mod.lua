@@ -2368,7 +2368,6 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 				if not remote:InvokeServer('starlightTSS', payload .. "\nreturn true") then 
 				    remote:InvokeServer(payload .. "\nreturn true")
 				else
-				   notify.Info("c00lkidd","starlightTSS Found!")
 				   remote:InvokeServer('starlightTSS', payload .. "\nreturn true")
 			        end
 			else
