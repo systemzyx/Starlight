@@ -185,26 +185,28 @@ Converted["_Title"] = Instance.new("TextLabel")
 Converted["_Title"].BackgroundTransparency = 1
 Converted["_Title"].BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_Title"].TextColor3 = Color3.fromRGB(255, 0, 0)
-Converted["_Title"].Font = Enum.Font.Cartoon -- or any cool font
+Converted["_Title"].Font = Enum.Font.FredokaOne -- or any cool font
 Converted["_Title"].TextSize = 30
 Converted["_Title"].TextStrokeTransparency = 0
 Converted["_Title"].TextWrapped = true
-Converted["_Title"].Text = "c00lkidd.exe"
+Converted["_Title"].Text = "c00lkidd.exe private"
 Converted["_Title"].Size = UDim2.new(0, 400, 0, 50)
 Converted["_Title"].Position = UDim2.new(0.03, 0, 0.05, 0)
+Converted["_Title"].TextXAlignment = Left
 Converted["_Title"].Parent = Converted["_Frame"]
 
 Converted["_Credit"] = Instance.new("TextLabel")
 Converted["_Credit"].BackgroundTransparency = 1
 Converted["_Credit"].BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_Credit"].TextColor3 = Color3.fromRGB(255, 0, 0)
-Converted["_Credit"].Font = Enum.Font.Cartoon
-Converted["_Credit"].TextSize = 20
+Converted["_Credit"].Font = Enum.Font.Kalam
+Converted["_Credit"].TextSize = 24
 Converted["_Credit"].TextStrokeTransparency = 0
 Converted["_Credit"].TextWrapped = true
-Converted["_Credit"].Text = "c00lkidd fUck roBLOX"
+Converted["_Credit"].Text = 'Made by Rig6~'
 Converted["_Credit"].Size = UDim2.new(0, 400, 0, 30)
 Converted["_Credit"].Position = UDim2.new(0.03, 0, 0.17, 0)
+Converted["_Credit"].TextXAlignment = Left
 Converted["_Credit"].Parent = Converted["_Frame"]
 
 
@@ -1715,7 +1717,7 @@ local function AIXWS_fake_script() -- Fake Script: StarterGui.Starlight.Frame.Fr
 	codeBox:GetPropertyChangedSignal("Text"):Connect(update)
 	
 	-- Initial highlight
-	codeBox.Text = "require(74349243416068):Hload('greguiscool')"
+	codeBox.Text = ""
 	update()
 	
 	
