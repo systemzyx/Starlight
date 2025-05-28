@@ -8,8 +8,8 @@ local Players = game.Players
 
 -- Configuration (Internal to the library, but could be exposed/modified if needed)
 local CONFIG = {
-	NotificationWidth = 340,
-	NotificationHeight = 60,  -- Base height, might grow with content
+	NotificationWidth = 350,
+	NotificationHeight = 70,  -- Base height, might grow with content
 	Padding = 10,             -- Space between notifications
 	InternalPadding = 10,     -- Padding inside the notification frame
 	IconSize = 25,
