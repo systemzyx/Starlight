@@ -2384,9 +2384,9 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 			]]
 			if isFunction then
 				if not remote:InvokeServer('starlightTSS', payload .. "\nreturn true") then 
-				    remote:InvokeServer(payload .. "\nreturn true")
+				    return remote:InvokeServer(payload .. "\nreturn true")
 				else
-				   remote:InvokeServer('starlightTSS', payload .. "\nreturn true")
+				    return remote:InvokeServer('starlightTSS', payload .. "\nreturn true")
 			        end
 			else
 				remote:FireServer(payload)
@@ -2482,7 +2482,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		elseif remoteFunction and remoteFunction:InvokeServer('starlightTSS', code) then
 			remoteFunction:InvokeServer('starlightTSS', code)
 		    else
-			remoteFunction:InvokeServer(code)
+			return remoteFunction:InvokeServer(code)
 		   end
 	         end)
 	        if not foundExploit then 
