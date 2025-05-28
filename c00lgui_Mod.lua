@@ -1658,6 +1658,28 @@ for _, group in pairs(colorGroups) do
 	end
 end
 
+local function formatLuaCode(code)
+	local indent = 0
+	local formatted = ""
+	local indentStr = "    " -- 4 spaces
+
+	for line in code:gmatch("[^\r\n]+") do
+		local trimmed = line:match("^%s*(.-)%s*$")
+
+		if trimmed:match("^(end|elseif|else|until)") then
+			indent -= 1
+		end
+
+		formatted ..= string.rep(indentStr, math.max(indent, 0)) .. trimmed .. "\n"
+
+		if trimmed:match("then$") or trimmed:match("do$") or trimmed:match("^repeat$") or trimmed:match("^function") then
+			indent += 1
+		end
+	end
+
+	return formatted
+      end
+	
 local function highlight(text)
 	text = text:gsub("&", "&amp;"):gsub("<", "&lt;"):gsub(">", "&gt;")
 	local protected = {}
@@ -1698,6 +1720,20 @@ local function update()
 end
 
 codeBox:GetPropertyChangedSignal("Text"):Connect(update)
+
+local UserInputService = game:GetService("UserInputService")
+
+codeBox.Focused:Connect(function()
+	UserInputService.InputBegan:Connect(function(input, processed)
+		if not processed and input.KeyCode == Enum.KeyCode.Return then
+			task.defer(function()
+				codeBox.Text = formatLuaCode(codeBox.Text)
+				update()
+			end)
+		end
+	end)
+end)
+
 codeBox.Text = ""
 update()
 end
