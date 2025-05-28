@@ -2393,6 +2393,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 			else
 				remote:FireServer(payload)
 			end
+		      end)
 		    end)
 		end)
 	
