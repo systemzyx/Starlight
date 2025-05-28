@@ -185,8 +185,8 @@ Converted["_Title"] = Instance.new("TextLabel")
 Converted["_Title"].BackgroundTransparency = 1
 Converted["_Title"].BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_Title"].TextColor3 = Color3.fromRGB(255, 0, 0)
-Converted["_Title"].Font = Enum.Font.FredokaOne -- or any cool font
-Converted["_Title"].TextSize = 30
+Converted["_Title"].Font = Enum.Font.RobotoMono -- or any cool font
+Converted["_Title"].TextSize = 40
 Converted["_Title"].TextStrokeTransparency = 0
 Converted["_Title"].TextWrapped = true
 Converted["_Title"].Text = "c00lkidd.exe private"
@@ -200,10 +200,10 @@ Converted["_Credit"].BackgroundTransparency = 1
 Converted["_Credit"].BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_Credit"].TextColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_Credit"].Font = Enum.Font.Kalam
-Converted["_Credit"].TextSize = 24
+Converted["_Credit"].TextSize = 28
 Converted["_Credit"].TextStrokeTransparency = 0
 Converted["_Credit"].TextWrapped = true
-Converted["_Credit"].Text = "Made by Rig6"
+Converted["_Credit"].Text = "Made by Rig6~"
 Converted["_Credit"].Size = UDim2.new(0, 400, 0, 30)
 Converted["_Credit"].Position = UDim2.new(0.03, 0, 0.17, 0)
 Converted["_Credit"].TextXAlignment = Enum.TextXAlignment.Left
@@ -1741,6 +1741,7 @@ end
 codeBox:GetPropertyChangedSignal("Text"):Connect(update)
 codeBox.Text = ""
 update()
+end
 	
 local function PYPIM_fake_script() -- Fake Script: StarterGui.Starlight.Frame.Presets.Polaria.LocalScript
     local script = Instance.new("LocalScript")
@@ -2808,4 +2809,3 @@ coroutine.wrap(MMOF_fake_script)()
 coroutine.wrap(OHZSZXY_fake_script)()
 coroutine.wrap(LZLXRPZ_fake_script)()
 coroutine.wrap(QOXL_fake_script)()
-end
