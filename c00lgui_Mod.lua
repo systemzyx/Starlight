@@ -1611,111 +1611,72 @@ local function AIXWS_fake_script() -- Fake Script: StarterGui.Starlight.Frame.Fr
         end
         return req(obj)
     end
-	
+
 local container = script.Parent
 local codeBox = container:WaitForChild("TextBox")
 local highlighter = container:WaitForChild("TextLabel")
 
 highlighter.RichText = true
 
-local keywords = {
-	-- Lua core
-	["and"] = true, ["or"] = true, ["not"] = true,
-	["if"] = true, ["then"] = true, ["else"] = true, ["elseif"] = true, ["end"] = true,
-	["for"] = true, ["in"] = true, ["do"] = true, ["while"] = true,
-	["repeat"] = true, ["until"] = true, ["function"] = true, ["local"] = true,
-	["return"] = true, ["break"] = true, ["goto"] = true,
-
-	-- Constants
-	["true"] = true, ["false"] = true, ["nil"] = true,
-
-	-- Built-ins
-	["print"] = true, ["warn"] = true, ["error"] = true,
-	["assert"] = true, ["pcall"] = true, ["xpcall"] = true,
-	["type"] = true, ["select"] = true, ["unpack"] = true,
-	["next"] = true, ["pairs"] = true, ["ipairs"] = true,
-	["tonumber"] = true, ["tostring"] = true,
-	["collectgarbage"] = true, ["rawget"] = true, ["rawset"] = true,
-	["rawequal"] = true, ["setmetatable"] = true, ["getmetatable"] = true,
-
-	-- Coroutine
-	["coroutine"] = true, ["coroutine.create"] = true, ["coroutine.resume"] = true,
-	["coroutine.yield"] = true, ["coroutine.running"] = true, ["coroutine.status"] = true,
-
-	-- Math
-	["math"] = true, ["math.abs"] = true, ["math.acos"] = true, ["math.asin"] = true,
-	["math.atan"] = true, ["math.ceil"] = true, ["math.cos"] = true, ["math.deg"] = true,
-	["math.exp"] = true, ["math.floor"] = true, ["math.fmod"] = true, ["math.log"] = true,
-	["math.max"] = true, ["math.min"] = true, ["math.modf"] = true, ["math.pi"] = true,
-	["math.rad"] = true, ["math.random"] = true, ["math.randomseed"] = true,
-	["math.sin"] = true, ["math.sqrt"] = true, ["math.tan"] = true,
-
-	-- String
-	["string"] = true, ["string.byte"] = true, ["string.char"] = true, ["string.find"] = true,
-	["string.format"] = true, ["string.gmatch"] = true, ["string.gsub"] = true,
-	["string.len"] = true, ["string.lower"] = true, ["string.match"] = true,
-	["string.rep"] = true, ["string.reverse"] = true, ["string.sub"] = true,
-	["string.upper"] = true,
-
-	-- Table
-	["table"] = true, ["table.insert"] = true, ["table.remove"] = true,
-	["table.sort"] = true, ["table.concat"] = true, ["table.create"] = true,
-	["table.clear"] = true, ["table.clone"] = true, ["table.find"] = true,
-	["table.move"] = true, ["table.pack"] = true, ["table.unpack"] = true,
-
-	-- Roblox Core Services
-	["game"] = true, ["workspace"] = true, ["script"] = true,
-	["UserInputService"] = true, ["RunService"] = true, ["TweenService"] = true,
-	["Lighting"] = true, ["SoundService"] = true, ["ReplicatedStorage"] = true,
-	["ServerStorage"] = true, ["Players"] = true, ["Debris"] = true,
-	["HttpService"] = true, ["DataStoreService"] = true, ["TeleportService"] = true,
-	["MarketplaceService"] = true, ["Teams"] = true, ["TextService"] = true,
-	["Stats"] = true, ["StarterGui"] = true, ["StarterPack"] = true,
-	["StarterPlayer"] = true, ["Chat"] = true,
-
-	-- Roblox Instances / Types
-	["Instance"] = true, ["Instance.new"] = true,
-	["Vector3"] = true, ["CFrame"] = true, ["UDim2"] = true,
-	["Color3"] = true, ["BrickColor"] = true, ["Enum"] = true,
-	["RaycastParams"] = true, ["TweenInfo"] = true, ["NumberRange"] = true,
-	["Region3"] = true, ["Faces"] = true,
-
-	-- Execution
-	["require"] = true, ["loadstring"] = true, ["getfenv"] = true,
-	["setfenv"] = true, ["load"] = true, ["dofile"] = true,
-
-	-- Time
-	["tick"] = true, ["time"] = true, ["wait"] = true,
-	["delay"] = true, ["spawn"] = true, ["task"] = true,
-	["task.wait"] = true, ["task.spawn"] = true, ["task.defer"] = true,
+local colorGroups = {
+	keywords = {
+		color = "#569cd6",
+		list = {
+			"and", "or", "not", "if", "then", "else", "elseif", "end",
+			"for", "in", "do", "while", "repeat", "until", "function", "local",
+			"return", "break", "continue", "goto", "self", "nil"
+		}
+	},
+	constants = {
+		color = "#dcdcaa",
+		list = { "true", "false" }
+	},
+	builtins = {
+		color = "#c586c0",
+		list = {
+			"print", "warn", "error", "assert", "pcall", "xpcall", "type", "select", "unpack",
+			"next", "pairs", "ipairs", "tonumber", "tostring", "collectgarbage", "rawget", "rawset",
+			"rawequal", "setmetatable", "getmetatable", "require", "loadstring", "getfenv", "setfenv",
+			"coroutine", "table", "string", "math", "utf8"
+		}
+	},
+	services = {
+		color = "#4ec9b0",
+		list = {
+			"game", "workspace", "script", "UserInputService", "RunService", "TweenService",
+			"Lighting", "ReplicatedStorage", "Players", "StarterGui", "SoundService",
+			"HttpService", "DataStoreService", "TeleportService", "Instance", "Vector3", "CFrame",
+			"UDim2", "Color3", "BrickColor", "Enum"
+		}
+	}
 }
 
--- Highlight function
+local tokenColors = {}
+for _, group in pairs(colorGroups) do
+	for _, word in ipairs(group.list) do
+		tokenColors[word] = group.color
+	end
+end
+
 local function highlight(text)
 	text = text:gsub("&", "&amp;"):gsub("<", "&lt;"):gsub(">", "&gt;")
-
 	local protected = {}
-
 	local function protect(str)
 		table.insert(protected, str)
 		return "\1PROTECT" .. #protected .. "\2"
 	end
 
-	-- Comments
-	text = text:gsub("(%-%-.-)\n", function(c) return protect('<font color="#6a9955">' .. c .. '</font>') .. "\n" end)
-	text = text:gsub("(%-%-.*)$", function(c) return protect('<font color="#6a9955">' .. c .. '</font>') end)
-
-	-- Strings (quoted)
 	text = text:gsub('(".-")', function(s) return protect('<font color="#ce9178">' .. s .. '</font>') end)
 	text = text:gsub("('.-')", function(s) return protect('<font color="#ce9178">' .. s .. '</font>') end)
 
-	-- Numbers
-	text = text:gsub("(%d+%.?%d*)", function(n) return '<font color="#b5cea8">' .. n .. '</font>' end)
+	text = text:gsub("(%d+%.?%d*)", function(n)
+		return '<font color="#b5cea8">' .. n .. '</font>'
+	end)
 
-	-- Keywords
 	text = text:gsub("([%w_%.]+)", function(word)
-		if keywords[word] then
-			return '<font color="#569cd6">' .. word .. '</font>'
+		local color = tokenColors[word]
+		if color then
+			return '<font color="' .. color .. '">' .. word .. '</font>'
 		end
 		return word
 	end)
@@ -1727,11 +1688,9 @@ local function highlight(text)
 	return text
 end
 
--- Update display
 local function update()
 	local rawText = codeBox.Text
 	highlighter.Text = highlight(rawText)
-
 	local lines = select(2, rawText:gsub("\n", "\n")) + 1
 	local lineHeight = codeBox.TextSize + 4
 	local newHeight = lines * lineHeight
