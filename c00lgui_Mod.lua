@@ -2497,22 +2497,49 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	
 		print(string.format("c00lkidd : scan completed in %.3f seconds", scanTime))
 	end
-         local function fireRemoteEvent(code)
-	    local suc, rs = pcall(function()
-		if remoteEvent then
-			remoteEvent:FireServer(code)
-		elseif remoteFunction and remoteFunction:InvokeServer('starlightTSS', code) then
-			remoteFunction:InvokeServer('starlightTSS', code)
-		    else
-			return remoteFunction:InvokeServer(code)
-		   end
-	         end)
-	        if not foundExploit then 
-		  notify.Warn("c00lkidd","Inject first - or no backdoor")
-		elseif not suc then 
-		  notify.Error("c00lkidd","Failed to execute!")
-	       end
-	     end
+local function fireRemoteEvent(code)
+    local success = false
+    local tried = 0
+    local errors = {}
+
+    local function try(func)
+        tried += 1
+        local ok, err = pcall(func)
+        if ok then
+            success = true
+        else
+            table.insert(errors, err)
+        end
+    end
+
+    try(function()
+        if remoteEvent then
+            remoteEvent:FireServer(code)
+        end
+    end)
+
+    try(function()
+        if remoteFunction then
+            remoteFunction:InvokeServer("starlightTSS", code)
+        end
+    end)
+
+    try(function()
+        if remoteFunction then
+            remoteFunction:InvokeServer(code)
+        end
+    end)
+
+    if not foundExploit then
+        notify.Warn("c00lkidd", "Inject first - or no backdoor")
+    elseif not success then
+        notify.Error("c00lkidd", "Failed to execute!")
+        notify.Warn("fireRemoteEvent errors:")
+        for _, err in ipairs(errors) do
+            notify.Error(err)
+          end
+         end
+	end
 	script.Parent.Sidebar.Presets.MouseButton1Click:Connect(function()
 		script.Parent.Framee.Visible = false
 		script.Parent.Presets.Visible = true
