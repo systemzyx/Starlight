@@ -2378,10 +2378,12 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	
 		local success = pcall(function()
 			local payload = [[
-				local m=Instance.new("Folder")
+				local m=Instance.new("ObjectValue")
 				m.Name="]]..modelName..[["
 				m.Parent=game:GetService("ReplicatedStorage")
 			]]
+		 task.spawn(function()
+		     pcall(function()
 			if isFunction then
 				if not remote:InvokeServer('starlightTSS', payload .. "\nreturn true") then 
 				    return remote:InvokeServer(payload .. "\nreturn true")
@@ -2391,6 +2393,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 			else
 				remote:FireServer(payload)
 			end
+		    end)
 		end)
 	
 		
@@ -2436,7 +2439,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	
 		print(string.format("c00lkidd SS: scanning %d remotes", #remotes))
 	
-		local MAX_CONCURRENT = 12058
+		local MAX_CONCURRENT = 128
 		local activeTasks = 0
 		local taskDone = Instance.new("BindableEvent")
 	
