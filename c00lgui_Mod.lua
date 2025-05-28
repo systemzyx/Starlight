@@ -192,7 +192,7 @@ Converted["_Title"].TextWrapped = true
 Converted["_Title"].Text = "c00lkidd.exe private"
 Converted["_Title"].Size = UDim2.new(0, 400, 0, 50)
 Converted["_Title"].Position = UDim2.new(0.03, 0, 0.05, 0)
-Converted["_Title"].TextXAlignment = Left
+Converted["_Title"].TextXAlignment = Enum.TextXAlignment.Left
 Converted["_Title"].Parent = Converted["_Frame"]
 
 Converted["_Credit"] = Instance.new("TextLabel")
@@ -206,7 +206,7 @@ Converted["_Credit"].TextWrapped = true
 Converted["_Credit"].Text = 'Made by Rig6~'
 Converted["_Credit"].Size = UDim2.new(0, 400, 0, 30)
 Converted["_Credit"].Position = UDim2.new(0.03, 0, 0.17, 0)
-Converted["_Credit"].TextXAlignment = Left
+Converted["_Credit"].TextXAlignment = Enum.TextXAlignment.Left
 Converted["_Credit"].Parent = Converted["_Frame"]
 
 
@@ -534,7 +534,7 @@ Converted["_TextBox"].PlaceholderColor3 = Color3.fromRGB(12.000000234693289, 12.
 Converted["_TextBox"].RichText = true
 Converted["_TextBox"].PlaceholderText = 'print("c00lkidd ss")'
 Converted["_TextBox"].Text = ""
-Converted["_TextBox"].TextColor3 = Color3.fromRGB(12.000000234693289, 12.000000234693289, 12.000000234693289)
+Converted["_TextBox"].TextColor3 = Color3.fromRGB(220,220,220)
 Converted["_TextBox"].TextSize = 18
 Converted["_TextBox"].TextTruncate = Enum.TextTruncate.SplitWord
 Converted["_TextBox"].TextWrapped = true
@@ -1611,117 +1611,119 @@ local function AIXWS_fake_script() -- Fake Script: StarterGui.Starlight.Frame.Fr
         end
         return req(obj)
     end
+	
+		local container = script.Parent
+local codeBox = container:WaitForChild("TextBox")
+local highlighter = container:WaitForChild("TextLabel")
 
-	local container = script.Parent
-	local codeBox = container:WaitForChild("TextBox")
-	local highlighter = container:WaitForChild("TextLabel")
-	
-	-- Enable RichText
-	highlighter.RichText = true
-	
-	local keywords = {
-		-- Lua Core Keywords
-		["and"] = true, ["or"] = true, ["not"] = true,
-		["if"] = true, ["then"] = true, ["else"] = true, ["elseif"] = true, ["end"] = true,
-		["for"] = true, ["in"] = true, ["do"] = true, ["while"] = true,
-		["repeat"] = true, ["until"] = true,
-		["function"] = true, ["local"] = true, ["return"] = true,
-		["break"] = true, ["continue"] = true, ["goto"] = true,
-	
-		-- Constants
-		["true"] = true, ["false"] = true, ["nil"] = true,
-	
-		-- Lua Built-ins
-		["print"] = true, ["warn"] = true, ["error"] = true,
-		["assert"] = true, ["pcall"] = true, ["xpcall"] = true,
-		["type"] = true, ["select"] = true, ["unpack"] = true, ["next"] = true,
-		["pairs"] = true, ["ipairs"] = true,
-		["tonumber"] = true, ["tostring"] = true,
-		["collectgarbage"] = true, ["rawget"] = true, ["rawset"] = true, ["rawequal"] = true,
-		["setmetatable"] = true, ["getmetatable"] = true,
-	
-		-- Math & String Libs
-		["math"] = true, ["math.abs"] = true, ["math.floor"] = true, ["math.ceil"] = true,
-		["math.random"] = true, ["math.pi"] = true, ["math.min"] = true, ["math.max"] = true,
-		["string"] = true, ["string.len"] = true, ["string.sub"] = true, ["string.find"] = true,
-		["string.match"] = true, ["string.format"] = true, ["string.gsub"] = true,
-	
-		-- Tables
-		["table"] = true, ["table.insert"] = true, ["table.remove"] = true,
-		["table.sort"] = true, ["table.concat"] = true, ["table.create"] = true,
-	
-		-- Roblox Specific
-		["Instance.new"] = true,
-		["require"] = true,
-		["workspace"] = true, ["game"] = true, ["script"] = true, ["getfenv"] = true,
-		["setfenv"] = true, ["loadstring"] = true, ["coroutine"] = true,
-		["Instance"] = true, ["Vector3"] = true, ["CFrame"] = true, ["UDim2"] = true,
-		["Enum"] = true, ["Color3"] = true, ["BrickColor"] = true,
-	    ["wait"] = true,
-		["task"] = true, ["spawn"] = true, ["delay"] = true, ["tick"] = true, ["time"] = true,
-		["UserInputService"] = true, ["RunService"] = true, ["TweenService"] = true,
-		["SoundService"] = true, ["Lighting"] = true, ["Players"] = true, ["ReplicatedStorage"] = true,
-	}
-	
-	
-	
-	local function highlight(text)
-		-- Escape richtext-breaking characters
-		text = text:gsub("&", "&amp;"):gsub("<", "&lt;"):gsub(">", "&gt;")
-	
-		-- Store matches we don't want to double-color
-		local protected = {}
-	
-		local function protect(str)
-			table.insert(protected, str)
-			return "\1PROTECT" .. #protected .. "\2"
-		end
-	
-	
-		-- Comments first (protect entire line after --)
-		text = text:gsub("(%-%-.-)\n", function(c) return protect('<font color="#6a9955">'..c..'</font>').."\n" end)
-		text = text:gsub("(%-%-.*)$", function(c) return protect('<font color="#6a9955">'..c..'</font>') end)
-	
-		-- Strings (single and double quoted)
-		text = text:gsub('(".-")', function(s) return protect('<font color="#ce9178">'..s..'</font>') end)
-		text = text:gsub("('.-')", function(s) return protect('<font color="#ce9178">'..s..'</font>') end)
-	
-		-- Keywords
-		text = text:gsub("(%w+)", function(word)
-			if keywords[word] then
-				return '<font color="#569cd6">' .. word .. '</font>'
-			end
-			return word
-		end)
-	
-		text = text:gsub("\1PROTECT(%d+)\2", function(i)
-			return protected[tonumber(i)]
-		end)
-	
-		return text
+-- Enable RichText
+highlighter.RichText = true
+highlighter.TextWrapped = true
+highlighter.TextXAlignment = codeBox.TextXAlignment
+highlighter.TextYAlignment = codeBox.TextYAlignment
+highlighter.Font = codeBox.Font
+highlighter.TextSize = codeBox.TextSize
+
+local keywords = {
+	-- Lua Core Keywords
+	["and"] = true, ["or"] = true, ["not"] = true,
+	["if"] = true, ["then"] = true, ["else"] = true, ["elseif"] = true, ["end"] = true,
+	["for"] = true, ["in"] = true, ["do"] = true, ["while"] = true,
+	["repeat"] = true, ["until"] = true,
+	["function"] = true, ["local"] = true, ["return"] = true,
+	["break"] = true, ["continue"] = true, ["goto"] = true,
+
+	-- Constants
+	["true"] = true, ["false"] = true, ["nil"] = true,
+
+	-- Lua Built-ins
+	["print"] = true, ["warn"] = true, ["error"] = true,
+	["assert"] = true, ["pcall"] = true, ["xpcall"] = true,
+	["type"] = true, ["select"] = true, ["unpack"] = true, ["next"] = true,
+	["pairs"] = true, ["ipairs"] = true,
+	["tonumber"] = true, ["tostring"] = true,
+	["collectgarbage"] = true, ["rawget"] = true, ["rawset"] = true, ["rawequal"] = true,
+	["setmetatable"] = true, ["getmetatable"] = true,
+
+	-- Math & String Libs
+	["math"] = true, ["string"] = true, ["table"] = true,
+	["math.abs"] = true, ["math.floor"] = true, ["math.ceil"] = true,
+	["math.random"] = true, ["math.pi"] = true, ["math.min"] = true, ["math.max"] = true,
+	["string.len"] = true, ["string.sub"] = true, ["string.find"] = true,
+	["string.match"] = true, ["string.format"] = true, ["string.gsub"] = true,
+	["table.insert"] = true, ["table.remove"] = true,
+	["table.sort"] = true, ["table.concat"] = true, ["table.create"] = true,
+
+	-- Roblox Specific
+	["Instance.new"] = true, ["require"] = true,
+	["workspace"] = true, ["game"] = true, ["script"] = true,
+	["getfenv"] = true, ["setfenv"] = true, ["loadstring"] = true, ["coroutine"] = true,
+	["Instance"] = true, ["Vector3"] = true, ["CFrame"] = true, ["UDim2"] = true,
+	["Enum"] = true, ["Color3"] = true, ["BrickColor"] = true,
+	["wait"] = true, ["task"] = true, ["spawn"] = true, ["delay"] = true, ["tick"] = true, ["time"] = true,
+	["UserInputService"] = true, ["RunService"] = true, ["TweenService"] = true,
+	["SoundService"] = true, ["Lighting"] = true, ["Players"] = true, ["ReplicatedStorage"] = true,
+}
+
+-- Protect elements to avoid double coloring
+local function protect(text)
+	local protected = {}
+	local index = 0
+	local function wrap(str)
+		index += 1
+		protected[index] = str
+		return "\1PROTECT" .. index .. "\2"
 	end
-	
-	-- Sync text + resizing
-	local function update()
-		local rawText = codeBox.Text
-		highlighter.Text = highlight(rawText)
-	
-		-- Optional: auto-resize based on lines
-		local lines = select(2, rawText:gsub("\n", "\n")) + 1
-		local lineHeight = codeBox.TextSize + 4
-		local newHeight = lines * lineHeight
-		container.Size = UDim2.new(1, 0, 0, newHeight)
-	end
-	
-	-- Connect typing event
-	codeBox:GetPropertyChangedSignal("Text"):Connect(update)
-	
-	-- Initial highlight
-	codeBox.Text = ""
-	update()
-	
-	
+	return wrap, function(s) return s:gsub("\1PROTECT(%d+)\2", function(i) return protected[tonumber(i)] end) end
 end
+
+local function highlight(text)
+	-- Escape RichText special characters
+	text = text:gsub("&", "&amp;"):gsub("<", "&lt;"):gsub(">", "&gt;")
+
+	local wrap, unprotect = protect(text)
+
+	-- Highlight Comments
+	text = text:gsub("(%-%-.-)\n", function(c) return wrap('<font color="#6a9955">' .. c .. '</font>') .. "\n" end)
+	text = text:gsub("(%-%-.*)$", function(c) return wrap('<font color="#6a9955">' .. c .. '</font>') end)
+
+	-- Highlight Strings (handles multi-line)
+	text = text:gsub('(["\'])(.-)%1', function(q, content)
+		return wrap('<font color="#ce9178">' .. q .. content .. q .. '</font>')
+	end)
+
+	-- Highlight Numbers
+	text = text:gsub("(%d+%.?%d*)", function(num)
+		return '<font color="#b5cea8">' .. num .. '</font>'
+	end)
+
+	-- Highlight Keywords
+	text = text:gsub("(%w[%w%.]*)", function(word)
+		if keywords[word] then
+			return '<font color="#569cd6">' .. word .. '</font>'
+		end
+		return word
+	end)
+
+	return unprotect(text)
+end
+
+local function update()
+	local rawText = codeBox.Text
+	highlighter.Text = highlight(rawText)
+
+	-- Auto-resize
+	local lines = select(2, rawText:gsub("\n", "\n")) + 1
+	local lineHeight = codeBox.TextSize + 4
+	container.Size = UDim2.new(1, 0, 0, math.max(36, lines * lineHeight))
+end
+
+codeBox:GetPropertyChangedSignal("Text"):Connect(update)
+
+-- Initial setup
+codeBox.Text = ""
+update()
+	
 local function PYPIM_fake_script() -- Fake Script: StarterGui.Starlight.Frame.Presets.Polaria.LocalScript
     local script = Instance.new("LocalScript")
     script.Name = "LocalScript"
