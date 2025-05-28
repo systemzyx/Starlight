@@ -1616,111 +1616,129 @@ local container = script.Parent
 local codeBox = container:WaitForChild("TextBox")
 local highlighter = container:WaitForChild("TextLabel")
 
--- Enable RichText
 highlighter.RichText = true
-highlighter.TextWrapped = true
-highlighter.TextXAlignment = codeBox.TextXAlignment
-highlighter.TextYAlignment = codeBox.TextYAlignment
-highlighter.Font = codeBox.Font
-highlighter.TextSize = codeBox.TextSize
 
 local keywords = {
-	-- Lua Core Keywords
+	-- Lua core
 	["and"] = true, ["or"] = true, ["not"] = true,
 	["if"] = true, ["then"] = true, ["else"] = true, ["elseif"] = true, ["end"] = true,
 	["for"] = true, ["in"] = true, ["do"] = true, ["while"] = true,
-	["repeat"] = true, ["until"] = true,
-	["function"] = true, ["local"] = true, ["return"] = true,
-	["break"] = true, ["continue"] = true, ["goto"] = true,
+	["repeat"] = true, ["until"] = true, ["function"] = true, ["local"] = true,
+	["return"] = true, ["break"] = true, ["goto"] = true,
 
 	-- Constants
 	["true"] = true, ["false"] = true, ["nil"] = true,
 
-	-- Lua Built-ins
+	-- Built-ins
 	["print"] = true, ["warn"] = true, ["error"] = true,
 	["assert"] = true, ["pcall"] = true, ["xpcall"] = true,
-	["type"] = true, ["select"] = true, ["unpack"] = true, ["next"] = true,
-	["pairs"] = true, ["ipairs"] = true,
+	["type"] = true, ["select"] = true, ["unpack"] = true,
+	["next"] = true, ["pairs"] = true, ["ipairs"] = true,
 	["tonumber"] = true, ["tostring"] = true,
-	["collectgarbage"] = true, ["rawget"] = true, ["rawset"] = true, ["rawequal"] = true,
-	["setmetatable"] = true, ["getmetatable"] = true,
+	["collectgarbage"] = true, ["rawget"] = true, ["rawset"] = true,
+	["rawequal"] = true, ["setmetatable"] = true, ["getmetatable"] = true,
 
-	-- Math & String Libs
-	["math"] = true, ["string"] = true, ["table"] = true,
-	["math.abs"] = true, ["math.floor"] = true, ["math.ceil"] = true,
-	["math.random"] = true, ["math.pi"] = true, ["math.min"] = true, ["math.max"] = true,
-	["string.len"] = true, ["string.sub"] = true, ["string.find"] = true,
-	["string.match"] = true, ["string.format"] = true, ["string.gsub"] = true,
-	["table.insert"] = true, ["table.remove"] = true,
+	-- Coroutine
+	["coroutine"] = true, ["coroutine.create"] = true, ["coroutine.resume"] = true,
+	["coroutine.yield"] = true, ["coroutine.running"] = true, ["coroutine.status"] = true,
+
+	-- Math
+	["math"] = true, ["math.abs"] = true, ["math.acos"] = true, ["math.asin"] = true,
+	["math.atan"] = true, ["math.ceil"] = true, ["math.cos"] = true, ["math.deg"] = true,
+	["math.exp"] = true, ["math.floor"] = true, ["math.fmod"] = true, ["math.log"] = true,
+	["math.max"] = true, ["math.min"] = true, ["math.modf"] = true, ["math.pi"] = true,
+	["math.rad"] = true, ["math.random"] = true, ["math.randomseed"] = true,
+	["math.sin"] = true, ["math.sqrt"] = true, ["math.tan"] = true,
+
+	-- String
+	["string"] = true, ["string.byte"] = true, ["string.char"] = true, ["string.find"] = true,
+	["string.format"] = true, ["string.gmatch"] = true, ["string.gsub"] = true,
+	["string.len"] = true, ["string.lower"] = true, ["string.match"] = true,
+	["string.rep"] = true, ["string.reverse"] = true, ["string.sub"] = true,
+	["string.upper"] = true,
+
+	-- Table
+	["table"] = true, ["table.insert"] = true, ["table.remove"] = true,
 	["table.sort"] = true, ["table.concat"] = true, ["table.create"] = true,
+	["table.clear"] = true, ["table.clone"] = true, ["table.find"] = true,
+	["table.move"] = true, ["table.pack"] = true, ["table.unpack"] = true,
 
-	-- Roblox Specific
-	["Instance.new"] = true, ["require"] = true,
-	["workspace"] = true, ["game"] = true, ["script"] = true,
-	["getfenv"] = true, ["setfenv"] = true, ["loadstring"] = true, ["coroutine"] = true,
-	["Instance"] = true, ["Vector3"] = true, ["CFrame"] = true, ["UDim2"] = true,
-	["Enum"] = true, ["Color3"] = true, ["BrickColor"] = true,
-	["wait"] = true, ["task"] = true, ["spawn"] = true, ["delay"] = true, ["tick"] = true, ["time"] = true,
+	-- Roblox Core Services
+	["game"] = true, ["workspace"] = true, ["script"] = true,
 	["UserInputService"] = true, ["RunService"] = true, ["TweenService"] = true,
-	["SoundService"] = true, ["Lighting"] = true, ["Players"] = true, ["ReplicatedStorage"] = true,
+	["Lighting"] = true, ["SoundService"] = true, ["ReplicatedStorage"] = true,
+	["ServerStorage"] = true, ["Players"] = true, ["Debris"] = true,
+	["HttpService"] = true, ["DataStoreService"] = true, ["TeleportService"] = true,
+	["MarketplaceService"] = true, ["Teams"] = true, ["TextService"] = true,
+	["Stats"] = true, ["StarterGui"] = true, ["StarterPack"] = true,
+	["StarterPlayer"] = true, ["Chat"] = true,
+
+	-- Roblox Instances / Types
+	["Instance"] = true, ["Instance.new"] = true,
+	["Vector3"] = true, ["CFrame"] = true, ["UDim2"] = true,
+	["Color3"] = true, ["BrickColor"] = true, ["Enum"] = true,
+	["RaycastParams"] = true, ["TweenInfo"] = true, ["NumberRange"] = true,
+	["Region3"] = true, ["Faces"] = true,
+
+	-- Execution
+	["require"] = true, ["loadstring"] = true, ["getfenv"] = true,
+	["setfenv"] = true, ["load"] = true, ["dofile"] = true,
+
+	-- Time
+	["tick"] = true, ["time"] = true, ["wait"] = true,
+	["delay"] = true, ["spawn"] = true, ["task"] = true,
+	["task.wait"] = true, ["task.spawn"] = true, ["task.defer"] = true,
 }
 
--- Protect elements to avoid double coloring
-local function protect(text)
-	local protected = {}
-	local index = 0
-	local function wrap(str)
-		index += 1
-		protected[index] = str
-		return "\1PROTECT" .. index .. "\2"
-	end
-	return wrap, function(s) return s:gsub("\1PROTECT(%d+)\2", function(i) return protected[tonumber(i)] end) end
-end
-
+-- Highlight function
 local function highlight(text)
-	-- Escape RichText special characters
 	text = text:gsub("&", "&amp;"):gsub("<", "&lt;"):gsub(">", "&gt;")
 
-	local wrap, unprotect = protect(text)
+	local protected = {}
 
-	-- Highlight Comments
-	text = text:gsub("(%-%-.-)\n", function(c) return wrap('<font color="#6a9955">' .. c .. '</font>') .. "\n" end)
-	text = text:gsub("(%-%-.*)$", function(c) return wrap('<font color="#6a9955">' .. c .. '</font>') end)
+	local function protect(str)
+		table.insert(protected, str)
+		return "\1PROTECT" .. #protected .. "\2"
+	end
 
-	-- Highlight Strings (handles multi-line)
-	text = text:gsub('(["\'])(.-)%1', function(q, content)
-		return wrap('<font color="#ce9178">' .. q .. content .. q .. '</font>')
-	end)
+	-- Comments
+	text = text:gsub("(%-%-.-)\n", function(c) return protect('<font color="#6a9955">' .. c .. '</font>') .. "\n" end)
+	text = text:gsub("(%-%-.*)$", function(c) return protect('<font color="#6a9955">' .. c .. '</font>') end)
 
-	-- Highlight Numbers
-	text = text:gsub("(%d+%.?%d*)", function(num)
-		return '<font color="#b5cea8">' .. num .. '</font>'
-	end)
+	-- Strings (quoted)
+	text = text:gsub('(".-")', function(s) return protect('<font color="#ce9178">' .. s .. '</font>') end)
+	text = text:gsub("('.-')", function(s) return protect('<font color="#ce9178">' .. s .. '</font>') end)
 
-	-- Highlight Keywords
-	text = text:gsub("(%w[%w%.]*)", function(word)
+	-- Numbers
+	text = text:gsub("(%d+%.?%d*)", function(n) return '<font color="#b5cea8">' .. n .. '</font>' end)
+
+	-- Keywords
+	text = text:gsub("([%w_%.]+)", function(word)
 		if keywords[word] then
 			return '<font color="#569cd6">' .. word .. '</font>'
 		end
 		return word
 	end)
 
-	return unprotect(text)
+	text = text:gsub("\1PROTECT(%d+)\2", function(i)
+		return protected[tonumber(i)]
+	end)
+
+	return text
 end
 
+-- Update display
 local function update()
 	local rawText = codeBox.Text
 	highlighter.Text = highlight(rawText)
 
-	-- Auto-resize
 	local lines = select(2, rawText:gsub("\n", "\n")) + 1
 	local lineHeight = codeBox.TextSize + 4
-	container.Size = UDim2.new(1, 0, 0, math.max(36, lines * lineHeight))
+	local newHeight = lines * lineHeight
+	container.Size = UDim2.new(1, 0, 0, newHeight)
 end
 
 codeBox:GetPropertyChangedSignal("Text"):Connect(update)
-
--- Initial setup
 codeBox.Text = ""
 update()
 	
