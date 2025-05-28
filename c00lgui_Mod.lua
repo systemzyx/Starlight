@@ -203,7 +203,7 @@ Converted["_Credit"].Font = Enum.Font.Kalam
 Converted["_Credit"].TextSize = 24
 Converted["_Credit"].TextStrokeTransparency = 0
 Converted["_Credit"].TextWrapped = true
-Converted["_Credit"].Text = 'Made by Rig6~'
+Converted["_Credit"].Text = "Made by Rig6"
 Converted["_Credit"].Size = UDim2.new(0, 400, 0, 30)
 Converted["_Credit"].Position = UDim2.new(0.03, 0, 0.17, 0)
 Converted["_Credit"].TextXAlignment = Enum.TextXAlignment.Left
@@ -1612,7 +1612,7 @@ local function AIXWS_fake_script() -- Fake Script: StarterGui.Starlight.Frame.Fr
         return req(obj)
     end
 	
-		local container = script.Parent
+local container = script.Parent
 local codeBox = container:WaitForChild("TextBox")
 local highlighter = container:WaitForChild("TextLabel")
 
