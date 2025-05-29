@@ -532,7 +532,7 @@ Converted["_TextBox"].Font = Enum.Font.Code
 Converted["_TextBox"].MultiLine = true
 Converted["_TextBox"].PlaceholderColor3 = Color3.fromRGB(12.000000234693289, 12.000000234693289, 12.000000234693289)
 Converted["_TextBox"].RichText = true
-Converted["_TextBox"].PlaceholderText = 'print("c00lkidd ss")'
+Converted["_TextBox"].PlaceholderText = '-- Piece of code here'
 Converted["_TextBox"].Text = ""
 Converted["_TextBox"].TextColor3 = Color3.fromRGB(220,220,220)
 Converted["_TextBox"].TextSize = 18
@@ -553,8 +553,8 @@ Converted["_UICorner7"].Parent = Converted["_TextBox"]
 
 Converted["_TextLabel"].Font = Enum.Font.Cartoon
 Converted["_TextLabel"].RichText = true
-Converted["_TextLabel"].Text = '\n if true then c00lkidd 2025 Execution made by Rig6 (Modify) Trackcode (Owner)\n  Designed to execute Scripts through Backdoor.\n   Press execute to get started\n    end'
-Converted["_TextLabel"].TextColor3 = Color3.fromRGB(198, 119, 88)
+Converted["_TextLabel"].Text = ""
+Converted["_TextLabel"].TextColor3 = Color3.fromRGB(220, 220, 220)
 Converted["_TextLabel"].TextSize = 18
 Converted["_TextLabel"].TextTruncate = Enum.TextTruncate.AtEnd
 Converted["_TextLabel"].TextWrapped = true
@@ -1624,20 +1624,30 @@ local colorGroups = {
 		list = {
 			"and", "or", "not", "if", "then", "else", "elseif", "end",
 			"for", "in", "do", "while", "repeat", "until", "function", "local",
-			"return", "break", "continue", "goto", "self", "nil"
+			"return", "break", "continue", "goto", "self", "nil", "export", "import",
+			"wait", "yield", "task", "type", "typeof", "true", "false",
+			"repeat", "continue", "async", "await", "enum", "using", "global",
+			"thread", "coroutine", "default", "switch", "case", "try", "catch", "finally",
+			"throw", "do", "end", "then", "elseif", "else"
 		}
 	},
 	constants = {
 		color = "#dcdcaa",
-		list = { "true", "false" }
+		list = { "true", "false", "nil" }
 	},
 	builtins = {
 		color = "#c586c0",
 		list = {
 			"print", "warn", "error", "assert", "pcall", "xpcall", "type", "select", "unpack",
 			"next", "pairs", "ipairs", "tonumber", "tostring", "collectgarbage", "rawget", "rawset",
-			"rawequal", "setmetatable", "getmetatable", "require", "loadstring", "getfenv", "setfenv",
-			"coroutine", "table", "string", "math", "utf8"
+			"rawequal", "setmetatable", "getmetatable", "require", "loadstring", "load", "loadfile",
+			"getfenv", "setfenv", "coroutine", "table", "string", "math", "utf8", "typeof",
+			"tick", "spawn", "delay", "task", "typeof", "Vector3", "CFrame", "UDim2",
+			"Color3", "BrickColor", "Enum", "UserInputService", "RunService", "TweenService",
+			"HttpService", "DataStoreService", "TeleportService", "CollectionService", "ContextActionService",
+			"StarterPlayer", "PathfindingService", "TextService", "LocalizationService",
+			"Enum", "Instance", "game", "workspace", "script", "Players", "StarterGui",
+			"SoundService", "RunService", "Lighting", "ReplicatedStorage"
 		}
 	},
 	services = {
@@ -1646,7 +1656,10 @@ local colorGroups = {
 			"game", "workspace", "script", "UserInputService", "RunService", "TweenService",
 			"Lighting", "ReplicatedStorage", "Players", "StarterGui", "SoundService",
 			"HttpService", "DataStoreService", "TeleportService", "Instance", "Vector3", "CFrame",
-			"UDim2", "Color3", "BrickColor", "Enum"
+			"UDim2", "Color3", "BrickColor", "Enum", "CollectionService", "ContextActionService",
+			"StarterPlayer", "PathfindingService", "TextService", "LocalizationService", "NetworkServer",
+			"NetworkClient", "VRService", "GuiService", "TextChatService", "BadgeService", "MarketplaceService",
+			"UserInputService", "Chat", "RunService", "Lighting", "StarterPack", "StarterPlayerScripts"
 		}
 	}
 }
@@ -1661,7 +1674,7 @@ end
 local function formatLuaCode(code)
 	local indent = 0
 	local formatted = ""
-	local indentStr = "    " -- 4 spaces
+	local indentStr = "    "
 
 	for line in code:gmatch("[^\r\n]+") do
 		local trimmed = line:match("^%s*(.-)%s*$")
@@ -1678,8 +1691,8 @@ local function formatLuaCode(code)
 	end
 
 	return formatted
-      end
-	
+end
+
 local function highlight(text)
 	text = text:gsub("&", "&amp;"):gsub("<", "&lt;"):gsub(">", "&gt;")
 	local protected = {}
@@ -1692,7 +1705,7 @@ local function highlight(text)
 	text = text:gsub("('.-')", function(s) return protect('<font color="#ce9178">' .. s .. '</font>') end)
 
 	text = text:gsub("(%d+%.?%d*)", function(n)
-		return '<font color="#b5cea8">' .. n .. '</font>'
+		return '<font color="#ff0000">' .. n .. '</font>'
 	end)
 
 	text = text:gsub("([%w_%.]+)", function(word)
@@ -1734,10 +1747,9 @@ codeBox.Focused:Connect(function()
 	end)
 end)
 
-codeBox.Text = ""
+codeBox.Text = "-- Piece of code here"
 update()
 end
-	
 local function PYPIM_fake_script() -- Fake Script: StarterGui.Starlight.Frame.Presets.Polaria.LocalScript
     local script = Instance.new("LocalScript")
     script.Name = "LocalScript"
