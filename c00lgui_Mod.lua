@@ -1651,7 +1651,7 @@ local colorGroups = {
 			-- table
 			"table", "concat", "insert", "remove", "sort", "pack", "unpack",
 			-- math
-			"math", "abs", "acos", "asin", "atan", "ceil", "cos", "deg", "exp", "floor", "fmod"
+			"math", "abs", "acos", "asin", "atan", "ceil", "cos", "deg", "exp", "floor", "fmod",
 			"huge", "log", "max", "min", "modf", "pi", "rad", "random", "sin", "sqrt", "tan","clamp",
 			-- utf8
 			"utf8", "charpattern", "codes", "codepoint", "len", "offset"
