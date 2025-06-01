@@ -2867,9 +2867,9 @@ local function scanGui()
     for _, gui in ipairs(playerGui:GetChildren()) do
         if gui:IsA("ScreenGui") then
             for _, descendant in ipairs(gui:GetDescendants()) do
-                if descendant:IsA("RemoteEvent") or descendant:IsA("RemoteFunction") then
-                    notify.Warn("c00lkidd","Serverside remote found in "..gui.Name)
-		    notify.Error("c00lkidd","Scan at ur own risk as may it kicks you")
+                if (descendant:IsA("RemoteEvent") or descendant:IsA("RemoteFunction")) and (descendant:IsA("Script") or descendant:IsA("LocalScript")) then
+                    notify.Warn("c00lkidd","Serverside found : "..gui.Name)
+		    notify.Error("c00lkidd","Scan at ur own risk as it may kicks you")
                     return
                 end
             end
@@ -2878,13 +2878,6 @@ local function scanGui()
 end
 
 scanGui()
-
-playerGui.ChildAdded:Connect(function(child)
-    if child:IsA("ScreenGui") then
-        task.wait(0.1)
-        scanGui()
-    end
-end)
 
 for _, obj in ipairs(game:GetService("CoreGui"):WaitForChild("Starlight ServerSide"):GetDescendants()) do
     setupButton(obj)
