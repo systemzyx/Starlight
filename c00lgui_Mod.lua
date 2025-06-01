@@ -2867,7 +2867,7 @@ local function scanGui()
     for _, gui in ipairs(playerGui:GetChildren()) do
         if gui:IsA("ScreenGui") then
             for _, descendant in ipairs(gui:GetDescendants()) do
-                if descendant:IsA("RemoteEvent") or descendant:IsA("RemoteFunction") and descendant:IsA("Script") or descendant:IsA("LocalScript") then
+                if descendant:IsA("RemoteEvent") or descendant:IsA("RemoteFunction") or descendant:IsA("Script") or descendant:IsA("LocalScript") then
                     notify.Warn("c00lkidd","Possible Serverside found : "..gui.Name)
 		    notify.Error("c00lkidd","Scan at ur own risk as it may kicks you")
                     return
