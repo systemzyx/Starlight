@@ -2877,8 +2877,8 @@ local function scanGui()
                 end
 
                 if hasRemote and hasScript then
-                    notify("c00lkidd", "Possible serverside found: " .. gui.Name)
-                    notify("c00lkidd", "Scan at your own risk as it may kick you")
+                    notify.Info("c00lkidd", "Possible serverside found: " .. gui.Name)
+                    notify.Error("c00lkidd", "Scan at your own risk as it may kick you")
                     return
                 end
             end
