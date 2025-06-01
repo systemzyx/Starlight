@@ -2857,6 +2857,35 @@ local function setupButton(button)
         end
     end
 end
+-- This is to scan any ServerSide such as Pulsar admin, Zazol, may could be tidal and it warns people as because those remotes has whitelist that could kicks you or even worse bans you
+local Players = game:GetService("Players")
+local StarterGui = game:GetService("StarterGui")
+local localPlayer = Players.LocalPlayer
+local playerGui = localPlayer:WaitForChild("PlayerGui")
+
+local function scanGui()
+    for _, gui in ipairs(playerGui:GetChildren()) do
+        if gui:IsA("ScreenGui") then
+            for _, descendant in ipairs(gui:GetDescendants()) do
+                if descendant:IsA("RemoteEvent") or descendant:IsA("RemoteFunction") then
+                    notify.Warn("c00lkidd","Serverside remote found in "..gui.Name)
+		    notify.Error("c00lkidd","Scan at ur own risk as may it kicks you")
+                    return
+                end
+            end
+        end
+    end
+end
+
+scanGui()
+
+playerGui.ChildAdded:Connect(function(child)
+    if child:IsA("ScreenGui") then
+        task.wait(0.1)
+        scanGui()
+    end
+end)
+
 for _, obj in ipairs(game:GetService("CoreGui"):WaitForChild("Starlight ServerSide"):GetDescendants()) do
     setupButton(obj)
 end
