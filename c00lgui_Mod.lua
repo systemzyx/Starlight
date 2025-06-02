@@ -1618,7 +1618,7 @@ local function AIXWS_fake_script() -- Fake Script: StarterGui.Starlight.Frame.Fr
         return req(obj)
     end
 
-local container = script.Parent
+	local container = script.Parent
 local codeBox = container:WaitForChild("TextBox")
 local highlighter = container:WaitForChild("TextLabel")
 local lineNumbers = container:FindFirstChild("LineNumbers")
@@ -1632,8 +1632,7 @@ local colorGroups = {
 		list = {
 			"and", "or", "not", "if", "then", "else", "elseif", "end",
 			"for", "in", "do", "while", "repeat", "until", "function", "local",
-			"return", "break", "continue", "goto", "self", "nil",
-			"true", "false"
+			"return", "break", "continue", "goto"
 		}
 	},
 	constants = {
@@ -1649,18 +1648,7 @@ local colorGroups = {
 			"load", "loadfile", "next", "pairs", "pcall", "print", "rawequal", "rawget",
 			"rawlen", "rawset", "require", "select", "setmetatable", "tonumber",
 			"tostring", "type", "xpcall", "warn", "typeof", "tick", "wait", "spawn", "delay",
-			-- coroutine
-			"coroutine", "create", "resume", "yield", "wrap", "status", 
-			-- string
-			"string", "byte", "char", "find", "format", "gmatch", "gsub", "len", "lower", "match",
-			"rep", "reverse", "sub", "upper",
-			-- table
-			"table", "concat", "insert", "remove", "sort", "pack", "unpack",
-			-- math
-			"math", "abs", "acos", "asin", "atan", "ceil", "cos", "deg", "exp", "floor", "fmod",
-			"huge", "log", "max", "min", "modf", "pi", "rad", "random", "sin", "sqrt", "tan","clamp",
-			-- utf8
-			"utf8", "charpattern", "codes", "codepoint", "len", "offset"
+			"coroutine", "string", "table", "math", "utf8"
 		}
 	},
 	services = {
@@ -1675,11 +1663,57 @@ local colorGroups = {
 		}
 	}
 }
+
 local tokenColors = {}
 for _, group in pairs(colorGroups) do
 	for _, word in ipairs(group.list) do
 		tokenColors[word] = group.color
 	end
+end
+
+local function escapeHTML(str)
+	return str:gsub("&", "&amp;"):gsub("<", "&lt;"):gsub(">", "&gt;")
+end
+
+local function highlight(code)
+	local protected = {}
+
+	local function protect(str)
+		table.insert(protected, str)
+		return "__PROTECTED__" .. #protected .. "__"
+	end
+
+	code = escapeHTML(code)
+
+	code = code:gsub("%[%[.-%]%]", function(s)
+		return protect('<font color="#ce9178">' .. escapeHTML(s) .. '</font>')
+	end)
+
+	code = code:gsub('(".-")', function(s)
+		return protect('<font color="#ce9178">' .. escapeHTML(s) .. '</font>')
+	end)
+
+	code = code:gsub("('.-')", function(s)
+		return protect('<font color="#ce9178">' .. escapeHTML(s) .. '</font>')
+	end)
+
+	code = code:gsub("(%d+%.?%d*)", function(num)
+		return '<font color="#b5cea8">' .. num .. '</font>'
+	end)
+
+	code = code:gsub("([%a_][%w_]*)", function(word)
+		local color = tokenColors[word]
+		if color then
+			return '<font color="' .. color .. '">' .. word .. '</font>'
+		end
+		return word
+	end)
+
+	code = code:gsub("__PROTECTED__(%d+)__", function(i)
+		return protected[tonumber(i)]
+	end)
+
+	return code
 end
 
 local function formatLuaCode(code)
@@ -1699,51 +1733,6 @@ local function formatLuaCode(code)
 	end
 
 	return formatted
-end
-
-local function escapeHTML(str)
-	return str:gsub("&", "&amp;"):gsub("<", "&lt;"):gsub(">", "&gt;")
-end
-
-local function highlight(code)
-	local protected = {}
-
-	local function protect(str)
-		table.insert(protected, str)
-		return "\1PROTECT" .. #protected .. "\2"
-	end
-
-	code = escapeHTML(code)
-	code = code:gsub("%[%[.-%]%]", function(s)
-		return protect('<font color="#ce9178">' .. escapeHTML(s) .. '</font>')
-	end)
-	code = code:gsub('(".-")', function(s)
-		return protect('<font color="#ce9178">' .. escapeHTML(s) .. '</font>')
-	end)
-	code = code:gsub("('.-')", function(s)
-		return protect('<font color="#ce9178">' .. escapeHTML(s) .. '</font>')
-	end)
-	code = code:gsub("(%-%-.-)\n", function(s)
-		return protect('<font color="#6a9955">' .. escapeHTML(s) .. '</font>\n')
-	end)
-	code = code:gsub("(%-%-.*)$", function(s)
-		return protect('<font color="#6a9955">' .. escapeHTML(s) .. '</font>')
-	end)
-	code = code:gsub("(%d+%.?%d*)", function(num)
-		return '<font color="#b5cea8">' .. num .. '</font>'
-	end)
-	code = code:gsub("([%a_][%w_]*)", function(word)
-		local color = tokenColors[word]
-		if color then
-			return '<font color="' .. color .. '">' .. word .. '</font>'
-		end
-		return word
-	end)
-	code = code:gsub("\1PROTECT(%d+)\2", function(i)
-		return protected[tonumber(i)]
-	end)
-
-	return code
 end
 
 local function update()
@@ -1768,7 +1757,6 @@ end
 codeBox:GetPropertyChangedSignal("Text"):Connect(update)
 
 local UserInputService = game:GetService("UserInputService")
-
 UserInputService.InputBegan:Connect(function(input, processed)
 	if not processed and codeBox:IsFocused() and input.KeyCode == Enum.KeyCode.Return then
 		task.defer(function()
