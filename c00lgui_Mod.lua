@@ -1680,7 +1680,7 @@ local function highlight(code)
 
 	local function protect(str)
 		table.insert(protected, str)
-		return "__PROTECTED__" .. #protected .. "__"
+		return
 	end
 
 	code = escapeHTML(code)
