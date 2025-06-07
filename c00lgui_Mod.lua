@@ -538,7 +538,7 @@ Converted["_TextBox"].Font = Enum.Font.Code
 Converted["_TextBox"].MultiLine = true
 Converted["_TextBox"].PlaceholderColor3 = Color3.fromRGB(12.000000234693289, 12.000000234693289, 12.000000234693289)
 Converted["_TextBox"].RichText = true
-Converted["_TextBox"].PlaceholderText = '-- Piece of code here'
+Converted["_TextBox"].PlaceholderText = 'c00lkidd.exe private'
 Converted["_TextBox"].Text = ""
 Converted["_TextBox"].TextColor3 = Color3.fromRGB(220,220,220)
 Converted["_TextBox"].TextSize = 18
@@ -557,7 +557,7 @@ Converted["_TextBox"].Parent = Converted["_Frame2"]
 Converted["_UICorner7"].CornerRadius = UDim.new(0, 6)
 Converted["_UICorner7"].Parent = Converted["_TextBox"]
 
-Converted["_TextLabel"].Font = Enum.Font.Cartoon
+Converted["_TextLabel"].Font = Enum.Font.Code
 Converted["_TextLabel"].RichText = true
 Converted["_TextLabel"].Text = ""
 Converted["_TextLabel"].TextColor3 = Color3.fromRGB(220, 220, 220)
