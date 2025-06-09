@@ -1172,7 +1172,7 @@ Converted["_m"].BorderColor3 = Color3.fromRGB(0, 0, 0)
 Converted["_m"].BorderSizePixel = 0
 Converted["_m"].Position = UDim2.new(0.830647767, 0, 0.0629773885, 0)
 Converted["_m"].Size = UDim2.new(0, 42, 0, 42)
-Converted["_m"].Name = "minimize"
+Converted["_m"].Name = "m"
 Converted["_m"].Parent = Converted["_Frame"]
 
 Converted["_UICorner23"].CornerRadius = UDim.new(0, 6)
