@@ -1655,7 +1655,7 @@ local function highlight(code)
 	local function protect(str)
 		local i = #protected + 1
 		protected[i] = str
-		return
+		return "⟪" .. i .. "⟫"
 	end
 
 	code = escapeHTML(code)
@@ -1693,7 +1693,7 @@ local function highlight(code)
 	end)
 
 	-- Restore protected segments
-	code = code:gsub("__PROTECTED__(%d+)__", function(i)
+	code = code:gsub("⟪(%d+)⟫", function(i)
 		return protected[tonumber(i)]
 	end)
 
