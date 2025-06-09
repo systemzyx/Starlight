@@ -1653,28 +1653,37 @@ local function highlight(code)
 	local protected = {}
 
 	local function protect(str)
-		table.insert(protected, str)
+		local i = #protected + 1
+		protected[i] = str
 		return
 	end
 
 	code = escapeHTML(code)
 
+	-- Multiline strings [[...]]
 	code = code:gsub("%[%[.-%]%]", function(s)
-		return protect('<font color="#ce9178">' .. escapeHTML(s) .. '</font>')
+		return protect('<font color="#6A9955">' .. escapeHTML(s) .. '</font>')
 	end)
 
-	code = code:gsub('(".-")', function(s)
-		return protect('<font color="#ce9178">' .. escapeHTML(s) .. '</font>')
+	-- Strings (double and single quotes)
+	code = code:gsub('("([^\\"]-\\?)*")', function(s)
+		return protect('<font color="#6A9955">' .. escapeHTML(s) .. '</font>')
+	end)
+	code = code:gsub("('([^\\']-\\?)*')", function(s)
+		return protect('<font color="#6A9955">' .. escapeHTML(s) .. '</font>')
 	end)
 
-	code = code:gsub("('.-')", function(s)
-		return protect('<font color="#ce9178">' .. escapeHTML(s) .. '</font>')
+	-- Optional: single-line comments (add if desired)
+	code = code:gsub("(%-%-.-)\n", function(comment)
+		return protect('<font color="#6A9955">' .. escapeHTML(comment) .. '</font>\n')
 	end)
 
-	code = code:gsub("(%d+%.?%d*)", function(num)
-		return '<font color="#b5cea8">' .. num .. '</font>'
-	end)
+	-- Numbers (int, float, scientific)
+	code = code:gsub("(%d+%.%d*[eE][%+%-]?%d+)", '<font color="#D16969">%1</font>')
+	code = code:gsub("(%d+%.%d+)", '<font color="#D16969">%1</font>')
+	code = code:gsub("(%d+)", '<font color="#D16969">%1</font>')
 
+	-- Words (skip method calls like `.foo`)
 	code = code:gsub("([%a_][%w_]*)", function(word)
 		local color = tokenColors[word]
 		if color then
@@ -1683,6 +1692,7 @@ local function highlight(code)
 		return word
 	end)
 
+	-- Restore protected segments
 	code = code:gsub("__PROTECTED__(%d+)__", function(i)
 		return protected[tonumber(i)]
 	end)
