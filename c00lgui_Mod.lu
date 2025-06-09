@@ -1541,12 +1541,7 @@ local function BEEKENZ_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		script.Parent.UIStroke.Color = Color3.fromRGB(57,57,57)
 	end)
 	script.Parent.MouseButton1Click:Connect(function()
-		game.StarterGui:SetCore("SendNotification",{
-			Title = "c00lkidd",
-			Text = "c00lkidd fUck roBLOX",
-			Duration = 5
-		})
-	
+		notify.Info("c00lkidd","no")
 	end)
 end
 local function CFRCL_fake_script() -- Fake Script: StarterGui.Starlight.Frame.Framee.ScrollingFrame.Frame.TextBox.LocalScript
@@ -1602,7 +1597,7 @@ if lineNumbers then lineNumbers.RichText = true end
 
 local colorGroups = {
 	keywords = {
-		color = "#569cd6",
+		color = "#d7aeff",
 		list = {
 			"and", "or", "not", "if", "then", "else", "elseif", "end",
 			"for", "in", "do", "while", "repeat", "until", "function", "local",
@@ -1610,13 +1605,13 @@ local colorGroups = {
 		}
 	},
 	constants = {
-		color = "#dcdcaa",
+		color = "#777aff",
 		list = {
 			"true", "false", "nil", "_G", "_VERSION", "math.huge"
 		}
 	},
 	builtins = {
-		color = "#c586c0",
+		color = "#83ceff",
 		list = {
 			"assert", "collectgarbage", "dofile", "error", "getmetatable", "ipairs",
 			"load", "loadfile", "next", "pairs", "pcall", "print", "rawequal", "rawget",
@@ -1626,7 +1621,7 @@ local colorGroups = {
 		}
 	},
 	services = {
-		color = "#4ec9b0",
+		color = "#777aff",
 		list = {
 			"game", "workspace", "script", "UserInputService", "RunService", "TweenService",
 			"Lighting", "ReplicatedStorage", "Players", "StarterGui", "SoundService",
