@@ -34,9 +34,6 @@ local Converted = {
 	["_rsix"] = Instance.new("TextButton");
 	["_UICorner5"] = Instance.new("UICorner");
 	["_UIStroke5"] = Instance.new("UIStroke");
-	["_infect"] = Instance.new("TextButton");
-	["_UICrner"] = Instance.new("UICorner");
-	["_UIStrk"] = Instance.new("UIStroke");
 	["_ImageLabel5"] = Instance.new("ImageLabel");
 	["_LocalScript5"] = Instance.new("LocalScript");
 	["_dc"] = Instance.new("TextButton");
@@ -306,7 +303,7 @@ Converted["_UIStroke2"].Color = Color3.fromRGB(255, 0, 0)
 Converted["_UIStroke2"].Thickness = 1.5
 Converted["_UIStroke2"].Parent = Converted["_Clear"]
 
-Converted["_ImageLabel2"].Image = "rbxassetid://16346922164"
+Converted["_ImageLabel2"].Image = "rbxassetid://7733768142"
 Converted["_ImageLabel2"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Converted["_ImageLabel2"].BackgroundTransparency = 1
 Converted["_ImageLabel2"].BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -337,7 +334,7 @@ Converted["_UIStroke3"].Color = Color3.fromRGB(255, 0, 0)
 Converted["_UIStroke3"].Thickness = 1.5
 Converted["_UIStroke3"].Parent = Converted["_Execute"]
 
-Converted["_ImageLabel3"].Image = "rbxassetid://7980684777"
+Converted["_ImageLabel3"].Image = "rbxassetid://7734053039"
 Converted["_ImageLabel3"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Converted["_ImageLabel3"].BackgroundTransparency = 1
 Converted["_ImageLabel3"].BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -370,7 +367,7 @@ Converted["_UIStroke4"].Color = Color3.fromRGB(57.00000040233135, 57.00000040233
 Converted["_UIStroke4"].Thickness = 1.5
 Converted["_UIStroke4"].Parent = Converted["_scan"]
 
-Converted["_ImageLabel4"].Image = "rbxassetid://115736032752379"
+Converted["_ImageLabel4"].Image = "rbxassetid://7733978098"
 Converted["_ImageLabel4"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Converted["_ImageLabel4"].BackgroundTransparency = 1
 Converted["_ImageLabel4"].BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -435,29 +432,6 @@ Converted["_UIStroke5"].ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 Converted["_UIStroke5"].Color = Color3.fromRGB(57.00000040233135, 57.00000040233135, 57.00000040233135)
 Converted["_UIStroke5"].Thickness = 1.5
 Converted["_UIStroke5"].Parent = Converted["_rsix"]
--- infect
-
-Converted["_infect"].Font = Enum.Font.ArimoBold
-Converted["_infect"].Text = "Infect"
-Converted["_infect"].TextColor3 = Color3.fromRGB(255, 255, 255)
-Converted["_infect"].TextSize = 14
-Converted["_infect"].TextWrapped = true
-Converted["_infect"].AutoButtonColor = false
-Converted["_infect"].BackgroundColor3 = Color3.fromRGB(16.000000946223736, 16.000000946223736, 16.000000946223736)
-Converted["_infect"].BorderColor3 = Color3.fromRGB(0, 0, 0)
-Converted["_infect"].BorderSizePixel = 0
-Converted["_infect"].Position = UDim2.new(0.512, 0, 0.805, 0)
-Converted["_infect"].Size = UDim2.new(0, 72, 0, 42)
-Converted["_infect"].Name = "infection"
-Converted["_infect"].Parent = Converted["_Framee"]
-
-Converted["_UICrner"].CornerRadius = UDim.new(0, 6)
-Converted["_UICrner"].Parent = Converted["_infect"]
-
-Converted["_UIStrk"].ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-Converted["_UIStrk"].Color = Color3.fromRGB(57.00000040233135, 57.00000040233135, 57.00000040233135)
-Converted["_UIStrk"].Thickness = 1.5
-Converted["_UIStrk"].Parent = Converted["_infect"]
 
 Converted["_ImageLabel5"].Image = "rbxassetid://16346922164"
 Converted["_ImageLabel5"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1022,7 +996,7 @@ Converted["_UIStroke20"].Color = Color3.fromRGB(57.00000040233135, 57.0000004023
 Converted["_UIStroke20"].Thickness = 1.5
 Converted["_UIStroke20"].Parent = Converted["_Executor"]
 
-Converted["_ImageLabel7"].Image = "rbxassetid://7072707514"
+Converted["_ImageLabel7"].Image = "rbxassetid://7733771217"
 Converted["_ImageLabel7"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Converted["_ImageLabel7"].BackgroundTransparency = 1
 Converted["_ImageLabel7"].BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -2600,10 +2574,6 @@ local function fireRemoteEvent(code)
 	end)
 	script.Parent.Framee.rsix.MouseButton1Click:Connect(function()
 		fireRemoteEvent('require(3436957371):r6("' .. game.Players.LocalPlayer.Name .. '")')
-	end)
-	script.Parent.Framee.infection.MouseButton1Click:Connect(function()
-		fireRemoteEvent('local d2,d,m,b,bd="8408806737","8408806737","132124181828375",50,0.05 local function a(p)local f={"Front","Back","Top","Bottom","Left","Right"}if p:FindFirstChildWhichIsA("Decal")then p:FindFirstChildWhichIsA("Decal"):Destroy()end for _,fc in ipairs(f)do local dc=Instance.new("Decal")dc.Texture="rbxassetid://"..d dc.Face=Enum.NormalId[fc]dc.Parent=p end local fi=Instance.new("Fire")fi.Parent=p fi.Heat=1 end local si=12 local function c(p)if p.Character and p.Character:FindFirstChild("HumanoidRootPart")then local r=p.Character.HumanoidRootPart for _,ch in ipairs(r:GetChildren())do if ch:IsA("ParticleEmitter")then ch:Destroy()end end local e=Instance.new("ParticleEmitter")e.Texture="rbxassetid://"..d e.Rate=50 e.Speed=NumberRange.new(12,12)e.Lifetime=NumberRange.new(5,5)e.VelocitySpread=360 e.Parent=r end end local function s()local s=game.Lighting:FindFirstChildOfClass("Sky")or Instance.new("Sky")s.SkyboxBk="rbxassetid://"..d2 s.SkyboxDn=s.SkyboxBk s.SkyboxFt=s.SkyboxBk s.SkyboxLf=s.SkyboxBk s.SkyboxRt=s.SkyboxBk s.SkyboxUp=s.SkyboxBk s.Parent=game.Lighting end local function ae()local ps=workspace:GetDescendants()local ct=0 for _,o in ipairs(ps)do if o:IsA("BasePart")or o:IsA("MeshPart")then a(o)ct+=1 end if ct>=b then ct=0 task.wait(bd)end end end local function msc()local s=Instance.new("Sound")s.SoundId="rbxassetid://"..m s.Volume=10 s.Looped=true s.Parent=game.Workspace s:Play()end local ch="0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()_+-=" game:GetService("Players").CharacterAutoLoads=true local function ss()for _,s in ipairs(workspace:GetDescendants())do if s:IsA("SpawnLocation")then s.Neutral=false s.AllowTeamChangeOnTouch=true end end workspace.DescendantAdded:Connect(function(o)if o:IsA("SpawnLocation")then o.Neutral=false o.AllowTeamChangeOnTouch=true end end)end ss()local R=Random.new()local function gr(l)local t={}for i=1,l do local r=R:NextInteger(1,#ch)table.insert(t,ch:sub(r,r))end return table.concat(t)end local function st()while true do local t=Instance.new("Team")t.Name=gr(10)t.TeamColor=BrickColor.random()t.Parent=game.Teams task.wait(0.05)end end local function sp()while true do for _,p in ipairs(game.Players:GetPlayers())do if p.Character and p.Character:FindFirstChild("HumanoidRootPart")then local r=p.Character.HumanoidRootPart local s=Instance.new("Part")s.Shape=Enum.PartType.Ball s.Size=Vector3.new(15,15,15)s.Position=r.Position+Vector3.new(math.random(-50,50),200,math.random(-50,50))s.Anchored=false s.Material=Enum.Material.Neon s.Color=Color3.new(1,0,0)s.Parent=workspace a(s)end end task.wait(si)end end local function sh()if workspace:FindFirstChild("Message")then workspace.Message:Destroy()end local h=Instance.new("Hint")h.Parent=game.Workspace while true do h.Text=gr(20)task.wait(1)end end local function ur()while true do local ps={}for _,o in ipairs(workspace:GetDescendants())do if o:IsA("BasePart")and o.Anchored then table.insert(ps,o)end end for i=1,math.min(10,#ps)do local p=ps[math.random(#ps)]p.Anchored=false end task.wait(1)end end local function cl()while true do local cc=Instance.new("ColorCorrectionEffect")cc.Contrast=100 cc.Brightness=0 cc.Parent=game.Lighting cc.TintColor=Color3.fromRGB(math.random(1,255),math.random(1,255),math.random(1,255))task.spawn(function()task.wait(1)cc:Destroy()end)task.wait(0.2)end end local function fl()local m=Instance.new("Message")m.Parent=workspace while true do m.Text=gr(10)task.wait(1)end end workspace.DescendantAdded:Connect(function(o)if o:IsA("BasePart")or o:IsA("MeshPart")or o:IsA("UnionOperation")then a(o)end end)game.Players.PlayerAdded:Connect(function(p)p.CharacterAdded:Connect(function()task.wait(1)c(p)end)end)for _,p in ipairs(game.Players:GetPlayers())do task.wait(1)if p.Character then c(p)end p.CharacterAdded:Connect(function()task.wait(1)c(p)end)end ae()s()spawn(msc)spawn(cl)spawn(fl)spawn(sh)spawn(sp)spawn(st)')
-	        fireRemoteEvent('local s=Instance.new("Sound",workspace);s.SoundId="rbxassetid://132046898251409";s.Volume=10;s.TimePosition=10;s:Play()')
 	end)
         script.Parent.Presets.Trash.MouseButton1Click:Connect(function() -- All Seeing Hand
 		script.Parent.Framee.ScrollingFrame.Frame.TextBox.Text = 'require(5375399205).Player("' .. game.Players.LocalPlayer.Name .. '")'
