@@ -1591,7 +1591,7 @@ local function AIXWS_fake_script() -- Fake Script: StarterGui.Starlight.Frame.Fr
         end
         return req(obj)
     end
-
+			
 	local container = script.Parent
 local codeBox = container:WaitForChild("TextBox")
 local highlighter = container:WaitForChild("TextLabel")
@@ -1600,9 +1600,21 @@ local lineNumbers = container:FindFirstChild("LineNumbers")
 highlighter.RichText = true
 if lineNumbers then lineNumbers.RichText = true end
 
+local syntaxColors = {
+	background = "#2f2f2f",
+	iden       = "#eaeaea",
+	keyword    = "#d7aeff",
+	builtin    = "#83ceff",
+	string     = "#c4ffc1",
+	number     = "#ff7d7d",
+	comment    = "#8c8c9b",
+	operator   = "#ffef94",
+	custom     = "#777aff"
+}
+
 local colorGroups = {
 	keywords = {
-		color = "#569cd6",
+		color = syntaxColors.keyword,
 		list = {
 			"and", "or", "not", "if", "then", "else", "elseif", "end",
 			"for", "in", "do", "while", "repeat", "until", "function", "local",
@@ -1610,13 +1622,13 @@ local colorGroups = {
 		}
 	},
 	constants = {
-		color = "#dcdcaa",
+		color = syntaxColors.custom,
 		list = {
 			"true", "false", "nil", "_G", "_VERSION", "math.huge"
 		}
 	},
 	builtins = {
-		color = "#c586c0",
+		color = syntaxColors.builtin,
 		list = {
 			"assert", "collectgarbage", "dofile", "error", "getmetatable", "ipairs",
 			"load", "loadfile", "next", "pairs", "pcall", "print", "rawequal", "rawget",
@@ -1626,7 +1638,7 @@ local colorGroups = {
 		}
 	},
 	services = {
-		color = "#4ec9b0",
+		color = syntaxColors.custom,
 		list = {
 			"game", "workspace", "script", "UserInputService", "RunService", "TweenService",
 			"Lighting", "ReplicatedStorage", "Players", "StarterGui", "SoundService",
@@ -1651,39 +1663,40 @@ end
 
 local function highlight(code)
 	local protected = {}
-
 	local function protect(str)
-		local i = #protected + 1
-		protected[i] = str
-		return "⟪" .. i .. "⟫"
+		table.insert(protected, str)
+		return "⟪" .. #protected .. "⟫"
 	end
 
 	code = escapeHTML(code)
 
-	-- Multiline strings [[...]]
+	-- Multiline strings
 	code = code:gsub("%[%[.-%]%]", function(s)
-		return protect('<font color="#6A9955">' .. escapeHTML(s) .. '</font>')
+		return protect('<font color="' .. syntaxColors.string .. '">' .. escapeHTML(s) .. '</font>')
 	end)
 
-	-- Strings (double and single quotes)
-	code = code:gsub('("([^\\"]-\\?)*")', function(s)
-		return protect('<font color="#6A9955">' .. escapeHTML(s) .. '</font>')
+	-- Strings
+	code = code:gsub('".-"', function(s)
+		return protect('<font color="' .. syntaxColors.string .. '">' .. escapeHTML(s) .. '</font>')
 	end)
-	code = code:gsub("('([^\\']-\\?)*')", function(s)
-		return protect('<font color="#6A9955">' .. escapeHTML(s) .. '</font>')
-	end)
-
-	-- Optional: single-line comments (add if desired)
-	code = code:gsub("(%-%-.-)\n", function(comment)
-		return protect('<font color="#6A9955">' .. escapeHTML(comment) .. '</font>\n')
+	code = code:gsub("'.-'", function(s)
+		return protect('<font color="' .. syntaxColors.string .. '">' .. escapeHTML(s) .. '</font>')
 	end)
 
-	-- Numbers (int, float, scientific)
-	code = code:gsub("(%d+%.%d*[eE][%+%-]?%d+)", '<font color="#D16969">%1</font>')
-	code = code:gsub("(%d+%.%d+)", '<font color="#D16969">%1</font>')
-	code = code:gsub("(%d+)", '<font color="#D16969">%1</font>')
+	-- Comments
+	code = code:gsub("%-%-.-\n", function(comment)
+		return protect('<font color="' .. syntaxColors.comment .. '">' .. escapeHTML(comment) .. '</font>\n')
+	end)
 
-	-- Words (skip method calls like `.foo`)
+	-- Numbers
+	code = code:gsub("(%d+%.%d*[eE][%+%-]?%d+)", '<font color="' .. syntaxColors.number .. '">%1</font>')
+	code = code:gsub("(%d+%.%d+)", '<font color="' .. syntaxColors.number .. '">%1</font>')
+	code = code:gsub("(%d+)", '<font color="' .. syntaxColors.number .. '">%1</font>')
+
+	-- Operators
+	code = code:gsub("([%+%-%*/%%%^#=<>~]+)", '<font color="' .. syntaxColors.operator .. '">%1</font>')
+
+	-- Identifiers (keywords, builtins, services)
 	code = code:gsub("([%a_][%w_]*)", function(word)
 		local color = tokenColors[word]
 		if color then
@@ -1692,7 +1705,7 @@ local function highlight(code)
 		return word
 	end)
 
-	-- Restore protected segments
+	-- Restore protected parts
 	code = code:gsub("⟪(%d+)⟫", function(i)
 		return protected[tonumber(i)]
 	end)
@@ -2904,3 +2917,4 @@ coroutine.wrap(MMOF_fake_script)()
 coroutine.wrap(OHZSZXY_fake_script)()
 coroutine.wrap(LZLXRPZ_fake_script)()
 coroutine.wrap(QOXL_fake_script)()
+
