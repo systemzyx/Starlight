@@ -1183,8 +1183,8 @@ Converted["_UIStroke24"].Color = Color3.fromRGB(57.00000040233135, 57.0000004023
 Converted["_UIStroke24"].Thickness = 1.5
 Converted["_UIStroke24"].Parent = Converted["_m"]
 
-Converted["_ImageLabel10"].Image = "rbxassetid://7733997870"
-Converted["_ImageLabel10"].ImageColor3 = Color3.fromRGB(144.00000661611557, 144.00000661611557, 144.00000661611557)
+Converted["_ImageLabel10"].Image = "rbxassetid://7734000129"
+Converted["_ImageLabel10"].ImageColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_ImageLabel10"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Converted["_ImageLabel10"].BackgroundTransparency = 1
 Converted["_ImageLabel10"].BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -1238,7 +1238,7 @@ for _,v in pairs(Converted) do
         v.Color = Color3.fromRGB(255, 0, 0)
     end
 end
-task.wait(0.1) -- we need to wait first
+task.wait(0.06) -- we need to wait first
 local PFC = "password1.txt"
 local FTS = "password2.txt"
 
