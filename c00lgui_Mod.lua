@@ -341,7 +341,7 @@ Converted["_ImageLabel3"].BorderColor3 = Color3.fromRGB(0, 0, 0)
 Converted["_ImageLabel3"].BorderSizePixel = 0
 Converted["_ImageLabel3"].Interactable = false
 Converted["_ImageLabel3"].Position = UDim2.new(0.0714285746, 0, 0.0714285746, 0)
-Converted["_ImageLabel3"].Rotation = 90
+Converted["_ImageLabel3"].Rotation = 0
 Converted["_ImageLabel3"].Size = UDim2.new(0, 35, 0, 35)
 Converted["_ImageLabel3"].Parent = Converted["_Execute"]
 
