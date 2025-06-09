@@ -262,7 +262,7 @@ Converted["_UIStroke1"].Color = Color3.fromRGB(255, 0, 0)
 Converted["_UIStroke1"].Thickness = 1.5
 Converted["_UIStroke1"].Parent = Converted["_c"]
 
-Converted["_ImageLabel1"].Image = "rbxassetid://8408806737"
+Converted["_ImageLabel1"].Image = "rbxassetid://7743878857"
 Converted["_ImageLabel1"].ImageColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_ImageLabel1"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Converted["_ImageLabel1"].BackgroundTransparency = 1
@@ -1172,7 +1172,7 @@ Converted["_m"].BorderColor3 = Color3.fromRGB(0, 0, 0)
 Converted["_m"].BorderSizePixel = 0
 Converted["_m"].Position = UDim2.new(0.830647767, 0, 0.0629773885, 0)
 Converted["_m"].Size = UDim2.new(0, 42, 0, 42)
-Converted["_m"].Name = "m"
+Converted["_m"].Name = "minimize"
 Converted["_m"].Parent = Converted["_Frame"]
 
 Converted["_UICorner23"].CornerRadius = UDim.new(0, 6)
@@ -1183,7 +1183,7 @@ Converted["_UIStroke24"].Color = Color3.fromRGB(57.00000040233135, 57.0000004023
 Converted["_UIStroke24"].Thickness = 1.5
 Converted["_UIStroke24"].Parent = Converted["_m"]
 
-Converted["_ImageLabel10"].Image = "rbxassetid://125716871945612"
+Converted["_ImageLabel10"].Image = "rbxassetid://7733997870"
 Converted["_ImageLabel10"].ImageColor3 = Color3.fromRGB(144.00000661611557, 144.00000661611557, 144.00000661611557)
 Converted["_ImageLabel10"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Converted["_ImageLabel10"].BackgroundTransparency = 1
