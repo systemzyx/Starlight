@@ -160,7 +160,7 @@ Converted["_Starlight"].IgnoreGuiInset = true
 Converted["_Starlight"].ScreenInsets = Enum.ScreenInsets.DeviceSafeInsets
 Converted["_Starlight"].ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 Converted["_Starlight"].Name = "Starlight ServerSide"
-Converted["_Starlight"].Parent = game:GetService("CoreGui").RobloxGui
+Converted["_Starlight"].Parent = game:GetService("CoreGui")
 
 Converted["_Frame"].BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 Converted["_Frame"].BackgroundTransparency = 0.5
