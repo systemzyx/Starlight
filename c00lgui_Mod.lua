@@ -381,7 +381,7 @@ Converted["_ImageLabel4"].Size = UDim2.new(0, 30, 0, 30)
 Converted["_ImageLabel4"].Parent = Converted["_scan"]
 
 Converted["_Log"].Font = Enum.Font.Cartoon
-Converted["_Log"].Text = "Backdoor: <Nil>"
+Converted["_Log"].Text = "Backdoor: Found"
 Converted["_Log"].TextColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_Log"].TextScaled = true
 Converted["_Log"].TextSize = 15
@@ -914,7 +914,7 @@ Converted["_Log2"].Name = "Log"
 Converted["_Log2"].Parent = Converted["_Logs"]
 
 Converted["_Log3"].Font = Enum.Font.Cartoon
-Converted["_Log3"].Text = "Settings"
+Converted["_Log3"].Text = "- Settings -"
 Converted["_Log3"].TextColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_Log3"].TextScaled = true
 Converted["_Log3"].TextSize = 15
@@ -1022,7 +1022,7 @@ Converted["_UIStroke20"].Color = Color3.fromRGB(57.00000040233135, 57.0000004023
 Converted["_UIStroke20"].Thickness = 1.5
 Converted["_UIStroke20"].Parent = Converted["_Executor"]
 
-Converted["_ImageLabel7"].Image = "rbxassetid://96541223"
+Converted["_ImageLabel7"].Image = "rbxassetid://7072707514"
 Converted["_ImageLabel7"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Converted["_ImageLabel7"].BackgroundTransparency = 1
 Converted["_ImageLabel7"].BorderColor3 = Color3.fromRGB(0, 0, 0)
