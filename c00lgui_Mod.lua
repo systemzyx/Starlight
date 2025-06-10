@@ -185,15 +185,6 @@ gradient.Color = ColorSequence.new{
 }
 gradient.Parent = us
 
-local runService = game:GetService("RunService")
-local t = 0
-
-game:GetService("RunService").RenderStepped:Connect(function(dt)
-	t += dt * 0.1
-	local offset = t % 1 -- keeps it between 0 and 1
-	gradient.Offset = Vector2.new(-offset, 0) -- scrolls leftward smoothly
-end)
-
 Converted["_Title"] = Instance.new("TextLabel")
 Converted["_Title"].BackgroundTransparency = 1
 Converted["_Title"].BackgroundColor3 = Color3.fromRGB(255, 0, 0)
@@ -215,15 +206,6 @@ gradient3.Color = ColorSequence.new{
 }
 gradient3.Parent = Converted["_Title"]
 
-local runService = game:GetService("RunService")
-local t = 0
-
-game:GetService("RunService").RenderStepped:Connect(function(dt)
-	t += dt * 0.1
-	local offset = t % 1 -- keeps it between 0 and 1
-	gradient3.Offset = Vector2.new(-offset, 0) -- scrolls leftward smoothly
-end)
-
 Converted["_Credit"] = Instance.new("TextLabel")
 Converted["_Credit"].BackgroundTransparency = 1
 Converted["_Credit"].BackgroundColor3 = Color3.fromRGB(255, 0, 0)
@@ -244,15 +226,6 @@ gradient2.Color = ColorSequence.new{
     ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 255))
 }
 gradient2.Parent = Converted["_Credit"]
-
-local runService = game:GetService("RunService")
-local t = 0
-
-game:GetService("RunService").RenderStepped:Connect(function(dt)
-	t += dt * 0.1
-	local offset = t % 1 -- keeps it between 0 and 1
-	gradient2.Offset = Vector2.new(-offset, 0) -- scrolls leftward smoothly
-end)
 
 Converted["_ImageLabel"].Image = "rbxassetid://8408806737"
 Converted["_ImageLabel"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -357,15 +330,6 @@ gradient31.Color = ColorSequence.new{
 }
 gradient31.Parent = Converted["_UIStroke2"]
 
-local runService = game:GetService("RunService")
-local t = 0
-
-game:GetService("RunService").RenderStepped:Connect(function(dt)
-	t += dt * 0.1
-	local offset = t % 1 -- keeps it between 0 and 1
-	gradient31.Offset = Vector2.new(-offset, 0) -- scrolls leftward smoothly
-end)
-
 Converted["_ImageLabel2"].Image = "rbxassetid://7733768142"
 Converted["_ImageLabel2"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Converted["_ImageLabel2"].BackgroundTransparency = 1
@@ -403,15 +367,6 @@ gradient21.Color = ColorSequence.new{
     ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 255))
 }
 gradient21.Parent = Converted["_UIStroke3"]
-
-local runService = game:GetService("RunService")
-local t = 0
-
-game:GetService("RunService").RenderStepped:Connect(function(dt)
-	t += dt * 0.1
-	local offset = t % 1 -- keeps it between 0 and 1
-	gradient21.Offset = Vector2.new(-offset, 0) -- scrolls leftward smoothly
-end)
 
 Converted["_ImageLabel3"].Image = "rbxassetid://7734053039"
 Converted["_ImageLabel3"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -452,15 +407,6 @@ gradient32.Color = ColorSequence.new{
     ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 255))
 }
 gradient32.Parent = Converted["_UIStroke4"]
-
-local runService = game:GetService("RunService")
-local t = 0
-
-game:GetService("RunService").RenderStepped:Connect(function(dt)
-	t += dt * 0.1
-	local offset = t % 1 -- keeps it between 0 and 1
-	gradient32.Offset = Vector2.new(-offset, 0) -- scrolls leftward smoothly
-end)
 
 Converted["_ImageLabel4"].Image = "rbxassetid://7733978098"
 Converted["_ImageLabel4"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -535,15 +481,6 @@ gradient69.Color = ColorSequence.new{
 }
 gradient69.Parent = Converted["_UIStroke5"]
 
-local runService = game:GetService("RunService")
-local t = 0
-
-game:GetService("RunService").RenderStepped:Connect(function(dt)
-	t += dt * 0.1
-	local offset = t % 1 -- keeps it between 0 and 1
-	gradient69.Offset = Vector2.new(-offset, 0) -- scrolls leftward smoothly
-end)
-
 Converted["_ImageLabel5"].Image = "rbxassetid://16346922164"
 Converted["_ImageLabel5"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Converted["_ImageLabel5"].BackgroundTransparency = 1
@@ -583,15 +520,6 @@ gradient34.Color = ColorSequence.new{
     ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 255))
 }
 gradient34.Parent = Converted["_UIStroke6"]
-
-local runService = game:GetService("RunService")
-local t = 0
-
-game:GetService("RunService").RenderStepped:Connect(function(dt)
-	t += dt * 0.1
-	local offset = t % 1 -- keeps it between 0 and 1
-	gradient34.Offset = Vector2.new(-offset, 0) -- scrolls leftward smoothly
-end)
 
 Converted["_ImageLabel6"].Image = "rbxassetid://124991788631069"
 Converted["_ImageLabel6"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -664,15 +592,6 @@ gradient7.Color = ColorSequence.new{
     ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 255))
 }
 gradient7.Parent = Converted["_UIStroke7"]
-
-local runService = game:GetService("RunService")
-local t = 0
-
-game:GetService("RunService").RenderStepped:Connect(function(dt)
-	t += dt * 0.1
-	local offset = t % 1 -- keeps it between 0 and 1
-	gradient7.Offset = Vector2.new(-offset, 0) -- scrolls leftward smoothly
-end)
 
 Converted["_TextLabel"].Font = Enum.Font.Cartoon
 Converted["_TextLabel"].RichText = true
