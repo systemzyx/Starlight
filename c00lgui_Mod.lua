@@ -1669,7 +1669,12 @@ local function highlight(code)
 	code = code:gsub("(%d+%.?%d*)", function(num)
 		return '<font color="#b5cea8">' .. num .. '</font>'
 	end)
-
+        code = code:gsub("[%[%]]", function(b)
+		return '<font color="#ffaaaa">' .. b .. '</font>'
+	end)
+	code = code:gsub("%d+[%._]?[%d_eE]*", function(s)
+		return '<font color="#b5cea8">' .. s .. '</font>'
+	end)
 	code = code:gsub("([%a_][%w_]*)", function(word)
 		local color = tokenColors[word]
 		if color then
