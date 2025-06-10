@@ -230,18 +230,12 @@ gradient2.Parent = Converted["_Credit"]
 Converted["_ImageLabel"].Image = "rbxassetid://8408806737"
 Converted["_ImageLabel"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Converted["_ImageLabel"].BackgroundTransparency = 1
-Converted["_ImageLabel"].BorderColor3 = Color3.fromRGB(0, 0, 0)
-Converted["_ImageLabel"].BorderSizePixel = 0
+Converted["_ImageLabel"].BorderColor3 = Color3.fromRGB(0, 0, 255)
+Converted["_ImageLabel"].BorderSizePixel = 2
+Converted["_ImageLabel"].Rotation = 14
 Converted["_ImageLabel"].Position = UDim2.new(0.57912457, 0, -0.190751448, 0)
 Converted["_ImageLabel"].Size = UDim2.new(0, 250, 0, 250)
 Converted["_ImageLabel"].Parent = Converted["_Frame"]
-
-local rotation = 0
-local RunService = game:GetService("RunService")
-RunService.RenderStepped:Connect(function(dt)
-    rotation = (rotation + 90 * dt) % 360
-    Converted["_ImageLabel"].Rotation = rotation
-end)
 
 Converted["_stat"].Image = "rbxassetid://8408806737"
 Converted["_stat"].ImageColor3 = Color3.fromRGB(0,0,0)
