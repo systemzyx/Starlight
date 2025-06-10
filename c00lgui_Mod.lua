@@ -1684,7 +1684,7 @@ local colorGroups = {
 		}
 	},
 	services = {
-		color = "#777aff",
+		color = "#add8e6",
 		list = {
 			"game", "workspace", "script", "UserInputService", "RunService", "TweenService",
 			"Lighting", "ReplicatedStorage", "Players", "StarterGui", "SoundService",
