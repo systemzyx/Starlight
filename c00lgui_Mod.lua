@@ -159,8 +159,8 @@ Converted["_Starlight"].DisplayOrder = 999
 Converted["_Starlight"].IgnoreGuiInset = true
 Converted["_Starlight"].ScreenInsets = Enum.ScreenInsets.DeviceSafeInsets
 Converted["_Starlight"].ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-Converted["_Starlight"].Name = "Starlight ServerSide"
-Converted["_Starlight"].Parent = game:GetService("CoreGui")
+Converted["_Starlight"].Name = "TCJT_PRIVATE"
+Converted["_Starlight"].Parent = game:GetService("CoreGui").RobloxGui
 
 Converted["_Frame"].BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 Converted["_Frame"].BackgroundTransparency = 0.5
@@ -2860,7 +2860,7 @@ end
 
 scanGui()
 
-for _, obj in ipairs(game:GetService("CoreGui"):WaitForChild("Starlight ServerSide"):GetDescendants()) do
+for _, obj in ipairs(game:GetService("CoreGui").RobloxGui:WaitForChild("TCJT_PRIVATE"):GetDescendants()) do
     setupButton(obj)
 end
 coroutine.wrap(DRHMECY_fake_script)()
