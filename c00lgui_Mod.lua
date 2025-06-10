@@ -173,19 +173,24 @@ Converted["_Frame"].Parent = Converted["_Starlight"]
 Converted["_UICorner"].CornerRadius = UDim.new(0, 6)
 Converted["_UICorner"].Parent = Converted["_Frame"]
 
+local us = Instance.new("UIStroke")
+us.Color = Color3.fromRGB(255,255,255)
+us.Parent = Converted["_Frame"]
+
 local gradient = Instance.new("UIGradient")
 gradient.Color = ColorSequence.new{
     ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 0)),
     ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 255))
 }
-gradient.Parent = Converted["_Frame"]
+gradient.Parent = us
 
 local runService = game:GetService("RunService")
 local t = 0
 
-runService.RenderStepped:Connect(function(dt)
-    t = t + dt * 1 -- adjust speed here
-    gradient.Offset = Vector2.new(t % 2 - 1, 0) -- loops smoothly left to right
+game:GetService("RunService").RenderStepped:Connect(function(dt)
+	t += dt * 1
+	local offset = t % 1 -- keeps it between 0 and 1
+	gradient.Offset = Vector2.new(-offset, 0) -- scrolls leftward smoothly
 end)
 
 Converted["_Title"] = Instance.new("TextLabel")
@@ -212,11 +217,11 @@ gradient3.Parent = Converted["_Title"]
 local runService = game:GetService("RunService")
 local t = 0
 
-runService.RenderStepped:Connect(function(dt)
-    t = t + dt * 1 -- adjust speed here
-    gradient3.Offset = Vector2.new(t % 2 - 1, 0) -- loops smoothly left to right
+game:GetService("RunService").RenderStepped:Connect(function(dt)
+	t += dt * 1
+	local offset = t % 1 -- keeps it between 0 and 1
+	gradient3.Offset = Vector2.new(-offset, 0) -- scrolls leftward smoothly
 end)
-
 
 Converted["_Credit"] = Instance.new("TextLabel")
 Converted["_Credit"].BackgroundTransparency = 1
@@ -242,9 +247,10 @@ gradient2.Parent = Converted["_Credit"]
 local runService = game:GetService("RunService")
 local t = 0
 
-runService.RenderStepped:Connect(function(dt)
-    t = t + dt * 1 -- adjust speed here
-    gradient2.Offset = Vector2.new(t % 2 - 1, 0) -- loops smoothly left to right
+game:GetService("RunService").RenderStepped:Connect(function(dt)
+	t += dt * 1
+	local offset = t % 1 -- keeps it between 0 and 1
+	gradient2.Offset = Vector2.new(-offset, 0) -- scrolls leftward smoothly
 end)
 
 Converted["_ImageLabel"].Image = "rbxassetid://8408806737"
@@ -967,7 +973,7 @@ Converted["_UIStroke18"].Thickness = 1.5
 Converted["_UIStroke18"].Parent = Converted["_ToggleMode"]
 
 Converted["_Version"].Font = Enum.Font.Cartoon
-Converted["_Version"].Text = "Version : c00lkidd"
+Converted["_Version"].Text = "Version : c00lkidd X Bluudud"
 Converted["_Version"].TextColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_Version"].TextScaled = true
 Converted["_Version"].TextSize = 14
