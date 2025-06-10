@@ -175,7 +175,7 @@ Converted["_UICorner"].Parent = Converted["_Frame"]
 
 local us = Instance.new("UIStroke")
 us.Color = Color3.fromRGB(255,255,255)
-us.Thickness = 2
+us.Thickness = 4
 us.Parent = Converted["_Frame"]
 
 local gradient = Instance.new("UIGradient")
@@ -350,6 +350,22 @@ Converted["_UIStroke2"].Color = Color3.fromRGB(255, 0, 0)
 Converted["_UIStroke2"].Thickness = 1.5
 Converted["_UIStroke2"].Parent = Converted["_Clear"]
 
+local gradient31 = Instance.new("UIGradient")
+gradient31.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 0)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 255))
+}
+gradient31.Parent = Converted["_UIStroke2"]
+
+local runService = game:GetService("RunService")
+local t = 0
+
+game:GetService("RunService").RenderStepped:Connect(function(dt)
+	t += dt * 0.1
+	local offset = t % 1 -- keeps it between 0 and 1
+	gradient31.Offset = Vector2.new(-offset, 0) -- scrolls leftward smoothly
+end)
+
 Converted["_ImageLabel2"].Image = "rbxassetid://7733768142"
 Converted["_ImageLabel2"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Converted["_ImageLabel2"].BackgroundTransparency = 1
@@ -380,6 +396,22 @@ Converted["_UIStroke3"].ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 Converted["_UIStroke3"].Color = Color3.fromRGB(255, 0, 0)
 Converted["_UIStroke3"].Thickness = 1.5
 Converted["_UIStroke3"].Parent = Converted["_Execute"]
+
+local gradient21 = Instance.new("UIGradient")
+gradient21.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 0)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 255))
+}
+gradient21.Parent = Converted["_UIStroke3"]
+
+local runService = game:GetService("RunService")
+local t = 0
+
+game:GetService("RunService").RenderStepped:Connect(function(dt)
+	t += dt * 0.1
+	local offset = t % 1 -- keeps it between 0 and 1
+	gradient21.Offset = Vector2.new(-offset, 0) -- scrolls leftward smoothly
+end)
 
 Converted["_ImageLabel3"].Image = "rbxassetid://7734053039"
 Converted["_ImageLabel3"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -413,6 +445,22 @@ Converted["_UIStroke4"].ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 Converted["_UIStroke4"].Color = Color3.fromRGB(57.00000040233135, 57.00000040233135, 57.00000040233135)
 Converted["_UIStroke4"].Thickness = 1.5
 Converted["_UIStroke4"].Parent = Converted["_scan"]
+
+local gradient32 = Instance.new("UIGradient")
+gradient32.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 0)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 255))
+}
+gradient32.Parent = Converted["_UIStroke4"]
+
+local runService = game:GetService("RunService")
+local t = 0
+
+game:GetService("RunService").RenderStepped:Connect(function(dt)
+	t += dt * 0.1
+	local offset = t % 1 -- keeps it between 0 and 1
+	gradient32.Offset = Vector2.new(-offset, 0) -- scrolls leftward smoothly
+end)
 
 Converted["_ImageLabel4"].Image = "rbxassetid://7733978098"
 Converted["_ImageLabel4"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -480,6 +528,22 @@ Converted["_UIStroke5"].Color = Color3.fromRGB(57.00000040233135, 57.00000040233
 Converted["_UIStroke5"].Thickness = 1.5
 Converted["_UIStroke5"].Parent = Converted["_rsix"]
 
+local gradient69 = Instance.new("UIGradient")
+gradient69.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 0)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 255))
+}
+gradient69.Parent = Converted["_UIStroke5"]
+
+local runService = game:GetService("RunService")
+local t = 0
+
+game:GetService("RunService").RenderStepped:Connect(function(dt)
+	t += dt * 0.1
+	local offset = t % 1 -- keeps it between 0 and 1
+	gradient69.Offset = Vector2.new(-offset, 0) -- scrolls leftward smoothly
+end)
+
 Converted["_ImageLabel5"].Image = "rbxassetid://16346922164"
 Converted["_ImageLabel5"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Converted["_ImageLabel5"].BackgroundTransparency = 1
@@ -512,6 +576,22 @@ Converted["_UIStroke6"].ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 Converted["_UIStroke6"].Color = Color3.fromRGB(57.00000040233135, 57.00000040233135, 57.00000040233135)
 Converted["_UIStroke6"].Thickness = 1.5
 Converted["_UIStroke6"].Parent = Converted["_dc"]
+
+local gradient34 = Instance.new("UIGradient")
+gradient34.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 0)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 255))
+}
+gradient34.Parent = Converted["_UIStroke6"]
+
+local runService = game:GetService("RunService")
+local t = 0
+
+game:GetService("RunService").RenderStepped:Connect(function(dt)
+	t += dt * 0.1
+	local offset = t % 1 -- keeps it between 0 and 1
+	gradient34.Offset = Vector2.new(-offset, 0) -- scrolls leftward smoothly
+end)
 
 Converted["_ImageLabel6"].Image = "rbxassetid://124991788631069"
 Converted["_ImageLabel6"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -577,6 +657,22 @@ Converted["_TextBox"].Parent = Converted["_Frame2"]
 
 Converted["_UICorner7"].CornerRadius = UDim.new(0, 6)
 Converted["_UICorner7"].Parent = Converted["_TextBox"]
+
+local gradient7 = Instance.new("UIGradient")
+gradient7.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 0)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 255))
+}
+gradient7.Parent = Converted["_UIStroke7"]
+
+local runService = game:GetService("RunService")
+local t = 0
+
+game:GetService("RunService").RenderStepped:Connect(function(dt)
+	t += dt * 0.1
+	local offset = t % 1 -- keeps it between 0 and 1
+	gradient7.Offset = Vector2.new(-offset, 0) -- scrolls leftward smoothly
+end)
 
 Converted["_TextLabel"].Font = Enum.Font.Cartoon
 Converted["_TextLabel"].RichText = true
@@ -1283,7 +1379,7 @@ Converted["_UICorner25"].CornerRadius = UDim.new(0, 6)
 Converted["_UICorner25"].Parent = Converted["_str"]
 for _,v in pairs(Converted) do
     if v:IsA("UIStroke") then
-        v.Color = Color3.fromRGB(0, 0, 255)
+        v.Color = Color3.fromRGB(255, 0, 0)
     end
 end
 task.wait(0.06) -- we need to wait first
@@ -2851,22 +2947,22 @@ local function setupButton(button)
         if stroke then
             button.MouseEnter:Connect(function()
                 button.BackgroundColor3 = Color3.fromRGB(22, 22, 22)
-                stroke.Color = Color3.fromRGB(0, 0, 255)
+                stroke.Color = Color3.fromRGB(255, 0, 0)
             end)
 
             button.MouseLeave:Connect(function()
                 button.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
-                stroke.Color = Color3.fromRGB(0, 0, 255)
+                stroke.Color = Color3.fromRGB(255, 0, 0)
             end)
 
             button.MouseButton1Down:Connect(function()
                 button.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
-                stroke.Color = Color3.fromRGB(0, 0, 255)
+                stroke.Color = Color3.fromRGB(255, 0, 0)
             end)
 
             button.MouseButton1Up:Connect(function()
                 button.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
-                stroke.Color = Color3.fromRGB(0, 0, 255)
+                stroke.Color = Color3.fromRGB(255, 0, 0)
             end)
         end
     end
