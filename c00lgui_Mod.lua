@@ -3,7 +3,6 @@ local Converted = {
 	["_Starlight"] = Instance.new("ScreenGui");
 	["_Frame"] = Instance.new("Frame");
 	["_UICorner"] = Instance.new("UICorner");
-	["_UIStroke"] = Instance.new("UIStroke");
 	["_ImageLabel"] = Instance.new("ImageLabel");
 	["_stat"] = Instance.new("ImageLabel");
 	["_Frame1"] = Instance.new("Frame");
@@ -173,10 +172,20 @@ Converted["_Frame"].Parent = Converted["_Starlight"]
 Converted["_UICorner"].CornerRadius = UDim.new(0, 6)
 Converted["_UICorner"].Parent = Converted["_Frame"]
 
-Converted["_UIStroke"].ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-Converted["_UIStroke"].Color = Color3.fromRGB(255, 0, 0)
-Converted["_UIStroke"].Thickness = 2
-Converted["_UIStroke"].Parent = Converted["_Frame"]
+local gradient = Instance.new("UIGradient")
+gradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 0)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 255))
+}
+gradient.Parent = Converted["_Frame"]
+
+local runService = game:GetService("RunService")
+local t = 0
+
+runService.RenderStepped:Connect(function(dt)
+    t = t + dt * 0.2
+    gradient.Offset = Vector2.new(math.sin(t), 0)
+end)
 
 Converted["_Title"] = Instance.new("TextLabel")
 Converted["_Title"].BackgroundTransparency = 1
@@ -192,6 +201,22 @@ Converted["_Title"].Position = UDim2.new(0.03, 0, 0.05, 0)
 Converted["_Title"].TextXAlignment = Enum.TextXAlignment.Left
 Converted["_Title"].Parent = Converted["_Frame"]
 
+local gradient3 = Instance.new("UIGradient")
+gradient3.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 0)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 255))
+}
+gradient3.Parent = Converted["_Title"]
+
+local runService = game:GetService("RunService")
+local t = 0
+
+runService.RenderStepped:Connect(function(dt)
+    t = t + dt * 0.2
+    gradient3.Offset = Vector2.new(math.sin(t), 0)
+en
+	d)
+
 Converted["_Credit"] = Instance.new("TextLabel")
 Converted["_Credit"].BackgroundTransparency = 1
 Converted["_Credit"].BackgroundColor3 = Color3.fromRGB(255, 0, 0)
@@ -206,6 +231,20 @@ Converted["_Credit"].Position = UDim2.new(0.03, 0, 0.17, 0)
 Converted["_Credit"].TextXAlignment = Enum.TextXAlignment.Left
 Converted["_Credit"].Parent = Converted["_Frame"]
 
+local gradient2 = Instance.new("UIGradient")
+gradient2.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 0)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 255))
+}
+gradient2.Parent = Converted["_Credit"]
+
+local runService = game:GetService("RunService")
+local t = 0
+
+runService.RenderStepped:Connect(function(dt)
+    t = t + dt * 0.2
+    gradient2.Offset = Vector2.new(math.sin(t), 0)
+end)
 
 Converted["_ImageLabel"].Image = "rbxassetid://8408806737"
 Converted["_ImageLabel"].BackgroundColor3 = Color3.fromRGB(255, 255, 255)
