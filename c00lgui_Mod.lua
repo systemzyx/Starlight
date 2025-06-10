@@ -183,8 +183,8 @@ local runService = game:GetService("RunService")
 local t = 0
 
 runService.RenderStepped:Connect(function(dt)
-    t = t + dt * 1
-    gradient.Offset = Vector2.new(math.sin(t), 0)
+    t = t + dt * 1 -- adjust speed here
+    gradient.Offset = Vector2.new(t % 2 - 1, 0) -- loops smoothly left to right
 end)
 
 Converted["_Title"] = Instance.new("TextLabel")
@@ -212,9 +212,10 @@ local runService = game:GetService("RunService")
 local t = 0
 
 runService.RenderStepped:Connect(function(dt)
-    t = t + dt * 1
-    gradient3.Offset = Vector2.new(math.sin(t), 0)
+    t = t + dt * 1 -- adjust speed here
+    gradient3.Offset = Vector2.new(t % 2 - 1, 0) -- loops smoothly left to right
 end)
+
 
 Converted["_Credit"] = Instance.new("TextLabel")
 Converted["_Credit"].BackgroundTransparency = 1
@@ -241,8 +242,8 @@ local runService = game:GetService("RunService")
 local t = 0
 
 runService.RenderStepped:Connect(function(dt)
-    t = t + dt * 1
-    gradient2.Offset = Vector2.new(math.sin(t), 0)
+    t = t + dt * 1 -- adjust speed here
+    gradient2.Offset = Vector2.new(t % 2 - 1, 0) -- loops smoothly left to right
 end)
 
 Converted["_ImageLabel"].Image = "rbxassetid://8408806737"
