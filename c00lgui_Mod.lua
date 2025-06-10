@@ -1283,7 +1283,7 @@ Converted["_UICorner25"].CornerRadius = UDim.new(0, 6)
 Converted["_UICorner25"].Parent = Converted["_str"]
 for _,v in pairs(Converted) do
     if v:IsA("UIStroke") then
-        v.Color = Color3.fromRGB(255, 0, 0)
+        v.Color = Color3.fromRGB(0, 0, 255)
     end
 end
 task.wait(0.06) -- we need to wait first
@@ -1714,12 +1714,6 @@ local function highlight(code)
 		return protect('<font color="#ce9178">' .. escapeHTML(s) .. '</font>')
 	end)
 
-	code = code:gsub("(%d+%.?%d*)", function(num)
-		return '<font color="#b5cea8">' .. num .. '</font>'
-	end)
-        code = code:gsub("[%[%]]", function(b)
-		return '<font color="#ffaaaa">' .. b .. '</font>'
-	end)
 	code = code:gsub("%d+[%._]?[%d_eE]*", function(s)
 		return '<font color="#b5cea8">' .. s .. '</font>'
 	end)
