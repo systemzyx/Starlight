@@ -1730,7 +1730,7 @@ local function highlight(code)
 	end)
 
 	code = code:gsub("%d+[%._]?[%d_eE]*", function(s)
-		return '<font color="#ff1500">' .. s .. '</font>'
+		return '<font color="#ff3f00">' .. s .. '</font>'
 	end)
 	code = code:gsub("([%a_][%w_]*)", function(word)
 		local color = tokenColors[word]
