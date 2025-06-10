@@ -164,7 +164,7 @@ Converted["_Starlight"].Parent = game:GetService("CoreGui").RobloxGui
 Converted["_Frame"].BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 Converted["_Frame"].BackgroundTransparency = 0.5
 Converted["_Frame"].BorderColor3 = Color3.fromRGB(255, 0, 0)
-Converted["_Frame"].BorderSizePixel = 0
+Converted["_Frame"].BorderSizePixel = 2
 Converted["_Frame"].Position = UDim2.new(0.0619825348, 0, 0.0790882483, 0)
 Converted["_Frame"].Size = UDim2.new(0, 621, 0, 353)
 Converted["_Frame"].Parent = Converted["_Starlight"]
@@ -183,14 +183,14 @@ local runService = game:GetService("RunService")
 local t = 0
 
 runService.RenderStepped:Connect(function(dt)
-    t = t + dt * 0.2
+    t = t + dt * 1
     gradient.Offset = Vector2.new(math.sin(t), 0)
 end)
 
 Converted["_Title"] = Instance.new("TextLabel")
 Converted["_Title"].BackgroundTransparency = 1
 Converted["_Title"].BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-Converted["_Title"].TextColor3 = Color3.fromRGB(255, 0, 0)
+Converted["_Title"].TextColor3 = Color3.fromRGB(255, 255, 255)
 Converted["_Title"].Font = Enum.Font.RobotoMono
 Converted["_Title"].TextSize = 32
 Converted["_Title"].TextStrokeTransparency = 0
@@ -212,14 +212,14 @@ local runService = game:GetService("RunService")
 local t = 0
 
 runService.RenderStepped:Connect(function(dt)
-    t = t + dt * 0.2
+    t = t + dt * 1
     gradient3.Offset = Vector2.new(math.sin(t), 0)
 end)
 
 Converted["_Credit"] = Instance.new("TextLabel")
 Converted["_Credit"].BackgroundTransparency = 1
 Converted["_Credit"].BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-Converted["_Credit"].TextColor3 = Color3.fromRGB(255, 0, 0)
+Converted["_Credit"].TextColor3 = Color3.fromRGB(255, 255, 255)
 Converted["_Credit"].Font = Enum.Font.Kalam
 Converted["_Credit"].TextSize = 28
 Converted["_Credit"].TextStrokeTransparency = 0
@@ -241,7 +241,7 @@ local runService = game:GetService("RunService")
 local t = 0
 
 runService.RenderStepped:Connect(function(dt)
-    t = t + dt * 0.2
+    t = t + dt * 1
     gradient2.Offset = Vector2.new(math.sin(t), 0)
 end)
 
