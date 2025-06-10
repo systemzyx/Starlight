@@ -175,6 +175,7 @@ Converted["_UICorner"].Parent = Converted["_Frame"]
 
 local us = Instance.new("UIStroke")
 us.Color = Color3.fromRGB(255,255,255)
+us.Thickness = 2
 us.Parent = Converted["_Frame"]
 
 local gradient = Instance.new("UIGradient")
@@ -188,7 +189,7 @@ local runService = game:GetService("RunService")
 local t = 0
 
 game:GetService("RunService").RenderStepped:Connect(function(dt)
-	t += dt * 1
+	t += dt * 0.1
 	local offset = t % 1 -- keeps it between 0 and 1
 	gradient.Offset = Vector2.new(-offset, 0) -- scrolls leftward smoothly
 end)
@@ -218,7 +219,7 @@ local runService = game:GetService("RunService")
 local t = 0
 
 game:GetService("RunService").RenderStepped:Connect(function(dt)
-	t += dt * 1
+	t += dt * 0.1
 	local offset = t % 1 -- keeps it between 0 and 1
 	gradient3.Offset = Vector2.new(-offset, 0) -- scrolls leftward smoothly
 end)
@@ -248,7 +249,7 @@ local runService = game:GetService("RunService")
 local t = 0
 
 game:GetService("RunService").RenderStepped:Connect(function(dt)
-	t += dt * 1
+	t += dt * 0.1
 	local offset = t % 1 -- keeps it between 0 and 1
 	gradient2.Offset = Vector2.new(-offset, 0) -- scrolls leftward smoothly
 end)
