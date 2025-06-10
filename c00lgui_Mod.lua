@@ -1,3 +1,4 @@
+-- c00lkidd X Bluudud
 local notify = loadstring(game:HttpGet("https://raw.githubusercontent.com/SxripterRar/Starlight/refs/heads/main/notification.lua", true))()
 local Converted = {
 	["_Starlight"] = Instance.new("ScreenGui");
