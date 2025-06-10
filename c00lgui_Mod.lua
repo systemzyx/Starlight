@@ -1722,7 +1722,7 @@ local function highlight(code)
 	end)
 
 	code = code:gsub("(['\"])(.-)%1", function(quote, content)
-                return '<font color="#ce9178">' .. quote .. escapeHTML(content) .. quote .. '</font>'
+                return protect('<font color="#ce9178">' .. quote .. escapeHTML(content) .. quote .. '</font>')
         end)
 
 	code = code:gsub("%d+[%._]?[%d_eE]*", function(s)
