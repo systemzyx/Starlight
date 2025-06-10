@@ -214,8 +214,7 @@ local t = 0
 runService.RenderStepped:Connect(function(dt)
     t = t + dt * 0.2
     gradient3.Offset = Vector2.new(math.sin(t), 0)
-en
-	d)
+end)
 
 Converted["_Credit"] = Instance.new("TextLabel")
 Converted["_Credit"].BackgroundTransparency = 1
