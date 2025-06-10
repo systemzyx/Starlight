@@ -1298,7 +1298,13 @@ Converted["_UICorner25"].CornerRadius = UDim.new(0, 6)
 Converted["_UICorner25"].Parent = Converted["_str"]
 for _,v in pairs(Converted) do
     if v:IsA("UIStroke") then
-        v.Color = Color3.fromRGB(255, 0, 0)
+        v.Color = Color3.fromRGB(255, 255, 255)
+	local gradientui = Instance.new("UIGradient")
+       gradientui.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 0)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 255))
+     }
+     gradientui.Parent = v
     end
 end
 task.wait(0.06) -- we need to wait first
@@ -2866,22 +2872,22 @@ local function setupButton(button)
         if stroke then
             button.MouseEnter:Connect(function()
                 button.BackgroundColor3 = Color3.fromRGB(22, 22, 22)
-                stroke.Color = Color3.fromRGB(255, 0, 0)
+                stroke.Color = Color3.fromRGB(255, 255, 255)
             end)
 
             button.MouseLeave:Connect(function()
                 button.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
-                stroke.Color = Color3.fromRGB(255, 0, 0)
+                stroke.Color = Color3.fromRGB(255, 255, 255)
             end)
 
             button.MouseButton1Down:Connect(function()
                 button.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
-                stroke.Color = Color3.fromRGB(255, 0, 0)
+                stroke.Color = Color3.fromRGB(255, 255, 255)
             end)
 
             button.MouseButton1Up:Connect(function()
                 button.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
-                stroke.Color = Color3.fromRGB(255, 0, 0)
+                stroke.Color = Color3.fromRGB(255, 255, 255)
             end)
         end
     end
