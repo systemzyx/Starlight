@@ -346,7 +346,7 @@ Converted["_UICorner2"].CornerRadius = UDim.new(0, 6)
 Converted["_UICorner2"].Parent = Converted["_Clear"]
 
 Converted["_UIStroke2"].ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-Converted["_UIStroke2"].Color = Color3.fromRGB(255, 0, 0)
+Converted["_UIStroke2"].Color = Color3.fromRGB(255, 255, 255)
 Converted["_UIStroke2"].Thickness = 1.5
 Converted["_UIStroke2"].Parent = Converted["_Clear"]
 
@@ -393,7 +393,7 @@ Converted["_UICorner3"].CornerRadius = UDim.new(0, 6)
 Converted["_UICorner3"].Parent = Converted["_Execute"]
 
 Converted["_UIStroke3"].ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-Converted["_UIStroke3"].Color = Color3.fromRGB(255, 0, 0)
+Converted["_UIStroke3"].Color = Color3.fromRGB(255, 255, 255)
 Converted["_UIStroke3"].Thickness = 1.5
 Converted["_UIStroke3"].Parent = Converted["_Execute"]
 
@@ -442,7 +442,7 @@ Converted["_UICorner4"].CornerRadius = UDim.new(0, 6)
 Converted["_UICorner4"].Parent = Converted["_scan"]
 
 Converted["_UIStroke4"].ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-Converted["_UIStroke4"].Color = Color3.fromRGB(57.00000040233135, 57.00000040233135, 57.00000040233135)
+Converted["_UIStroke4"].Color = Color3.fromRGB(255,255,255)
 Converted["_UIStroke4"].Thickness = 1.5
 Converted["_UIStroke4"].Parent = Converted["_scan"]
 
@@ -524,7 +524,7 @@ Converted["_UICorner5"].CornerRadius = UDim.new(0, 6)
 Converted["_UICorner5"].Parent = Converted["_rsix"]
 
 Converted["_UIStroke5"].ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-Converted["_UIStroke5"].Color = Color3.fromRGB(57.00000040233135, 57.00000040233135, 57.00000040233135)
+Converted["_UIStroke5"].Color = Color3.fromRGB(255,255,255)
 Converted["_UIStroke5"].Thickness = 1.5
 Converted["_UIStroke5"].Parent = Converted["_rsix"]
 
@@ -573,7 +573,7 @@ Converted["_UICorner6"].CornerRadius = UDim.new(0, 6)
 Converted["_UICorner6"].Parent = Converted["_dc"]
 
 Converted["_UIStroke6"].ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-Converted["_UIStroke6"].Color = Color3.fromRGB(57.00000040233135, 57.00000040233135, 57.00000040233135)
+Converted["_UIStroke6"].Color = Color3.fromRGB(255,255,255)
 Converted["_UIStroke6"].Thickness = 1.5
 Converted["_UIStroke6"].Parent = Converted["_dc"]
 
