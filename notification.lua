@@ -18,7 +18,7 @@ local CONFIG = {
 	BackgroundColor = Color3.fromRGB(45, 45, 45),
 	BackgroundTransparency = 0.1,
 	StrokeColor = Color3.fromRGB(255, 255, 255),
-	StrokeThickness = 2,
+	StrokeThickness = 4,
 	TextColor = Color3.fromRGB(255, 0, 0),
 
 	TitleFont = Enum.Font.RobotoMono,
