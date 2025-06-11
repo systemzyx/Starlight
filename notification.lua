@@ -8,20 +8,20 @@ local Players = game.Players
 
 -- Configuration (Internal to the library, but could be exposed/modified if needed)
 local CONFIG = {
-	NotificationWidth = 350,
-	NotificationHeight = 70,  -- Base height, might grow with content
+	NotificationWidth = 360,
+	NotificationHeight = 80,  -- Base height, might grow with content
 	Padding = 10,             -- Space between notifications
 	InternalPadding = 10,     -- Padding inside the notification frame
-	IconSize = 25,
-	DisplayTime = 5,          -- How long notifications stay visible
+	IconSize = 30,
+	DisplayTime = 4,          -- How long notifications stay visible
 
 	BackgroundColor = Color3.fromRGB(45, 45, 45),
 	BackgroundTransparency = 0.1,
-	StrokeColor = Color3.fromRGB(255, 0, 0),
+	StrokeColor = Color3.fromRGB(255, 255, 255),
 	StrokeThickness = 2,
 	TextColor = Color3.fromRGB(255, 0, 0),
 
-	TitleFont = Enum.Font.Cartoon,
+	TitleFont = Enum.Font.RobotoMono,
 	TitleSize = 18,
 	ContentFont = Enum.Font.Cartoon,
 	ContentSize = 15,
@@ -129,6 +129,24 @@ local function createNotification(contentText, titleText, notifType)
 	uiStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 	uiStroke.Parent = frame
 
+local gradient = Instance.new("UIGradient")
+gradient.Color = ColorSequence.new{
+    ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 0)),
+    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 255))
+}
+gradient.Parent = uiStroke
+
+local rs = game:GetService("RunService")
+local t = 0
+rs.RenderStepped:Connect(function(dt)
+    t += dt
+    local function hsv(i) return Color3.fromHSV((t + i) % 1, 1, 1) end
+    gradient.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, hsv(0)),
+        ColorSequenceKeypoint.new(1, hsv(0.2))
+    }
+end)
+	
 	local uiPadding = Instance.new("UIPadding")
 	uiPadding.PaddingTop = UDim.new(0, CONFIG.InternalPadding)
 	uiPadding.PaddingBottom = UDim.new(0, CONFIG.InternalPadding)
@@ -171,7 +189,7 @@ local function createNotification(contentText, titleText, notifType)
 	-- Title
 	local title = Instance.new("TextLabel")
 	title.Name = "Title"
-	title.Text = titleText or "Notification"
+	title.Text = titleText or "Message"
 	title.Font = CONFIG.TitleFont
 	title.TextSize = CONFIG.TitleSize
 	title.TextColor3 = CONFIG.TextColor
