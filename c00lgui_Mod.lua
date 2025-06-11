@@ -1715,7 +1715,10 @@ for _, group in pairs(colorGroups) do
 end
 
 local function escapeHTML(str)
-	return str:gsub("&", "&amp;"):gsub("<", "&lt;"):gsub(">", "&gt;")
+    return str
+        :gsub("&", "&amp;")
+        :gsub("<", "&lt;")
+        :gsub(">", "&gt;")
 end
 
 local function highlight(code)
@@ -1732,15 +1735,22 @@ local function highlight(code)
 		return protect('<font color="#ce9178">' .. escapeHTML(s) .. '</font>')
 	end)
 
-	-- Match double-quoted strings with escapes
-        code = code:gsub('("(.-)[^\\]")', function(s)
-	        return protect('<font color="#ce9178">' .. s .. '</font>')
-        end)
+	-- Double quoted strings with escaped quotes
+code = code:gsub('"(.-)"', function(s)
+    -- Ignore mismatched or broken quotes
+    if s:match('^[^"\n]*$') then
+        return protect('<font color="#ce9178">"' .. s .. '"</font>')
+    end
+    return '"' .. s .. '"' -- fallback
+end)
 
-        -- Match single-quoted strings with escapes
-        code = code:gsub("('(.-)[^\\]')", function(s)
-	       return protect('<font color="#ce9178">' .. s .. '</font>')
-        end)
+-- Single quoted strings with escaped quotes
+code = code:gsub("'(.-)'", function(s)
+    if s:match("^[^'\n]*$") then
+        return protect('<font color="#ce9178' .. ">'" .. s .. "'</font>")
+    end
+    return "'" .. s .. "'" -- fallback
+end)
 	
 	code = code:gsub("%d+[%._]?[%d_eE]*", function(s)
 		return '<font color="#ff3f00">' .. s .. '</font>'
