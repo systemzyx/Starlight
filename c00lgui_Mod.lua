@@ -1735,7 +1735,13 @@ local function highlight(code)
 	code = code:gsub('"(.-)"', function(s)
 	        return protect('<font color="#a8ff60">' .. escapeHTML('"' .. s .. '"') .. '</font>')
         end)
-
+	code = code:gsub('"(.-)"', function(s) 
+		return protect('<font color="#a8ff60">' .. escapeHTML('"' .. s .. '"') .. '</font>') 
+	end)
+        code = code:gsub('([()])', function(s) 
+		return protect('<font color="#ffe066">' .. escapeHTML(s) .. '</font>') 
+	end)
+	
 	code = code:gsub("%d+[%._]?[%d_eE]*", function(s)
 		return '<font color="#ff3f00">' .. s .. '</font>'
 	end)
