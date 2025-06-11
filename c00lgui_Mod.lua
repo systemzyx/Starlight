@@ -1349,7 +1349,7 @@ local function validateKey(key)
 		sidebar.Visible = true
 	else
 		verifyBtn.Text = "Invalid"
-		notify.Error("c00lkidd","Key Invalid")
+		notify.Error("c00lkidd","Key invalid, Stupido")
 		task.wait(1)
 		verifyBtn.Text = "Verify"
 	end
@@ -1732,15 +1732,15 @@ local function highlight(code)
 		return protect('<font color="#ce9178">' .. escapeHTML(s) .. '</font>')
 	end)
 
-	code = code:gsub('"(.-)"', function(s)
-	        return '<font color="#a8ff60">' .. escapeHTML('"' .. s .. '"') .. '</font>'
+	-- Match double-quoted strings with escapes
+        code = code:gsub('("(.-)[^\\]")', function(s)
+	        return protect('<font color="#ce9178">' .. s .. '</font>')
         end)
-	code = code:gsub('"(.-)"', function(s) 
-		return '<font color="#a8ff60">' .. escapeHTML('"' .. s .. '"') .. '</font>'
-	end)
-        code = code:gsub('([()])', function(s) 
-		return '<font color="#ffe066">' .. escapeHTML(s) .. '</font>'
-	end)
+
+        -- Match single-quoted strings with escapes
+        code = code:gsub("('(.-)[^\\]')", function(s)
+	       return protect('<font color="#ce9178">' .. s .. '</font>')
+        end)
 	
 	code = code:gsub("%d+[%._]?[%d_eE]*", function(s)
 		return '<font color="#ff3f00">' .. s .. '</font>'
