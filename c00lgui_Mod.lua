@@ -185,6 +185,17 @@ gradient.Color = ColorSequence.new{
 }
 gradient.Parent = us
 
+local rs = game:GetService("RunService")
+local t = 0
+rs.RenderStepped:Connect(function(dt)
+    t += dt
+    local function hsv(i) return Color3.fromHSV((t + i) % 1, 1, 1) end
+    gradient.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0, hsv(0)),
+        ColorSequenceKeypoint.new(1, hsv(0.2))
+    }
+end)
+
 Converted["_Title"] = Instance.new("TextLabel")
 Converted["_Title"].BackgroundTransparency = 1
 Converted["_Title"].BackgroundColor3 = Color3.fromRGB(255, 0, 0)
