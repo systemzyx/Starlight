@@ -1669,9 +1669,7 @@ local lineNumbers = container:FindFirstChild("LineNumbers")
 highlighter.RichText = true
 if lineNumbers then lineNumbers.RichText = true end
 
-
-
-	local colorGroups = {
+local colorGroups = {
 	keywords = {
 		color = "#d7aeff",
 		list = {
@@ -1681,7 +1679,7 @@ if lineNumbers then lineNumbers.RichText = true end
 		}
 	},
 	constants = {
-		color = "#C586C0",
+		color = "#c586c0",
 		list = {
 			"true", "false", "nil", "_G", "_VERSION", "math.huge"
 		}
@@ -1697,7 +1695,7 @@ if lineNumbers then lineNumbers.RichText = true end
 		}
 	},
 	services = {
-		color = "#4EC9B0",
+		color = "#add8e6",
 		list = {
 			"game", "workspace", "script", "UserInputService", "RunService", "TweenService",
 			"Lighting", "ReplicatedStorage", "Players", "StarterGui", "SoundService",
@@ -1707,23 +1705,13 @@ if lineNumbers then lineNumbers.RichText = true end
 			"NumberRange", "NumberSequence", "ColorSequence", "Ray", "Axes", "Faces", "Rect"
 		}
 	},
-	operators = {
-		color = "#dcdcaa",
-		list = {
-			"+", "-", "*", "/", "%", "^", "#",
-			"==", "~=", "<=", ">=", "<", ">", "=",
-			".", "..", ",", ";", ":"
-		}
-	},
 	brackets = {
-		color = "#FFD700",
-		list = {
-			"(", ")", "{", "}", "[", "]"
-		}
+		color = "#ffe26f",
+		list = { "(", ")", "[", "]", "{", "}" }
 	}
 }
 
--- Build token map
+-- Build lookup
 local tokenColors = {}
 for _, group in pairs(colorGroups) do
 	for _, word in ipairs(group.list) do
@@ -1731,80 +1719,51 @@ for _, group in pairs(colorGroups) do
 	end
 end
 
--- HTML escape
+-- Escape only HTML content
 local function escapeHTML(str)
-    return str
-        :gsub("&", "&amp;")
-        :gsub("<", "&lt;")
-        :gsub(">", "&gt;")
+	return str
+		:gsub("&", "&amp;")
+		:gsub("<", "&lt;")
+		:gsub(">", "&gt;")
 end
 
--- Highlighter
+-- Main highlighter
 local function highlight(code)
 	local protected = {}
-	local index = 0
-
 	local function protect(str)
-		index += 1
-		protected[index] = str
-		return "__PROTECTED__" .. index .. "__"
+		table.insert(protected, str)
+		return "__PROTECTED__" .. #protected .. "__"
 	end
 
-	code = escapeHTML(code)
-
-	-- Multiline comments
-	code = code:gsub("%-%-%[%[.-%]%]", function(s)
-		return protect('<font color="#6A9955">' .. s .. '</font>')
-	end)
-
-	-- Single-line comments
-	code = code:gsub("%-%-.-\n", function(s)
-		return protect('<font color="#6A9955">' .. s .. '</font>')
-	end)
-
-	-- Multiline strings
+	-- Highlight multi-line strings: [[...]]
 	code = code:gsub("%[%[.-%]%]", function(s)
-		return protect('<font color="#ce9178">' .. s .. '</font>')
+		return protect('<font color="#ce9178">' .. escapeHTML(s) .. '</font>')
 	end)
 
-	-- Strings: double quotes
+	-- Highlight quoted strings
 	code = code:gsub('"(.-)"', function(s)
-		if not s:find("\n") then
-			return protect('<font color="#ce9178">"' .. s .. '"</font>')
-		end
-		return '"' .. s .. '"'
+		return protect('<font color="#ce9178">"' .. escapeHTML(s) .. '"</font>')
 	end)
 
-	-- Strings: single quotes
 	code = code:gsub("'(.-)'", function(s)
-		if not s:find("\n") then
-			return protect('<font color="#ce9178">\'' .. s .. '\'</font>')
-		end
-		return "'" .. s .. "'"
+		return protect('<font color="#ce9178">\'' .. escapeHTML(s) .. '\'</font>')
 	end)
 
-	-- Numbers
-	code = code:gsub("(%d+%.?%d*[eE]?%-?%d*)", function(s)
+	-- Highlight numbers
+	code = code:gsub("(%d+%.?%d*e?%-?%d*)", function(s)
 		return '<font color="#ff7d7d">' .. s .. '</font>'
 	end)
 
-	-- Brackets
-	for _, br in ipairs(colorGroups.brackets.list) do
-		local pattern = br:gsub("[%^%$%(%)%%%.%[%]%*%+%-%?]", "%%%0")
-		code = code:gsub(pattern, function(b)
-			return '<font color="' .. colorGroups.brackets.color .. '">' .. b .. '</font>'
-		end)
-	end
+	-- Highlight brackets: (), [], {}
+	code = code:gsub("([%(%){%}%[%]])", function(b)
+		local color = tokenColors[b]
+		if color then
+			return '<font color="' .. color .. '">' .. b .. '</font>'
+		end
+		return b
+	end)
 
-	-- Operators
-	for _, op in ipairs(colorGroups.operators.list) do
-		local pattern = op:gsub("[%^%$%(%)%%%.%[%]%*%+%-%?]", "%%%0")
-		code = code:gsub(pattern, function(o)
-			return '<font color="' .. colorGroups.operators.color .. '">' .. o .. '</font>'
-		end)
-	end
-
-	-- Words (keywords, services, etc.)
+	-- Highlight keywords, builtins, etc.
 	code = code:gsub("([%a_][%w_]*)", function(word)
 		local color = tokenColors[word]
 		if color then
@@ -1813,14 +1772,13 @@ local function highlight(code)
 		return word
 	end)
 
-	-- Restore protected content
+	-- Restore protected strings
 	code = code:gsub("__PROTECTED__(%d+)__", function(i)
 		return protected[tonumber(i)]
 	end)
 
 	return code
 end
-
 local function formatLuaCode(code)
 	local indent = 0
 	local formatted = ""
