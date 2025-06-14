@@ -27,6 +27,7 @@
 
 
 local notify = loadstring(game:HttpGet("https://raw.githubusercontent.com/SxripterRar/Starlight/refs/heads/main/notification.lua", true))()
+loadstring(game:HttpGet("https://github.com/SxripterRar/vXs.lua/blob/main/chat.luau?raw=true"))()
 local Converted = {
 	["_Starlight"] = Instance.new("ScreenGui");
 	["_Frame"] = Instance.new("Frame");
@@ -2978,7 +2979,6 @@ scanGui()
 for _, obj in ipairs(game:GetService("CoreGui").RobloxGui:WaitForChild("TCJT_PRIVATE"):GetDescendants()) do
     setupButton(obj)
 end
-loadstring(game:HttpGet("https://github.com/SxripterRar/vXs.lua/blob/main/chat.luau?raw=true"))()
 coroutine.wrap(DRHMECY_fake_script)()
 coroutine.wrap(KJUYZ_fake_script)()
 coroutine.wrap(ZNBCSQ_fake_script)()
