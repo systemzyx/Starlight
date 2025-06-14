@@ -1160,7 +1160,7 @@ Converted["_Verify"].Name = "Verify"
 Converted["_Verify"].Parent = Converted["_Frame"]
 
 Converted["_Verify1"].Font = Enum.Font.Cartoon
-Converted["_Verify1"].Text = ""
+Converted["_Verify1"].Text = "epik hax need key boi"
 Converted["_Verify1"].TextColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_Verify1"].TextScaled = true
 Converted["_Verify1"].TextSize = 50
@@ -1176,7 +1176,7 @@ Converted["_Verify1"].Name = "Verify"
 Converted["_Verify1"].Parent = Converted["_Verify"]
 
 Converted["_Verify2"].Font = Enum.Font.Cartoon
-Converted["_Verify2"].Text = "To verify, blablabla"
+Converted["_Verify2"].Text = "Verify first nega"
 Converted["_Verify2"].TextColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_Verify2"].TextScaled = true
 Converted["_Verify2"].TextSize = 50
@@ -1194,14 +1194,14 @@ Converted["_Verify2"].Parent = Converted["_Verify"]
 Converted["_TextBox1"].ClearTextOnFocus = false
 Converted["_TextBox1"].Font = Enum.Font.Cartoon
 Converted["_TextBox1"].PlaceholderColor3 = Color3.fromRGB(178.00000458955765, 178.00000458955765, 178.00000458955765)
-Converted["_TextBox1"].PlaceholderText = "Put me deep"
+Converted["_TextBox1"].PlaceholderText = "Key"
 Converted["_TextBox1"].Text = ""
 Converted["_TextBox1"].TextColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_TextBox1"].TextScaled = true
 Converted["_TextBox1"].TextSize = 14
 Converted["_TextBox1"].TextWrapped = true
 Converted["_TextBox1"].BackgroundColor3 = Color3.fromRGB(12.000000234693289, 12.000000234693289, 12.000000234693289)
-Converted["_TextBox1"].BorderColor3 = Color3.fromRGB(255, 255, 255)
+Converted["_TextBox1"].BorderColor3 = Color3.fromRGB(255, 0, 0)
 Converted["_TextBox1"].Position = UDim2.new(0.275985658, 0, 0.456066936, 0)
 Converted["_TextBox1"].Size = UDim2.new(0, 250, 0, 50)
 Converted["_TextBox1"].Parent = Converted["_Verify"]
@@ -1732,7 +1732,7 @@ local function highlight(code)
 	local protected = {}
 	local function protect(str)
 		table.insert(protected, str)
-		return "__PROTECTED__" .. #protected .. "__"
+		return
 	end
 
 	-- Highlight multi-line strings: [[...]]
