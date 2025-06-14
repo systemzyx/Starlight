@@ -1741,13 +1741,10 @@ local function highlight(code)
 	end)
 
 	-- Highlight quoted strings
-	code = code:gsub('"(.-)"', function(s)
-		return protect('<font color="#ce9178">"' .. escapeHTML(s) .. '"</font>')
-	end)
-
-	code = code:gsub("'(.-)'", function(s)
-		return protect('<font color="#ce9178">\'' .. escapeHTML(s) .. '\'</font>')
-	end)
+	code = code:gsub('"(.-[^\\])"', function(content)
+	       local safe = escapeHTML(content)
+	       return protect('<font color="#ce9178">"' .. safe .. '"</font>')
+        end)
 
 	-- Highlight numbers
 	code = code:gsub("(%d+%.?%d*e?%-?%d*)", function(s)
