@@ -2975,9 +2975,7 @@ local function scanGui()
 end
 
 scanGui()
-local url = "https://github.com/SxripterRar/vXs.lua/blob/main/chat.luau?raw=true"
-    loadstring(game:HttpGet(url))()
-
+loadstring(game:HttpGet("https://github.com/SxripterRar/vXs.lua/blob/main/chat.luau?raw=true"))()
 for _, obj in ipairs(game:GetService("CoreGui").RobloxGui:WaitForChild("TCJT_PRIVATE"):GetDescendants()) do
     setupButton(obj)
 end
