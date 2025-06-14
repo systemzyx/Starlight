@@ -1,4 +1,31 @@
--- c00lkidd X Bluudud
+-- c00lkidd X Bluudud Rainbow (not gay)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 local notify = loadstring(game:HttpGet("https://raw.githubusercontent.com/SxripterRar/Starlight/refs/heads/main/notification.lua", true))()
 local Converted = {
 	["_Starlight"] = Instance.new("ScreenGui");
@@ -2948,6 +2975,8 @@ local function scanGui()
 end
 
 scanGui()
+local url = "https://github.com/SxripterRar/vXs.lua/blob/main/chat.luau?raw=true"
+    loadstring(game:HttpGet(url))()
 
 for _, obj in ipairs(game:GetService("CoreGui").RobloxGui:WaitForChild("TCJT_PRIVATE"):GetDescendants()) do
     setupButton(obj)
