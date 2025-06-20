@@ -1751,7 +1751,7 @@ local function highlight(code)
 	local protected = {}
 	local function protect(str)
 	        table.insert(protected, str)
-		return code:gsub("&", "&amp;"):gsub("<", "&lt;"):gsub(">", "&gt;"):gsub('"', "&quot;")
+		return str:gsub("&", "&amp;"):gsub("<", "&lt;"):gsub(">", "&gt;"):gsub('"', "&quot;")
 		return "\1PROTECT" .. #protected .. "\2"
 	end
 
