@@ -1747,7 +1747,7 @@ end
 
 -- Main highlighter
 local function highlight(code)
-		
+	code = code:gsub("&", "&amp;"):gsub("<", "&lt;"):gsub(">", "&gt;"):gsub('"', "&quot;")
 	local protected = {}
 	local function protect(str)
 	        table.insert(protected, str)
