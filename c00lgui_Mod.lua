@@ -1746,16 +1746,12 @@ for _, group in pairs(colorGroups) do
 	end
 end
 
--- Escape only HTML content
-local function escapeHTML(str)
-	return str
-		:gsub("&", "&amp;")
-		:gsub("<", "&lt;")
-		:gsub(">", "&gt;")
-end
 
 -- Main highlighter
 local function highlight(code)
+
+	code = code:gsub("&", "&amp;"):gsub("<", "&lt;"):gsub(">", "&gt;")
+	
 	local protected = {}
 	local function protect(str)
 	        table.insert(protected, str)
@@ -1764,7 +1760,7 @@ local function highlight(code)
 
 	-- Highlight multi-line strings: [[...]]
 	code = code:gsub("%[%[.-%]%]", function(s)
-		return protect('<font color="#ce9178">' .. escapeHTML(s) .. '</font>')
+		return protect('<font color="#ce9178">' .. s .. '</font>')
 	end)
 
 	-- Strings (single and double quoted)
