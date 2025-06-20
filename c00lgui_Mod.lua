@@ -1734,7 +1734,7 @@ local colorGroups = {
 	},
 	brackets = {
 		color = "#ffe26f",
-		list = { "(", ")", "[", "]", "{", "}", ":", ".", "=" }
+		list = { "(", ")", "[", "]", "{", "}"}
 	}
 }
 
@@ -1758,8 +1758,8 @@ end
 local function highlight(code)
 	local protected = {}
 	local function protect(str)
-		table.insert(protected, str)
-		return
+	        table.insert(protected, str)
+		return "\1PROTECT" .. #protected .. "\2"
 	end
 
 	-- Highlight multi-line strings: [[...]]
@@ -1767,14 +1767,9 @@ local function highlight(code)
 		return protect('<font color="#ce9178">' .. escapeHTML(s) .. '</font>')
 	end)
 
-	-- Highlight quoted strings
-	code = code:gsub('"(.-)"', function(s)
-		return protect('<font color="#ce9178">"' .. escapeHTML(s) .. '"</font>')
-	end)
-
-	code = code:gsub("'(.-)'", function(s)
-		return protect('<font color="#ce9178">\'' .. escapeHTML(s) .. '\'</font>')
-	end)
+	-- Strings (single and double quoted)
+	code = code:gsub('(".-")', function(s) return protect('<font color="#ce9178">'..s..'</font>') end)
+	code = code:gsub("('.-')", function(s) return protect('<font color="#ce9178">'..s..'</font>') end)
 
 	-- Highlight numbers
 	code = code:gsub("(%d+%.?%d*e?%-?%d*)", function(s)
@@ -1800,7 +1795,7 @@ local function highlight(code)
 	end)
 
 	-- Restore protected strings
-	code = code:gsub("__PROTECTED__(%d+)__", function(i)
+	code = code:gsub("\1PROTECT(%d+)\2", function(i)
 		return protected[tonumber(i)]
 	end)
 
