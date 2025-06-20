@@ -1748,10 +1748,11 @@ end
 -- Main highlighter
 local function highlight(code)
 
+	return code:gsub("&", "&amp;"):gsub("<", "&lt;"):gsub(">", "&gt;"):gsub('"', "&quot;")
+		
 	local protected = {}
 	local function protect(str)
 	        table.insert(protected, str)
-		return str:gsub("&", "&amp;"):gsub("<", "&lt;"):gsub(">", "&gt;"):gsub('"', "&quot;")
 		return "\1PROTECT" .. #protected .. "\2"
 	end
 
