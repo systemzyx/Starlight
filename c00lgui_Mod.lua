@@ -595,7 +595,7 @@ Converted["_Frame2"].Size = UDim2.new(0, 537, 0, 1375)
 Converted["_Frame2"].Parent = Converted["_ScrollingFrame"]
 
 Converted["_TextBox"].ClearTextOnFocus = false
-Converted["_TextBox"].Font = Enum.Font.Ubuntu
+Converted["_TextBox"].Font = Enum.Font.SourceSans
 Converted["_TextBox"].MultiLine = true
 Converted["_TextBox"].PlaceholderColor3 = Color3.fromRGB(12.000000234693289, 12.000000234693289, 12.000000234693289)
 Converted["_TextBox"].RichText = true
@@ -625,7 +625,7 @@ gradient7.Color = ColorSequence.new{
 }
 gradient7.Parent = Converted["_UIStroke7"]
 
-Converted["_TextLabel"].Font = Enum.Font.Ubuntu
+Converted["_TextLabel"].Font = Enum.Font.Code
 Converted["_TextLabel"].RichText = true
 Converted["_TextLabel"].Text = ""
 Converted["_TextLabel"].TextColor3 = Color3.fromRGB(220, 220, 220)
@@ -1691,10 +1691,8 @@ local function AIXWS_fake_script() -- Fake Script: StarterGui.Starlight.Frame.Fr
 	local container = script.Parent
 local codeBox = container:WaitForChild("TextBox")
 local highlighter = container:WaitForChild("TextLabel")
-local lineNumbers = container:FindFirstChild("LineNumbers")
 
 highlighter.RichText = true
-if lineNumbers then lineNumbers.RichText = true end
 
 local colorGroups = {
 	keywords = {
@@ -1764,8 +1762,8 @@ local function highlight(code)
 	end)
 
 	-- Strings (single and double quoted)
-	code = code:gsub('(".-")', function(s) return protect('<font color="#ce9178">'.. s ..'</font>') end)
-	code = code:gsub("('.-')", function(s) return protect('<font color="#ce9178">'.. s ..'</font>') end)
+	code = code:gsub('(".-")', function(s) return protect('<font color="#ce9178">'..s..'</font>') end)
+	code = code:gsub("('.-')", function(s) return protect('<font color="#ce9178">'..s..'</font>') end)
 
 	-- Highlight numbers
 	code = code:gsub("(%d+%.?%d*e?%-?%d*)", function(s)
