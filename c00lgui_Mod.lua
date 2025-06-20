@@ -1748,11 +1748,10 @@ end
 -- Main highlighter
 local function highlight(code)
 
-	code = code:gsub("&", "&amp;"):gsub("<", "&lt;"):gsub(">", "&gt;")
-	
 	local protected = {}
 	local function protect(str)
 	        table.insert(protected, str)
+		return code:gsub("&", "&amp;"):gsub("<", "&lt;"):gsub(">", "&gt;"):gsub('"', "&quot;")
 		return "\1PROTECT" .. #protected .. "\2"
 	end
 
@@ -1762,8 +1761,15 @@ local function highlight(code)
 	end)
 
 	-- Strings (single and double quoted)
-	code = code:gsub('(".-")', function(s) return protect('<font color="#ce9178">'..s..'</font>') end)
-	code = code:gsub("('.-')", function(s) return protect('<font color="#ce9178">'..s..'</font>') end)
+	-- Match double-quoted strings with escaped quotes
+        code = code:gsub('"(.-[^\\])?"', function(s)
+	       return protect('<font color="#ce9178">'..s..'</font>')
+        end)
+
+       -- Match single-quoted strings with escaped quotes
+        code = code:gsub("'(.-[^\\])?'", function(s)
+	       return protect('<font color="#ce9178">'..s..'</font>')
+        end)
 
 	-- Highlight numbers
 	code = code:gsub("(%d+%.?%d*e?%-?%d*)", function(s)
