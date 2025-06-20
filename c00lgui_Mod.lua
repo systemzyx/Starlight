@@ -1747,8 +1747,6 @@ end
 
 -- Main highlighter
 local function highlight(code)
-
-	return code:gsub("&", "&amp;"):gsub("<", "&lt;"):gsub(">", "&gt;"):gsub('"', "&quot;")
 		
 	local protected = {}
 	local function protect(str)
