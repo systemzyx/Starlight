@@ -595,7 +595,7 @@ Converted["_Frame2"].Size = UDim2.new(0, 537, 0, 1375)
 Converted["_Frame2"].Parent = Converted["_ScrollingFrame"]
 
 Converted["_TextBox"].ClearTextOnFocus = false
-Converted["_TextBox"].Font = Enum.Font.Cartoon
+Converted["_TextBox"].Font = Enum.Font.Ubuntu
 Converted["_TextBox"].MultiLine = true
 Converted["_TextBox"].PlaceholderColor3 = Color3.fromRGB(12.000000234693289, 12.000000234693289, 12.000000234693289)
 Converted["_TextBox"].RichText = true
@@ -625,7 +625,7 @@ gradient7.Color = ColorSequence.new{
 }
 gradient7.Parent = Converted["_UIStroke7"]
 
-Converted["_TextLabel"].Font = Enum.Font.Cartoon
+Converted["_TextLabel"].Font = Enum.Font.Ubuntu
 Converted["_TextLabel"].RichText = true
 Converted["_TextLabel"].Text = ""
 Converted["_TextLabel"].TextColor3 = Color3.fromRGB(220, 220, 220)
@@ -1764,8 +1764,8 @@ local function highlight(code)
 	end)
 
 	-- Strings (single and double quoted)
-	code = code:gsub('(".-")', function(s) return protect('<font color="#ce9178">'..s..'</font>') end)
-	code = code:gsub("('.-')", function(s) return protect('<font color="#ce9178">'..s..'</font>') end)
+	code = code:gsub('(".-")', function(s) return protect('<font color="#ce9178">'.. s ..'</font>') end)
+	code = code:gsub("('.-')", function(s) return protect('<font color="#ce9178">'.. s ..'</font>') end)
 
 	-- Highlight numbers
 	code = code:gsub("(%d+%.?%d*e?%-?%d*)", function(s)
@@ -1797,55 +1797,18 @@ local function highlight(code)
 
 	return code
 end
-local function formatLuaCode(code)
-	local indent = 0
-	local formatted = ""
-	local indentStr = "   "
-
-	for line in code:gmatch("[^\r\n]+") do
-		local trimmed = line:match("^%s*(.-)%s*$")
-		if trimmed:match("^(end)") or trimmed:match("^else") or trimmed:match("^elseif") or trimmed:match("^until") then
-			indent = math.max(indent - 1, 0)
-		end
-		formatted ..= string.rep(indentStr, indent) .. trimmed .. "\n"
-		if trimmed:match("then$") or trimmed:match("do$") or trimmed:match("^repeat$") or trimmed:match("^function") then
-			indent += 1
-		end
-	end
-
-	return formatted
-end
-
 local function update()
-	local rawText = codeBox.Text
-	highlighter.Text = highlight(rawText)
-
-	local lines = select(2, rawText:gsub("\n", "\n")) + 1
-	local lineHeight = codeBox.TextSize + 4
-	local newHeight = lines * lineHeight
-	container.Size = UDim2.new(1, 0, 0, newHeight)
-
-	if lineNumbers then
-		local linesText = {}
-		for i = 1, lines do
-			linesText[i] = tostring(i)
-		end
-		lineNumbers.Text = table.concat(linesText, "\n")
-		lineNumbers.Size = UDim2.new(0, 30, 0, newHeight)
+		local rawText = codeBox.Text
+		highlighter.Text = highlight(rawText)
+	
+		-- Optional: auto-resize based on lines
+		local lines = select(2, rawText:gsub("\n", "\n")) + 1
+		local lineHeight = codeBox.TextSize + 4
+		local newHeight = lines * lineHeight
+		container.Size = UDim2.new(1, 0, 0, newHeight)
 	end
-end
 
 codeBox:GetPropertyChangedSignal("Text"):Connect(update)
-
-local UserInputService = game:GetService("UserInputService")
-UserInputService.InputBegan:Connect(function(input, processed)
-	if not processed and codeBox:IsFocused() and input.KeyCode == Enum.KeyCode.Return then
-		task.defer(function()
-			codeBox.Text = formatLuaCode(codeBox.Text)
-			update()
-		end)
-	end
-end)
 
 codeBox.Text = ""
 update()
