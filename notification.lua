@@ -12,7 +12,7 @@ local CONFIG = {
 	NotificationHeight = 80,  -- Base height, might grow with content
 	Padding = 10,             -- Space between notifications
 	InternalPadding = 10,     -- Padding inside the notification frame
-	IconSize = 30,
+	IconSize = 40,
 	DisplayTime = 4,          -- How long notifications stay visible
 
 	BackgroundColor = Color3.fromRGB(45, 45, 45),
@@ -99,11 +99,9 @@ local function updateNotificationPositions()
 	end
 end
 local function Sound() 
-	local s = Instance.new("Sound", game.SoundService)
+	local s = Instance.new("Sound", game.Workspace)
 	s.SoundId = "rbxassetid://8036518208"
 	s:Play()
-	wait(4)
-	s.Playing = false
 end
 
 -- Private Function: Create a single notification instance
@@ -222,7 +220,7 @@ end)
 	content.Size = UDim2.new(1, 0, 0, CONFIG.ContentSize) -- Width = 100%, initial height based on font size
 	content.LayoutOrder = 2
 	content.Parent = textFrame
-	Sound()
+	
 
 	-- Add to the list and update positions
 	table.insert(notificationList, 1, frame)
@@ -290,6 +288,7 @@ end)
 
 			-- Update positions of remaining notifications
 			updateNotificationPositions()
+			Sound()
 		end
 	end)
 	
