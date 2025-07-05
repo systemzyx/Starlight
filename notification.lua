@@ -288,7 +288,6 @@ end)
 
 			-- Update positions of remaining notifications
 			updateNotificationPositions()
-			Sound()
 		end
 	end)
 	
@@ -298,14 +297,17 @@ end
 -- Public API Functions
 function library.Info(content, title)
 	return createNotification(title or "Information", content or "Info", "Info")
+	Sound()
 end
 
 function library.Warn(content, title)
 	return createNotification(title or "Warning occurred", content or "Warning", "Warn")
+	Sound()
 end
 
 function library.Error(content, title)
 	return createNotification(title or "An error occurred", content or "Error", "Error")
+	Sound()
 end
 
 -- Optional: Function to allow changing config externally (use with caution)
