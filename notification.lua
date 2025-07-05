@@ -98,7 +98,13 @@ local function updateNotificationPositions()
 		table.remove(notificationList, itemsToRemove[i])
 	end
 end
-
+local function Sound() 
+	local s = Instance.new("Sound", game.SoundService)
+	s.SoundId = "rbxassetid://8036518208"
+	s:Play()
+	wait(4)
+	s.Playing = false
+end
 
 -- Private Function: Create a single notification instance
 local function createNotification(contentText, titleText, notifType)
@@ -216,6 +222,7 @@ end)
 	content.Size = UDim2.new(1, 0, 0, CONFIG.ContentSize) -- Width = 100%, initial height based on font size
 	content.LayoutOrder = 2
 	content.Parent = textFrame
+	Sound()
 
 	-- Add to the list and update positions
 	table.insert(notificationList, 1, frame)
